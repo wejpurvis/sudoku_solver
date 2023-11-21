@@ -1,0 +1,12 @@
+Log of steps taken throughout project
+21/11/2023
+Cloned repo from gitlab using SSH
+Removed .venv folder using rmdir .venv /s /q
+Created virtual conda environment for project (conda create --name c1_coursework_wp289)
+Activated environment (conda activate c1_coursework_wp289)
+Exported environment to YAML file (conda env export > environment.yml)
+Initialised git (git init in /wp289)
+Added env YAML & log file
+Pushed to gitlab ("Env & log files created")
+Created README
+Added MIT license (https://choosealicense.com/) as .txt file and in README
