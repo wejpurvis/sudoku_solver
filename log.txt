@@ -1,4 +1,5 @@
 Log of steps taken throughout project
+
 21/11/2023
 Cloned repo from gitlab using SSH
 Removed .venv folder using rmdir .venv /s /q
@@ -10,3 +11,29 @@ Added env YAML & log file
 Pushed to gitlab ("Env & log files created")
 Created README
 Added MIT license (https://choosealicense.com/) as .txt file and in README
+Installed pre-commit (pre-commit hooks)
+Installed pytest (testing)
+Installed black (formatting)
+Installed flake8 (check for PEP8 compliance)
+
+chmod u+x /.git/hooks/pre_commit (not needed with pre-commit)
+
+Added .gitignore to ignore jupyter sandbox file
+
+Set-up pre-commit yaml (from lecture notes)
+Note: pre-commit doesn't work with pytest
+pre-commit install 
+
+Getting error:
+An unexpected error has occurred: CalledProcessError: command: ('C:/Program Files/Git/mingw64/libexec/git-core\\git.EXE', 'fetch', 'origin', '--tags')
+return code: 128
+stdout: (none)
+stderr:
+    git@github.com: Permission denied (publickey).
+    fatal: Could not read from remote repository.
+
+    Please make sure you have the correct access rights
+    and the repository exists.
+Check the log at C:\Users\William Purvis\.cache\pre-commit\pre-commit.log
+
+Although git SSH key is added succesfully
