@@ -1,5 +1,5 @@
-#Ignore jupyter sandbox
-src/sudoku_solver.ipynb
+#Ignore jupyter files
+src/*.ipynb
 
 #Ignore cache
 src/__pycache__/
