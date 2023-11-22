@@ -37,3 +37,36 @@ stderr:
 Check the log at C:\Users\William Purvis\.cache\pre-commit\pre-commit.log
 
 Although git SSH key is added succesfully
+Commit errors dissapear when pre-commit is uninstalled
+Error dissapears when --no-verify is used (suggesting issue with pre-commit setup rather than SSH)
+
+Todo: documentation (sphinx), check with James re: pre-commit
+
+22/11/23
+Bug fixing pre-commit
+YAML file contents:
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+-   repo: https://github.com/psf/black
+    rev: 23.10.0
+    hooks:
+    -   id: black
+
+Downloaded sphinx for documentation
+Run: to generate documentation
+sphinx-apidoc -o docs .
+
+Help: https://redandgreen.co.uk/sphinx/python-code/
+Todo: fix documentation, write unit tests
+
+make clean html (to clean HTML)
+make html (to make HTML docs)
+
+Fixed documentation! Pushed to gitlab
+Updated environment & pushed that to gitlab
