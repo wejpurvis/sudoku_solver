@@ -2,6 +2,7 @@ def parse_grid(sudoku):
     """
     Convert text-based suduko grid into a list of list.
     
+    
     This function allows for easier manipulation of the grid by accessing numbers via their row and column index.
 
     Parameters
