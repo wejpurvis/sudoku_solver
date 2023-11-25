@@ -1,8 +1,7 @@
 def parse_grid(sudoku):
     """
     Convert text-based suduko grid into a list of list.
-    
-    
+
     This function allows for easier manipulation of the grid by accessing numbers via their row and column index.
 
     Parameters
@@ -29,9 +28,9 @@ def parse_grid(sudoku):
 
     Returns
     ----------
-    sudoku_list (list  of lists) : 
+    sudoku_list (list  of lists) :
         A list of list where elements can be accessed by row [i] & column [j]. Each sublist represents a row in the grid.
-    
+
     Raises
     ----------
     TypeError
@@ -42,13 +41,13 @@ def parse_grid(sudoku):
     # Check if input is valid (string)
     if type(sudoku) != str:
         raise TypeError('Input must be a string')
-    
+
     # Flatten input string into a list
     sudoku_list_raw = []
     for char in sudoku:
         if char != '\n':
             sudoku_list_raw.append(char)
-    
+
     # Check if input is valid (length)
     if len(sudoku_list_raw) != 11*11:
         raise ValueError('Input grid must be 11x11, don\'t forget to seperate girds with |, -, and + signs!')
@@ -63,8 +62,8 @@ def parse_grid(sudoku):
                 pass
             else:
                 sudoku_list[i].append(int(curr_val))
-    
+
     # Remove empty sublists
     sudoku_list = [row for row in sudoku_list if row != []]
-    
+
     return sudoku_list
