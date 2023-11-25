@@ -1,6 +1,5 @@
 # Unit tests for isValidSudoku function in utils.py
 from src.utils import isValidSudoku
-import pytest
 
 
 def test_isValidSudoku_valid_board():
@@ -15,7 +14,7 @@ def test_isValidSudoku_valid_board():
         [0, 0, 0, 4, 1, 9, 0, 0, 5],
         [0, 0, 0, 0, 8, 0, 0, 7, 9],
     ]
-    assert isValidSudoku(board) == True
+    assert isValidSudoku(board) is True
 
 
 def test_isValidSudoku_invalid_board():
@@ -30,7 +29,7 @@ def test_isValidSudoku_invalid_board():
         [0, 0, 0, 4, 1, 9, 0, 0, 5],
         [0, 0, 0, 0, 8, 0, 0, 7, 8],  # Duplicate value (8) in the last cell
     ]
-    assert isValidSudoku(board) == False
+    assert isValidSudoku(board) is False
 
 
 def test_isValidSudoku_invalid_board_type():

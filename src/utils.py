@@ -50,7 +50,7 @@ def parse_grid(sudoku):
         If input is not an 11x11 grid, including '|', '-', and '+' characters.
     """
     # Check if input is valid (string)
-    if type(sudoku) != str:
+    if not isinstance(sudoku, str):
         raise TypeError("Input must be a string")
 
     # Flatten input string into a list
