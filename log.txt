@@ -70,3 +70,14 @@ make html (to make HTML docs)
 
 Fixed documentation! Pushed to gitlab
 Updated environment & pushed that to gitlab
+
+25/11/23
+Fixed pre-commit
+Started work on new branch (backtracking_dev)
+Created utils.py folder for utility functions
+Added tests for utility functions
+
+Ignored some error codes for flake8:
+    E501: line length
+    E721: isinstance()
+    W503: clashes with Black formatting
