@@ -7,12 +7,15 @@ Created: 25/11/2023
 Last updated: 25/11/2023
 """
 import sys
+import os
 
 import tkinter as tk
 from tkinter import filedialog
 
-from utils import parse_grid, displaySudoku
-from backtracking import solveBacktrack
+from src.utils import parse_grid, displaySudoku
+from src.backtracking import solveBacktrack
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
 def select_file():
