@@ -3,8 +3,8 @@ This script is the entry point for the Sudoku Solver package.
 It utilizes the backtracking algorithm from the backtracking module alongside various utility functions from utils module to solve sudoku puzzles.
 The user is prompted to select a file containing a sudoku puzzle, which is then solved and displayed to the user within the terminal.
 
-**Author:** William Purvis\
-**Created:** 25/11/2023\
+**Author:** William Purvis \
+**Created:** 25/11/2023 \
 **Last updated:** 26/11/2023
 """
 
@@ -40,7 +40,7 @@ def select_file():
 
 def get_user_input():
     """
-    Prompt user to select whether they want to solve the uploaded sudoku.\
+    Prompt user to select whether they want to solve the uploaded sudoku. \
     :code:`Do you want to solve the uploaded sudoku? [y/n]:` is displayed to the user.
     If user enters :code:`y`, :code:`True` is returned. If user enters :code:`n`, :code:`False` is returned.
 
