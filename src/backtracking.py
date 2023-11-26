@@ -3,8 +3,8 @@ This module contains the backtracking algorithm for solving sudoku puzzles.
 The backtracking algorithm works recursively by trying values 1-9 in empty cells and 'backtracking; if the value is invalid.
 
 References:
-    .. _Norvig, P. (2013). Solving Every Sudoku Puzzle: https://norvig.com/sudoku.html
-    .. _GeeksforGeeks (2020). Sudoku | Backtracking-7: https://www.geeksforgeeks.org/sudoku-backtracking-7/
+`Norvig, P. (2013). Solving Every Sudoku Puzzle <https://norvig.com/sudoku.html>`_
+`GeeksforGeeks (2020). Sudoku | Backtracking-7 <https://www.geeksforgeeks.org/sudoku-backtracking-7/>`
 
 """
 
@@ -89,17 +89,12 @@ def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> boo
 
 def findEmptyCell(sudoku_board: list[list[int]]) -> tuple[int, int]:
     """
-    Utility function used in backtracking to find empty cells in sudoku board.
+    Find the first empty cell in :code:`sudoku_board`.
 
-    Parameters
-    ----------
-    sudoku_board : list of list
-        List of list representing sudoku board
-
-    Returns
-    ---------
-    tuple[int, int]
-        Tuple containing row & column indices of empty cell
+    :param sudoku_board: List of list representing sudoku board
+    :type sudoku_board: list[list[int]]
+    :return: Tuple containing row & column indices of empty cell
+    :rtype: tuple[int, int]
 
     """
     for i in range(9):
