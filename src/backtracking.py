@@ -1,25 +1,23 @@
 """
-Backtracking Algorithm
------------------------------
 This module contains the backtracking algorithm for solving sudoku puzzles.
+The backtracking algorithm works recursively by trying values 1-9 in empty cells and 'backtracking; if the value is invalid.
 
 References:
-    https://www.norvig.com/sudoku.html
-    https://www.geeksforgeeks.org/sudoku-backtracking-7/
+    .. _Norvig, P. (2013). Solving Every Sudoku Puzzle: https://norvig.com/sudoku.html
+    .. _GeeksforGeeks (2020). Sudoku | Backtracking-7: https://www.geeksforgeeks.org/sudoku-backtracking-7/
 
 """
 
 
 def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> bool:
     """
-    Check if a value is valid for cell [i][j] in sudoku_board.
+    Check if a value is valid for cell [i][j] in :code:`sudoku_board`.
     Validity of sudoku is based off the following rules:
 
-    ::
 
-        1. Each row must contain the digits 1-9 without repetition.
-        2. Each column must contain the digits 1-9 without repetition.
-        3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition
+    1) Each row must contain the digits 1-9 without repetition.
+    2) Each column must contain the digits 1-9 without repetition.
+    3) Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition
 
     Parameters
     ----------
