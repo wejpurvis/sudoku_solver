@@ -3,10 +3,10 @@ This module contains the backtracking algorithm for solving sudoku puzzles.
 The backtracking algorithm works recursively by trying values 1-9 in empty cells and 'backtracking' if the value is invalid.
 Validity of values is checked using :code:`validateCell()`, which checks if the value is valid for the cell according to sudoku rules.
 
-References:
+**References:**
 
 - `Norvig, P. (2013). Solving Every Sudoku Puzzle <https://norvig.com/sudoku.html>`_
-- `GeeksforGeeks (2020). Sudoku | Backtracking-7 <https://www.geeksforgeeks.org/sudoku-backtracking-7>`
+- `GeeksforGeeks (2020). Sudoku | Backtracking-7 <https://www.geeksforgeeks.org/sudoku-backtracking-7>`_
 
 """
 
@@ -23,7 +23,7 @@ def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> boo
 
     Parameters
     ----------
-    sudoku_board : list of list
+    sudoku_board : loist[list[int]]
         List of list representing sudoku board
     val : int
         Value to be checked
@@ -116,9 +116,7 @@ def findEmptyCell(sudoku_board: list[list[int]]) -> tuple[int, int]:
 
 def solveBacktrack(grid: list[list[int]], i: [int], j: [int]) -> list[list[int]]:
     """
-    Solve sudoku using backtracking algorithm (recursive implementation).
-
-    The algorithm works as follows:
+    Solve sudoku using backtracking algorithm (recursive implementation). The algorithm works as follows:
 
 
     1) Find empty cell using findEmptyCell()
