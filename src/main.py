@@ -1,11 +1,14 @@
 """
 This script is the entry point for the Sudoku Solver package.
-It utilizes the backtracking algorithm from backtracking.py alongside various utility functions from utils.py to solve sudoku puzzles.
+It utilizes the backtracking algorithm from the backtracking module alongside various utility functions from utils module to solve sudoku puzzles.
+The user is prompted to select a file containing a sudoku puzzle, which is then solved and displayed to the user within the terminal.
 
-Author: William Purvis
-Created: 25/11/2023
-Last updated: 25/11/2023
+**Author:** William Purvis\
+**Created:** 25/11/2023\
+**Last updated:** 26/11/2023
 """
+
+
 import sys
 import os
 
@@ -20,7 +23,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 def select_file():
     """
-    Use tkinter to open a file dialog and return the selected file path.
+    Use :code:`tkinter` library to open file explorer so that user can select a file. The file path of the selected file is returnes.
 
     Returns
     ----------
@@ -37,7 +40,9 @@ def select_file():
 
 def get_user_input():
     """
-    Ask user whether they want to solve uploaded Sudoku.
+    Prompt user to select whether they want to solve the uploaded sudoku.\
+    :code:`Do you want to solve the uploaded sudoku? [y/n]:` is displayed to the user.
+    If user enters :code:`y`, :code:`True` is returned. If user enters :code:`n`, :code:`False` is returned.
 
     Returns
     ----------
@@ -61,8 +66,8 @@ def get_user_input():
 def main():
     """
     Main function that handles the execution of the Sudoku solver program.
-    It prompts the user to select a file, reads the Sudoku puzzle from the file,
-    and then solves the puzzle using a backtracking algorithm.
+    It prompts the user to select a file, reads the Sudoku puzzle from the given file,
+    and then solves the puzzle using a backtracking algorithm if the input file has the correct format.
     """
     file_path = select_file()
     if file_path:
