@@ -1,17 +1,19 @@
 """
 This module contains the backtracking algorithm for solving sudoku puzzles.
-The backtracking algorithm works recursively by trying values 1-9 in empty cells and 'backtracking; if the value is invalid.
+The backtracking algorithm works recursively by trying values 1-9 in empty cells and 'backtracking' if the value is invalid.
+Validity of values is checked using :code:`validateCell()`, which checks if the value is valid for the cell according to sudoku rules.
 
 References:
-`Norvig, P. (2013). Solving Every Sudoku Puzzle <https://norvig.com/sudoku.html>`_
-`GeeksforGeeks (2020). Sudoku | Backtracking-7 <https://www.geeksforgeeks.org/sudoku-backtracking-7/>`
+
+- `Norvig, P. (2013). Solving Every Sudoku Puzzle <https://norvig.com/sudoku.html>`_
+- `GeeksforGeeks (2020). Sudoku | Backtracking-7 <https://www.geeksforgeeks.org/sudoku-backtracking-7>`
 
 """
 
 
 def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> bool:
     """
-    Check if a value is valid for cell [i][j] in :code:`sudoku_board`.
+    Check if a value is valid for cell :code:`[i][j]` in :code:`sudoku_board`.
     Validity of sudoku is based off the following rules:
 
 
@@ -39,10 +41,13 @@ def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> boo
     ---------
     TypeError
         If sudoku board input is not a list of lists
+    TypeError
         If value input is not an int
+    TypeError
         If row/column indices are not ints
     ValueError
         If value input is not between 1-9
+    ValueError
         If row/column indices are not between 0-8
 
     """
@@ -89,12 +94,17 @@ def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> boo
 
 def findEmptyCell(sudoku_board: list[list[int]]) -> tuple[int, int]:
     """
-    Find the first empty cell in :code:`sudoku_board`.
+    Find the first empty cell in :code:`sudoku_board` and return its row & column indices.
 
-    :param sudoku_board: List of list representing sudoku board
-    :type sudoku_board: list[list[int]]
-    :return: Tuple containing row & column indices of empty cell
-    :rtype: tuple[int, int]
+    Parameters
+    ----------
+    sudoku_board : list[list[int]]
+        List of lists representing sudoku board
+
+    Returns
+    ---------
+    tuple[int, int]
+        Tuple containing row & column indices of empty cell or None if no empty cells are found
 
     """
     for i in range(9):
@@ -107,19 +117,19 @@ def findEmptyCell(sudoku_board: list[list[int]]) -> tuple[int, int]:
 def solveBacktrack(grid: list[list[int]], i: [int], j: [int]) -> list[list[int]]:
     """
     Solve sudoku using backtracking algorithm (recursive implementation).
+
     The algorithm works as follows:
 
-    ::
 
-        1. Find empty cell using findEmptyCell()
-        2. If there are no empty cells, the sudoku is solved and the resulting grid is returned
-        3. Try values 1-9
-        4. Validate value using validateCell()
-        4. Repeat steps 1-4 until sudoku is solved
+    1) Find empty cell using findEmptyCell()
+    2) If there are no empty cells, the sudoku is solved and the resulting grid is returned
+    3) Try values 1-9
+    4) Validate value using validateCell()
+    5) Repeat steps 1-4 until sudoku is solved
 
     Parameters
     ----------
-    grid : list of list
+    grid : list[list[int]]
         List of list with dimensions 9x9 representing sudoku board
     i : int
         Row index of cell
@@ -128,7 +138,7 @@ def solveBacktrack(grid: list[list[int]], i: [int], j: [int]) -> list[list[int]]
 
     Returns
     ---------
-    list of list
+    list[list[int]]
         List of list with dimensions 9x9 representing solved sudoku board
 
     """
