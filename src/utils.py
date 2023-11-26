@@ -1,27 +1,23 @@
 """
-Utility Module
-----------------
-
-This module contains utility functions that are used throughout the project.
-parse_grid(sudoku) converts a text-based suduko grid into a list of list ready for processing.
-isValidSudoku(board) checks if a sudoku board is valid (note: a valid sudoku does not necessarily mean that the sudoku is solvable).
-displaySudoku(board) converts a list of list into a text-based suduko grid for display purposes.
+| This module contains utility functions that are used throughout the project.
+| :code:`parse_grid(sudoku)` converts a text-based suduko grid into a list of list ready for processing.
+  :code:`isValidSudoku(board)` checks if a sudoku board is valid (*note*: a valid sudoku does not necessarily mean that the sudoku is solvable).
+  :code:`displaySudoku(board)` converts a list of list into a text-based suduko grid for display purposes.
 """
 
 
 def parse_grid(sudoku):
     """
-    Convert text-based suduko grid into a list of list.
-
-    This function allows for easier manipulation of the grid by accessing numbers via their row and column index.
+    Convert text-based suduko grid into a list of list of integers.
+    This function allows for easier manipulation of the sudoku grid by accessing numbers via their row (:code:`[i]`) and column (:code:`[j]`) index.
 
     Parameters
     ----------
     sudoku: str
         Text-based grid representation of Sudoku. Empty cells should be denoted
-        with a 0, with '|' and '-' used to seperate subgrid columns and rows, respectively.
-        The intersections of each subgrid should be marked with '+'.
-        Example:
+        with a :code:`0`, with :code:`|` and :code:`-` used to seperate subgrid columns and rows, respectively.
+        The intersections of each subgrid should be marked with :code:`+`.
+        | Example:
 
         ::
 
@@ -39,7 +35,7 @@ def parse_grid(sudoku):
 
     Returns
     ----------
-    sudoku_list (list  of lists) :
+    sudoku_list : list[list[int]]
         A list of list where elements can be accessed by row [i] & column [j]. Each sublist represents a row in the grid.
 
     Raises
@@ -86,17 +82,16 @@ def isValidSudoku(board: list[list[int]]) -> bool:
     """
     Given a list of lists represrenting a sudoku board, check if the board is valid.
     Validity of sudoku is based off the following rules:
-    ::
 
-        1. Each row must contain the digits 1-9 without repetition.
-        2. Each column must contain the digits 1-9 without repetition.
-        3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition
+    1) Each row must contain the digits 1-9 without repetition.
+    2) Each column must contain the digits 1-9 without repetition.
+    3) Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition
 
-    Note: a valid sudoku does not necessarily mean that the sudoku is solvable.
+    *Note*: a valid sudoku does not necessarily mean that the sudoku is solvable.
 
     Parameters
     ----------
-    board : list of list
+    board : list[list[int]]]
         List of list where elements can be accessed by row [i] & column [j]
 
     Returns
@@ -171,18 +166,18 @@ def displaySudoku(board: list[list[int]]) -> str:
         Text-based grid where empty cells are represented by 0, each subgrid is seperated by | and each row is seperated by - and +
         e.g.
 
-        ::
-                000|007|000
-                000|009|504
-                000|050|169
-                ---+---+---
-                080|000|305
-                075|000|290
-                406|000|080
-                ---+---+---
-                762|080|000
-                103|900|000
-                000|600|000
+    ::
+            000|007|000
+            000|009|504
+            000|050|169
+            ---+---+---
+            080|000|305
+            075|000|290
+            406|000|080
+            ---+---+---
+            762|080|000
+            103|900|000
+            000|600|000
     Raises
     ---------
     TypeError
