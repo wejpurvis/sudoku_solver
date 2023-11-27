@@ -2,7 +2,7 @@
 | This module contains utility functions that are used throughout the project.
 | :code:`parse_grid(sudoku)` converts a text-based suduko grid into a list of list ready for processing.
   :code:`isValidSudoku(board)` checks if a sudoku board is valid (*note*: a valid sudoku does not necessarily mean that the sudoku is solvable).
-  :code:`displaySudoku(board)` converts a list of list into a text-based suduko grid for display purposes.
+  :code:`displaySudoku(board)` converts a list of lists into a text-based suduko grid for display purposes.
 """
 
 
