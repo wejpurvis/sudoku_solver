@@ -11,12 +11,13 @@ The user is prompted to select a file containing a sudoku puzzle, which is then 
 
 import sys
 import os
+import time
 
 import tkinter as tk
 from tkinter import filedialog
 
-from src.utils import parse_grid, displaySudoku
-from src.backtracking import solveBacktrack
+from utils import parse_grid, displaySudoku
+from backtracking import solveBacktrack
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -79,8 +80,12 @@ def main():
         if get_user_input():
             # Solve sudoku
             sudoku_board = parse_grid(sudoku)
+            start_time = time.time()
             solved_sudoku = solveBacktrack(sudoku_board, 0, 0)
+            end_time = time.time()
+            duration = end_time - start_time
             print(f"Solved sudoku:\n\n{displaySudoku(solved_sudoku)}")
+            print(f"Solved in {duration:.4f} seconds")
 
         else:
             # Exit program

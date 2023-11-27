@@ -14,10 +14,11 @@ def parse_grid(sudoku):
     Parameters
     ----------
     sudoku: str
-        | Text-based grid representation of Sudoku. Empty cells should be denoted
-          with a :code:`0`, with :code:`|` and :code:`-` used to seperate subgrid columns and rows, respectively.
-          The intersections of each subgrid should be marked with :code:`+`.
-        | Example:
+        Text-based grid representation of Sudoku. Empty cells should be denoted
+        with a :code:`0`, with :code:`|` and :code:`-` used to seperate subgrid columns and rows, respectively.
+        The intersections of each subgrid should be marked with :code:`+`.
+
+        Example:
 
         ::
 
@@ -164,9 +165,11 @@ def displaySudoku(board: list[list[int]]) -> str:
     ---------
     sudoku : str
         Text-based grid where empty cells are represented by 0, each subgrid is seperated by | and each row is seperated by - and +
-        e.g.
+
+        Example:
 
         ::
+
             000|007|000
             000|009|504
             000|050|169

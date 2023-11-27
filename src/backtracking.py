@@ -23,7 +23,7 @@ def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> boo
 
     Parameters
     ----------
-    sudoku_board : loist[list[int]]
+    sudoku_board : list[list[int]]
         List of list representing sudoku board
     val : int
         Value to be checked
