@@ -9,27 +9,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>src.main &#8212; Sudoku Solver 1.0.0 documentation</title>
-  
-  
-  
+
+
+
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
-  
+
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 <link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
-  
+
   <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  
+
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
@@ -46,35 +46,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
-  
-  
+
+
   <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-  
-  
+
+
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
+
   <div id="pst-scroll-pixel-helper"></div>
 
-  
+
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
     Back to top
   </button>
 
-  
+
   <input type="checkbox"
           class="sidebar-toggle"
           name="__primary"
           id="__primary"/>
   <label class="overlay overlay-primary" for="__primary"></label>
-  
+
   <input type="checkbox"
           class="sidebar-toggle"
           name="__secondary"
           id="__secondary"/>
   <label class="overlay overlay-secondary" for="__secondary"></label>
-  
+
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
@@ -95,36 +95,36 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-  
+
     <nav class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
   </label>
-  
-  
+
+
   <div class="col-lg-3 navbar-header-items__start">
-    
+
       <div class="navbar-item">
-  
+
 
 <a class="navbar-brand logo" href="../../index.html">
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
     <p class="title logo__title">Sudoku Solver 1.0.0 documentation</p>
-  
+
 </a></div>
-    
+
   </div>
-  
+
   <div class="col-lg-9 navbar-header-items">
-    
+
     <div class="me-auto navbar-header-items__center">
-      
+
         <div class="navbar-item"><nav class="navbar-nav">
   <p class="sidebar-header-items__title"
      role="heading"
@@ -133,23 +133,23 @@
     Site Navigation
   </p>
   <ul class="bd-navbar-elements navbar-nav">
-    
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../modules.html">
                         Sudoku Solver Modules
                       </a>
                     </li>
-                
+
   </ul>
 </nav></div>
-      
+
     </div>
-    
-    
+
+
     <div class="navbar-header-items__end">
-      
+
         <div class="navbar-item navbar-persistent--container">
-          
+
  <script>
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -160,8 +160,8 @@
  `);
  </script>
         </div>
-      
-      
+
+
         <div class="navbar-item">
 <script>
 document.write(`
@@ -172,12 +172,12 @@ document.write(`
   </button>
 `);
 </script></div>
-      
+
     </div>
-    
+
   </div>
-  
-  
+
+
     <div class="navbar-persistent--mobile">
  <script>
  document.write(`
@@ -189,25 +189,25 @@ document.write(`
  `);
  </script>
     </div>
-  
 
-  
+
+
 </div>
 
     </nav>
-  
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
-        
 
-  
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+
+
+
   <div class="sidebar-header-items sidebar-primary__section">
-    
-    
+
+
       <div class="sidebar-header-items__center">
-        
+
           <div class="navbar-item"><nav class="navbar-nav">
   <p class="sidebar-header-items__title"
      role="heading"
@@ -216,22 +216,22 @@ document.write(`
     Site Navigation
   </p>
   <ul class="bd-navbar-elements navbar-nav">
-    
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../modules.html">
                         Sudoku Solver Modules
                       </a>
                     </li>
-                
+
   </ul>
 </nav></div>
-        
+
       </div>
-    
-    
-    
+
+
+
       <div class="sidebar-header-items__end">
-        
+
           <div class="navbar-item">
 <script>
 document.write(`
@@ -242,76 +242,77 @@ document.write(`
   </button>
 `);
 </script></div>
-        
+
       </div>
-    
+
   </div>
-  
-  
+
+
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-  
+
   <div id="rtd-footer-container"></div>
 
 
       </div>
-      
+
       <main id="main-content" class="bd-main">
-        
-        
+
+
           <div class="bd-content">
             <div class="bd-article-container">
-              
+
               <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
-  
+
     <div class="header-article-items__start">
-      
+
         <div class="header-article-item">
 
 
 
 <nav aria-label="Breadcrumb">
   <ul class="bd-breadcrumbs">
-    
+
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../index.html" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    
+
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
-    
+
     <li class="breadcrumb-item active" aria-current="page">src.main</li>
   </ul>
 </nav>
 </div>
-      
+
     </div>
-  
-  
+
+
 </div>
 </div>
-              
-              
-              
-                
+
+
+
+
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
-                  
+
   <h1>Source code for src.main</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This script is the entry point for the Sudoku Solver package.</span>
-<span class="sd">It utilizes the backtracking algorithm from backtracking.py alongside various utility functions from utils.py to solve sudoku puzzles.</span>
+<span class="sd">It utilizes the backtracking algorithm from the backtracking module alongside various utility functions from utils module to solve sudoku puzzles.</span>
+<span class="sd">The user is prompted to select a file containing a sudoku puzzle, which is then solved and displayed to the user within the terminal.</span>
 
-<span class="sd">Author: William Purvis</span>
-<span class="sd">Created: 25/11/2023</span>
-<span class="sd">Last updated: 25/11/2023</span>
+<span class="sd">| **Author:** William Purvis</span>
+<span class="sd">| **Created:** 25/11/2023</span>
+<span class="sd">| **Last updated:** 26/11/2023</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">)))</span>
 
 <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
 <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
@@ -319,10 +320,12 @@ document.write(`
 <span class="kn">from</span> <span class="nn">src.utils</span> <span class="kn">import</span> <span class="n">parse_grid</span><span class="p">,</span> <span class="n">displaySudoku</span>
 <span class="kn">from</span> <span class="nn">src.backtracking</span> <span class="kn">import</span> <span class="n">solveBacktrack</span>
 
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">)))</span>
+
 
 <div class="viewcode-block" id="select_file"><a class="viewcode-back" href="../../main.html#src.main.select_file">[docs]</a><span class="k">def</span> <span class="nf">select_file</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Use tkinter to open a file dialog and return the selected file path.</span>
+<span class="sd">    Use :code:`tkinter` library to open file explorer so that user can select a file. The file path of the selected file is returnes.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    ----------</span>
@@ -339,7 +342,9 @@ document.write(`
 
 <div class="viewcode-block" id="get_user_input"><a class="viewcode-back" href="../../main.html#src.main.get_user_input">[docs]</a><span class="k">def</span> <span class="nf">get_user_input</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Ask user whether they want to solve uploaded Sudoku.</span>
+<span class="sd">    | Prompt user to select whether they want to solve the uploaded sudoku.</span>
+<span class="sd">    | :code:`Do you want to solve the uploaded sudoku? [y/n]:` is displayed to the user.</span>
+<span class="sd">      If user enters :code:`y`, :code:`True` is returned. If user enters :code:`n`, :code:`False` is returned.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    ----------</span>
@@ -363,8 +368,8 @@ document.write(`
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../main.html#src.main.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Main function that handles the execution of the Sudoku solver program.</span>
-<span class="sd">    It prompts the user to select a file, reads the Sudoku puzzle from the file,</span>
-<span class="sd">    and then solves the puzzle using a backtracking algorithm.</span>
+<span class="sd">    It prompts the user to select a file, reads the Sudoku puzzle from the given file,</span>
+<span class="sd">    and then solves the puzzle using a backtracking algorithm if the input file has the correct format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">select_file</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">file_path</span><span class="p">:</span>
@@ -391,68 +396,68 @@ document.write(`
 </pre></div>
 
                 </article>
-              
-              
-              
-              
-              
+
+
+
+
+
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
 </div>
                 </footer>
-              
+
             </div>
-            
-            
-              
-            
+
+
+
+
           </div>
           <footer class="bd-footer-content">
-            
+
           </footer>
-        
+
       </main>
     </div>
   </div>
-  
+
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
   <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
 <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
-  
+
     <div class="footer-items__start">
-      
+
         <div class="footer-item">
   <p class="copyright">
-    
+
       © Copyright 2023, Will Purvis.
       <br/>
-    
+
   </p>
 </div>
-      
+
         <div class="footer-item">
   <p class="sphinx-version">
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
     <br/>
   </p>
 </div>
-      
+
     </div>
-  
-  
-  
+
+
+
     <div class="footer-items__end">
-      
+
         <div class="footer-item"><p class="theme-version">
   Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
-      
+
     </div>
-  
+
 </div>
 
   </footer>

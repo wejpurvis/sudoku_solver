@@ -9,27 +9,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>src.backtracking &#8212; Sudoku Solver 1.0.0 documentation</title>
-  
-  
-  
+
+
+
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
-  
+
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 <link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
-  
+
   <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  
+
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
@@ -46,35 +46,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
-  
-  
+
+
   <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-  
-  
+
+
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
+
   <div id="pst-scroll-pixel-helper"></div>
 
-  
+
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
     Back to top
   </button>
 
-  
+
   <input type="checkbox"
           class="sidebar-toggle"
           name="__primary"
           id="__primary"/>
   <label class="overlay overlay-primary" for="__primary"></label>
-  
+
   <input type="checkbox"
           class="sidebar-toggle"
           name="__secondary"
           id="__secondary"/>
   <label class="overlay overlay-secondary" for="__secondary"></label>
-  
+
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
@@ -95,36 +95,36 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-  
+
     <nav class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
   <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
   </label>
-  
-  
+
+
   <div class="col-lg-3 navbar-header-items__start">
-    
+
       <div class="navbar-item">
-  
+
 
 <a class="navbar-brand logo" href="../../index.html">
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
     <p class="title logo__title">Sudoku Solver 1.0.0 documentation</p>
-  
+
 </a></div>
-    
+
   </div>
-  
+
   <div class="col-lg-9 navbar-header-items">
-    
+
     <div class="me-auto navbar-header-items__center">
-      
+
         <div class="navbar-item"><nav class="navbar-nav">
   <p class="sidebar-header-items__title"
      role="heading"
@@ -133,23 +133,23 @@
     Site Navigation
   </p>
   <ul class="bd-navbar-elements navbar-nav">
-    
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../modules.html">
                         Sudoku Solver Modules
                       </a>
                     </li>
-                
+
   </ul>
 </nav></div>
-      
+
     </div>
-    
-    
+
+
     <div class="navbar-header-items__end">
-      
+
         <div class="navbar-item navbar-persistent--container">
-          
+
  <script>
  document.write(`
    <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -160,8 +160,8 @@
  `);
  </script>
         </div>
-      
-      
+
+
         <div class="navbar-item">
 <script>
 document.write(`
@@ -172,12 +172,12 @@ document.write(`
   </button>
 `);
 </script></div>
-      
+
     </div>
-    
+
   </div>
-  
-  
+
+
     <div class="navbar-persistent--mobile">
  <script>
  document.write(`
@@ -189,25 +189,25 @@ document.write(`
  `);
  </script>
     </div>
-  
 
-  
+
+
 </div>
 
     </nav>
-  
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
-        
 
-  
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+
+
+
   <div class="sidebar-header-items sidebar-primary__section">
-    
-    
+
+
       <div class="sidebar-header-items__center">
-        
+
           <div class="navbar-item"><nav class="navbar-nav">
   <p class="sidebar-header-items__title"
      role="heading"
@@ -216,22 +216,22 @@ document.write(`
     Site Navigation
   </p>
   <ul class="bd-navbar-elements navbar-nav">
-    
+
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../../modules.html">
                         Sudoku Solver Modules
                       </a>
                     </li>
-                
+
   </ul>
 </nav></div>
-        
+
       </div>
-    
-    
-    
+
+
+
       <div class="sidebar-header-items__end">
-        
+
           <div class="navbar-item">
 <script>
 document.write(`
@@ -242,90 +242,90 @@ document.write(`
   </button>
 `);
 </script></div>
-        
+
       </div>
-    
+
   </div>
-  
-  
+
+
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-  
+
   <div id="rtd-footer-container"></div>
 
 
       </div>
-      
+
       <main id="main-content" class="bd-main">
-        
-        
+
+
           <div class="bd-content">
             <div class="bd-article-container">
-              
+
               <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
-  
+
     <div class="header-article-items__start">
-      
+
         <div class="header-article-item">
 
 
 
 <nav aria-label="Breadcrumb">
   <ul class="bd-breadcrumbs">
-    
+
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../index.html" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    
+
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
-    
+
     <li class="breadcrumb-item active" aria-current="page">src.backtracking</li>
   </ul>
 </nav>
 </div>
-      
+
     </div>
-  
-  
+
+
 </div>
 </div>
-              
-              
-              
-                
+
+
+
+
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
-                  
+
   <h1>Source code for src.backtracking</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Backtracking Algorithm</span>
-<span class="sd">-----------------------------</span>
 <span class="sd">This module contains the backtracking algorithm for solving sudoku puzzles.</span>
+<span class="sd">The backtracking algorithm works recursively by trying values 1-9 in empty cells and &#39;backtracking&#39; if the value is invalid.</span>
+<span class="sd">Validity of values is checked using :code:`validateCell()`, which checks if the value is valid for the cell according to sudoku rules.</span>
 
-<span class="sd">References:</span>
-<span class="sd">    https://www.norvig.com/sudoku.html</span>
-<span class="sd">    https://www.geeksforgeeks.org/sudoku-backtracking-7/</span>
+<span class="sd">**References:**</span>
+
+<span class="sd">- `Norvig, P. (2013). Solving Every Sudoku Puzzle &lt;https://norvig.com/sudoku.html&gt;`_</span>
+<span class="sd">- `GeeksforGeeks (2020). Sudoku | Backtracking-7 &lt;https://www.geeksforgeeks.org/sudoku-backtracking-7&gt;`_</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="validateCell"><a class="viewcode-back" href="../../backtracking.html#src.backtracking.validateCell">[docs]</a><span class="k">def</span> <span class="nf">validateCell</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Check if a value is valid for cell [i][j] in sudoku_board.</span>
+<span class="sd">    Check if a value is valid for cell :code:`[i][j]` in :code:`sudoku_board`.</span>
 <span class="sd">    Validity of sudoku is based off the following rules:</span>
 
-<span class="sd">    ::</span>
 
-<span class="sd">        1. Each row must contain the digits 1-9 without repetition.</span>
-<span class="sd">        2. Each column must contain the digits 1-9 without repetition.</span>
-<span class="sd">        3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition</span>
+<span class="sd">    1) Each row must contain the digits 1-9 without repetition.</span>
+<span class="sd">    2) Each column must contain the digits 1-9 without repetition.</span>
+<span class="sd">    3) Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    sudoku_board : list of list</span>
+<span class="sd">    sudoku_board : list[list[int]]</span>
 <span class="sd">        List of list representing sudoku board</span>
 <span class="sd">    val : int</span>
 <span class="sd">        Value to be checked</span>
@@ -343,10 +343,13 @@ document.write(`
 <span class="sd">    ---------</span>
 <span class="sd">    TypeError</span>
 <span class="sd">        If sudoku board input is not a list of lists</span>
+<span class="sd">    TypeError</span>
 <span class="sd">        If value input is not an int</span>
+<span class="sd">    TypeError</span>
 <span class="sd">        If row/column indices are not ints</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If value input is not between 1-9</span>
+<span class="sd">    ValueError</span>
 <span class="sd">        If row/column indices are not between 0-8</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -393,17 +396,17 @@ document.write(`
 
 <div class="viewcode-block" id="findEmptyCell"><a class="viewcode-back" href="../../backtracking.html#src.backtracking.findEmptyCell">[docs]</a><span class="k">def</span> <span class="nf">findEmptyCell</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Utility function used in backtracking to find empty cells in sudoku board.</span>
+<span class="sd">    Find the first empty cell in :code:`sudoku_board` and return its row &amp; column indices.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    sudoku_board : list of list</span>
-<span class="sd">        List of list representing sudoku board</span>
+<span class="sd">    sudoku_board : list[list[int]]</span>
+<span class="sd">        List of lists representing sudoku board</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    ---------</span>
 <span class="sd">    tuple[int, int]</span>
-<span class="sd">        Tuple containing row &amp; column indices of empty cell</span>
+<span class="sd">        Tuple containing row &amp; column indices of empty cell or None if no empty cells are found</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
@@ -415,20 +418,18 @@ document.write(`
 
 <div class="viewcode-block" id="solveBacktrack"><a class="viewcode-back" href="../../backtracking.html#src.backtracking.solveBacktrack">[docs]</a><span class="k">def</span> <span class="nf">solveBacktrack</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">i</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">j</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Solve sudoku using backtracking algorithm (recursive implementation).</span>
-<span class="sd">    The algorithm works as follows:</span>
+<span class="sd">    Solve sudoku using backtracking algorithm (recursive implementation). The algorithm works as follows:</span>
 
-<span class="sd">    ::</span>
 
-<span class="sd">        1. Find empty cell using findEmptyCell()</span>
-<span class="sd">        2. If there are no empty cells, the sudoku is solved and the resulting grid is returned</span>
-<span class="sd">        3. Try values 1-9</span>
-<span class="sd">        4. Validate value using validateCell()</span>
-<span class="sd">        4. Repeat steps 1-4 until sudoku is solved</span>
+<span class="sd">    1) Find empty cell using findEmptyCell()</span>
+<span class="sd">    2) If there are no empty cells, the sudoku is solved and the resulting grid is returned</span>
+<span class="sd">    3) Try values 1-9</span>
+<span class="sd">    4) Validate value using validateCell()</span>
+<span class="sd">    5) Repeat steps 1-4 until sudoku is solved</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    grid : list of list</span>
+<span class="sd">    grid : list[list[int]]</span>
 <span class="sd">        List of list with dimensions 9x9 representing sudoku board</span>
 <span class="sd">    i : int</span>
 <span class="sd">        Row index of cell</span>
@@ -437,7 +438,7 @@ document.write(`
 
 <span class="sd">    Returns</span>
 <span class="sd">    ---------</span>
-<span class="sd">    list of list</span>
+<span class="sd">    list[list[int]]</span>
 <span class="sd">        List of list with dimensions 9x9 representing solved sudoku board</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -462,68 +463,68 @@ document.write(`
 </pre></div>
 
                 </article>
-              
-              
-              
-              
-              
+
+
+
+
+
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
 </div>
                 </footer>
-              
+
             </div>
-            
-            
-              
-            
+
+
+
+
           </div>
           <footer class="bd-footer-content">
-            
+
           </footer>
-        
+
       </main>
     </div>
   </div>
-  
+
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
   <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
 <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
-  
+
     <div class="footer-items__start">
-      
+
         <div class="footer-item">
   <p class="copyright">
-    
+
       © Copyright 2023, Will Purvis.
       <br/>
-    
+
   </p>
 </div>
-      
+
         <div class="footer-item">
   <p class="sphinx-version">
     Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
     <br/>
   </p>
 </div>
-      
+
     </div>
-  
-  
-  
+
+
+
     <div class="footer-items__end">
-      
+
         <div class="footer-item"><p class="theme-version">
   Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
-      
+
     </div>
-  
+
 </div>
 
   </footer>
