@@ -51,7 +51,7 @@ def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> boo
         If row/column indices are not between 0-8
 
     """
-    # Check if board input is valid (list of list)
+    # Check if board input is valid (list[list])
     if type(sudoku_board) != list:
         raise TypeError("Input must be a list")
     if type(sudoku_board[0]) != list:
