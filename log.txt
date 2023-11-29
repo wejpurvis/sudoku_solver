@@ -22,7 +22,7 @@ Added .gitignore to ignore jupyter sandbox file
 
 Set-up pre-commit yaml (from lecture notes)
 Note: pre-commit doesn't work with pytest
-pre-commit install 
+pre-commit install
 
 Getting error:
 An unexpected error has occurred: CalledProcessError: command: ('C:/Program Files/Git/mingw64/libexec/git-core\\git.EXE', 'fetch', 'origin', '--tags')
@@ -81,3 +81,12 @@ Ignored some error codes for flake8:
     E501: line length
     E721: isinstance()
     W503: clashes with Black formatting
+
+Added black & flake8 to pre-commit hooks
+
+To-do:
+    documentation formatting
+    docker
+    check notes to see if anything is missing (?)
+    host documentation on gitlab
+    investigate other algorithms (constraint satisfaction solvers, donald kuth algotihm x, genetic algorithm, ML techniques)
