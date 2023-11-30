@@ -3,3 +3,9 @@ src/*.ipynb
 
 #Ignore all cache
 __pycache__/
+
+#Ignore full env file
+environment_full.yml
+
+#Ignore pytest cache
+.pytest_cache/
