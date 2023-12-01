@@ -18,8 +18,6 @@ import argparse
 from utils import parse_grid, displaySudoku
 from backtracking import solveBacktrack
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 
 def parse_arguments():
     """
