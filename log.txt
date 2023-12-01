@@ -90,3 +90,25 @@ To-do:
     check notes to see if anything is missing (?)
     host documentation on gitlab
     investigate other algorithms (constraint satisfaction solvers, donald kuth algotihm x, genetic algorithm, ML techniques)
+
+
+01/12/23
+
+re-built env
+
+conda env export --from-history  > test_env.yml
+
+todo: rebuild docker, push to v1.0, move on to PDS!!!!!!!!!
+
+Building docker:
+
+docker build -t c1_coursework_wp289 .   (Builds docker image)
+docker run -it --name my_c1_project c1_coursework_wp289
+run `docker images` on CL to see all images
+
+ To remove all stopped containers, unused networks, and dangling images, run: docker system prune
+
+
+run in docker: (stop docker using: docker stop sudoku_docker_1 and then docker rm sudoku_docker_1)
+
+docker run -it --name sudoku_docker_1 -v "C:\Users\William Purvis\OneDrive - University of Cambridge\DIS\RC_coursework\wp289\test\example_sudokus:/usr/src/app/data" sudoku_v1 src/main.py /usr/src/app/data/easy_sudoku1.txt
