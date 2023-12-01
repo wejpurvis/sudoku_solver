@@ -1,7 +1,7 @@
 """
 This script is the entry point for the Sudoku Solver package.
 It utilizes the backtracking algorithm from the backtracking module alongside various utility functions from utils module to solve sudoku puzzles.
-The user is prompted to select a file containing a sudoku puzzle, which is then solved and displayed to the user within the terminal.
+Usage: :code:`src/main.py input.txt` where :code:`input.txt` is the path to the file containing the sudoku puzzle to be solved.
 
 | **Author:** William Purvis
 | **Created:** 25/11/2023
@@ -13,8 +13,7 @@ import sys
 import os
 import time
 
-import tkinter as tk
-from tkinter import filedialog
+import argparse
 
 from utils import parse_grid, displaySudoku
 from backtracking import solveBacktrack
@@ -22,21 +21,60 @@ from backtracking import solveBacktrack
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
-def select_file():
+def parse_arguments():
     """
-    Use :code:`tkinter` library to open file explorer so that user can select a file. The file path of the selected file is returnes.
+    Parse command line arguments.
 
     Returns
     ----------
-    str
-        Path to the selected file.
-    """
-    root = tk.Tk()
-    root.withdraw()
+        args (argparse.Namespace): Parsed command line arguments.
 
-    # Open file dialog and return the selected file path
-    file_path = filedialog.askopenfilename()
-    return file_path
+    Raises
+    ----------
+    ValueError
+        If more than 1 argument is passed on CL.
+    """
+    parser = argparse.ArgumentParser(description="wp289's Sudoku Solver")
+    parser.add_argument("input_file", help="Input sudoku as a text file")
+    args = parser.parse_args()
+
+    # check only 1 input file is provided
+    if len(vars(args)) != 1:
+        raise ValueError(
+            "Invalid number of arguments. Please only upload 1 sudoku file."
+        )
+
+    return args
+
+
+def is_valid_file(filename):
+    """
+    Check if a given file is valid based on whether file exists and whether it is a text file (.txt).
+
+    Parameters
+    ----------
+    filename (str): The path of the file to be checked.
+
+    Raises
+    ----------
+    FileNotFoundError
+        If the file does not exist.
+    ValueError
+        If the file format is not valid.
+
+    """
+    # Check if file exists
+    if not os.path.exists(filename):
+        raise FileNotFoundError(f"{filename} not found.")
+
+    # Check if .txt
+    valid_extension = ".txt"
+    file_extension = os.path.splitext(filename)[1].lower()
+
+    if file_extension != valid_extension:
+        raise ValueError(
+            f"{file_extension} files are not supported. Please upload a {valid_extension} file."
+        )
 
 
 def get_user_input():
@@ -67,31 +105,44 @@ def get_user_input():
 def main():
     """
     Main function that handles the execution of the Sudoku solver program.
-    It prompts the user to select a file, reads the Sudoku puzzle from the given file,
-    and then solves the puzzle using a backtracking algorithm if the input file has the correct format.
-    """
-    file_path = select_file()
-    if file_path:
-        print(f"Selected file: {file_path}")
-        with open(file_path, "r") as f:
-            sudoku = f.read()
 
-        print(f"Unsolved sudoku:\n\n{sudoku}")
+    It reads the input Sudoku file (given as a .txt file via the CL),solves
+    the Sudoku puzzle using backtracking algorithm,and displays the solved
+    Sudoku along with the time taken for solving.
+
+    If the user chooses not to solve the Sudoku, the program exits.
+
+    Raises
+    ----------
+        FileNotFoundError
+            If the input Sudoku file is not found.
+        ValueError
+            If there is an error in the input Sudoku file.
+
+    """
+    try:
+        input_sudoku_path = parse_arguments().input_file
+        is_valid_file(input_sudoku_path)
+        # Display success message
+        with open(input_sudoku_path, "r") as f:
+            input_sudoku = f.read()
+        print(f"Uploaded sudoku:\n\n{input_sudoku}")
         if get_user_input():
             # Solve sudoku
-            sudoku_board = parse_grid(sudoku)
+            sudoku_board = parse_grid(input_sudoku)
             start_time = time.time()
             solved_sudoku = solveBacktrack(sudoku_board, 0, 0)
             end_time = time.time()
-            duration = end_time - start_time
             print(f"Solved sudoku:\n\n{displaySudoku(solved_sudoku)}")
-            print(f"Solved in {duration:.4f} seconds")
-
+            print(f"Solved in {(end_time - start_time):.4f} seconds.")
         else:
             # Exit program
+            print("Exiting program...")
             sys.exit()
-    else:
-        print("No file was selected")
+    except FileNotFoundError as e:
+        print(f"Error: {e}")
+    except ValueError as e:
+        print(f"Error: {e}")
 
 
 if __name__ == "__main__":
