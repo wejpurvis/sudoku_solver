@@ -14,4 +14,5 @@ RUN conda env create -f environment.yml
 SHELL ["conda", "run", "-n", "c1_coursework_wp289", "/bin/bash", "-c"]
 
 # Run the application
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "c1_coursework_wp289", "python", "src/main.py"]
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "c1_coursework_wp289", "python"]
+CMD ["src/main.py"]
