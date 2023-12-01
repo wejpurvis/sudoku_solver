@@ -1,7 +1,7 @@
 Backtracking module
 ====================
 
-.. automodule:: src.backtracking
+.. automodule:: backtracking
    :members:
    :undoc-members:
    :show-inheritance:

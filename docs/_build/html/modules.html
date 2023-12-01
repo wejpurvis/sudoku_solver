@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -29,18 +28,16 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -317,13 +314,29 @@ document.write(`
                 <article class="bd-article" role="main">
 
   <section id="sudoku-solver-modules">
-<h1>Sudoku Solver Modules<a class="headerlink" href="#sudoku-solver-modules" title="Permalink to this heading">#</a></h1>
+<h1>Sudoku Solver Modules<a class="headerlink" href="#sudoku-solver-modules" title="Link to this heading">#</a></h1>
 <p>Here is a list of all the modules in the Sudoku Solver package with brief descriptions:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="main.html">Main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.displaySudoku"><code class="docutils literal notranslate"><span class="pre">displaySudoku()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.isValidSudoku"><code class="docutils literal notranslate"><span class="pre">isValidSudoku()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.parse_grid"><code class="docutils literal notranslate"><span class="pre">parse_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="backtracking.html#backtracking.findEmptyCell"><code class="docutils literal notranslate"><span class="pre">findEmptyCell()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="backtracking.html#backtracking.solveBacktrack"><code class="docutils literal notranslate"><span class="pre">solveBacktrack()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="backtracking.html#backtracking.validateCell"><code class="docutils literal notranslate"><span class="pre">validateCell()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">Main module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.get_user_input"><code class="docutils literal notranslate"><span class="pre">get_user_input()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.is_valid_file"><code class="docutils literal notranslate"><span class="pre">is_valid_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.parse_arguments"><code class="docutils literal notranslate"><span class="pre">parse_arguments()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -405,7 +418,7 @@ document.write(`
 
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>

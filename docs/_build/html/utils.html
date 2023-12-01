@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -29,18 +28,16 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'utils';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -319,39 +316,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
 
-  <section id="module-src.utils">
-<span id="utils-module"></span><h1>Utils module<a class="headerlink" href="#module-src.utils" title="Permalink to this heading">#</a></h1>
+  <section id="module-utils">
+<span id="utils-module"></span><h1>Utils module<a class="headerlink" href="#module-utils" title="Link to this heading">#</a></h1>
 <div class="line-block">
 <div class="line">This module contains utility functions that are used throughout the project.</div>
 <div class="line"><code class="code docutils literal notranslate"><span class="pre">parse_grid(sudoku)</span></code> converts a text-based suduko grid into a list of list ready for processing.
 <code class="code docutils literal notranslate"><span class="pre">isValidSudoku(board)</span></code> checks if a sudoku board is valid (<em>note</em>: a valid sudoku does not necessarily mean that the sudoku is solvable).
-<code class="code docutils literal notranslate"><span class="pre">displaySudoku(board)</span></code> converts a list of list into a text-based suduko grid for display purposes.</div>
+<code class="code docutils literal notranslate"><span class="pre">displaySudoku(board)</span></code> converts a list of lists into a text-based suduko grid for display purposes.</div>
 </div>
 <dl class="py function">
-<dt class="sig sig-object py" id="src.utils.displaySudoku">
-<span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">displaySudoku</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/src/utils.html#displaySudoku"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.displaySudoku" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="utils.displaySudoku">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">displaySudoku</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/utils.html#displaySudoku"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.displaySudoku" title="Link to this definition">#</a></dt>
 <dd><p>Display sudoku board in a readable format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>grid</strong> (<em>list of list</em>) – List of list where elements can be accessed by row [i] &amp; column [j]</p>
+<dd class="field-odd"><p><strong>grid</strong> (<em>list</em><em> of </em><em>list</em>) – List of list where elements can be accessed by row [i] &amp; column [j]</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p><strong>sudoku</strong> – Text-based grid where empty cells are represented by 0, each subgrid is seperated by | and each row is seperated by - and +
-e.g.</p>
-<dl class="simple">
-<dt>::</dt><dd><p>000|007|000
-000|009|504
-000|050|169
-—+—+—
-080|000|305
-075|000|290
-406|000|080
-—+—+—
-762|080|000
-103|900|000
-000|600|000</p>
-</dd>
-</dl>
+<dd class="field-even"><p><p><strong>sudoku</strong> – Text-based grid where empty cells are represented by 0, each subgrid is seperated by | and each row is seperated by - and +</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">000</span><span class="o">|</span><span class="mi">007</span><span class="o">|</span><span class="mi">000</span>
+<span class="mi">000</span><span class="o">|</span><span class="mi">009</span><span class="o">|</span><span class="mi">504</span>
+<span class="mi">000</span><span class="o">|</span><span class="mi">050</span><span class="o">|</span><span class="mi">169</span>
+<span class="o">---+---+---</span>
+<span class="mi">080</span><span class="o">|</span><span class="mi">000</span><span class="o">|</span><span class="mi">305</span>
+<span class="mi">075</span><span class="o">|</span><span class="mi">000</span><span class="o">|</span><span class="mi">290</span>
+<span class="mi">406</span><span class="o">|</span><span class="mi">000</span><span class="o">|</span><span class="mi">080</span>
+<span class="o">---+---+---</span>
+<span class="mi">762</span><span class="o">|</span><span class="mi">080</span><span class="o">|</span><span class="mi">000</span>
+<span class="mi">103</span><span class="o">|</span><span class="mi">900</span><span class="o">|</span><span class="mi">000</span>
+<span class="mi">000</span><span class="o">|</span><span class="mi">600</span><span class="o">|</span><span class="mi">000</span>
+</pre></div>
+</div>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -367,8 +363,8 @@ e.g.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="src.utils.isValidSudoku">
-<span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">isValidSudoku</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/src/utils.html#isValidSudoku"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.isValidSudoku" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="utils.isValidSudoku">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">isValidSudoku</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/utils.html#isValidSudoku"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.isValidSudoku" title="Link to this definition">#</a></dt>
 <dd><p>Given a list of lists represrenting a sudoku board, check if the board is valid.
 Validity of sudoku is based off the following rules:</p>
 <ol class="arabic simple">
@@ -397,18 +393,16 @@ Validity of sudoku is based off the following rules:</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="src.utils.parse_grid">
-<span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">parse_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#parse_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.utils.parse_grid" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="utils.parse_grid">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">parse_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#parse_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.parse_grid" title="Link to this definition">#</a></dt>
 <dd><p>Convert text-based suduko grid into a list of list of integers.
 This function allows for easier manipulation of the sudoku grid by accessing numbers via their row (<code class="code docutils literal notranslate"><span class="pre">[i]</span></code>) and column (<code class="code docutils literal notranslate"><span class="pre">[j]</span></code>) index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>sudoku</strong> (<em>str</em>) – <div class="line-block">
-<div class="line">Text-based grid representation of Sudoku. Empty cells should be denoted
+<dd class="field-odd"><p><strong>sudoku</strong> (<em>str</em>) – <p>Text-based grid representation of Sudoku. Empty cells should be denoted
 with a <code class="code docutils literal notranslate"><span class="pre">0</span></code>, with <code class="code docutils literal notranslate"><span class="pre">|</span></code> and <code class="code docutils literal notranslate"><span class="pre">-</span></code> used to seperate subgrid columns and rows, respectively.
-The intersections of each subgrid should be marked with <code class="code docutils literal notranslate"><span class="pre">+</span></code>.</div>
-<div class="line">Example:</div>
-</div>
+The intersections of each subgrid should be marked with <code class="code docutils literal notranslate"><span class="pre">+</span></code>.</p>
+<p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">000</span><span class="o">|</span><span class="mi">007</span><span class="o">|</span><span class="mi">000</span>
 <span class="mi">000</span><span class="o">|</span><span class="mi">009</span><span class="o">|</span><span class="mi">504</span>
 <span class="mi">000</span><span class="o">|</span><span class="mi">050</span><span class="o">|</span><span class="mi">169</span>
@@ -479,6 +473,18 @@ The intersections of each subgrid should be marked with <code class="code docuti
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
   <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.displaySudoku"><code class="docutils literal notranslate"><span class="pre">displaySudoku()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.isValidSudoku"><code class="docutils literal notranslate"><span class="pre">isValidSudoku()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.parse_grid"><code class="docutils literal notranslate"><span class="pre">parse_grid()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
     <a href="_sources/utils.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
@@ -518,7 +524,7 @@ The intersections of each subgrid should be marked with <code class="code docuti
 
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>

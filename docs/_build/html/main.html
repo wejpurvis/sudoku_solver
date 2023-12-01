@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -29,18 +28,16 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=362ab14a" />
 
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'main';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -318,19 +315,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
 
-  <section id="module-src.main">
-<span id="main-module"></span><h1>Main module<a class="headerlink" href="#module-src.main" title="Permalink to this heading">#</a></h1>
+  <section id="module-main">
+<span id="main-module"></span><h1>Main module<a class="headerlink" href="#module-main" title="Link to this heading">#</a></h1>
 <p>This script is the entry point for the Sudoku Solver package.
 It utilizes the backtracking algorithm from the backtracking module alongside various utility functions from utils module to solve sudoku puzzles.
-The user is prompted to select a file containing a sudoku puzzle, which is then solved and displayed to the user within the terminal.</p>
+Usage: <code class="code docutils literal notranslate"><span class="pre">src/main.py</span> <span class="pre">input.txt</span></code> where <code class="code docutils literal notranslate"><span class="pre">input.txt</span></code> is the path to the file containing the sudoku puzzle to be solved.</p>
 <div class="line-block">
 <div class="line"><strong>Author:</strong> William Purvis</div>
 <div class="line"><strong>Created:</strong> 25/11/2023</div>
 <div class="line"><strong>Last updated:</strong> 26/11/2023</div>
 </div>
 <dl class="py function">
-<dt class="sig sig-object py" id="src.main.get_user_input">
-<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">get_user_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#get_user_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.get_user_input" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="main.get_user_input">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_user_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#get_user_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.get_user_input" title="Link to this definition">#</a></dt>
 <dd><div class="line-block">
 <div class="line">Prompt user to select whether they want to solve the uploaded sudoku.</div>
 <div class="line"><code class="code docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">solve</span> <span class="pre">the</span> <span class="pre">uploaded</span> <span class="pre">sudoku?</span> <span class="pre">[y/n]:</span></code> is displayed to the user.
@@ -347,23 +344,53 @@ If user enters <code class="code docutils literal notranslate"><span class="pre"
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="src.main.main">
-<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.main" title="Permalink to this definition">#</a></dt>
-<dd><p>Main function that handles the execution of the Sudoku solver program.
-It prompts the user to select a file, reads the Sudoku puzzle from the given file,
-and then solves the puzzle using a backtracking algorithm if the input file has the correct format.</p>
+<dt class="sig sig-object py" id="main.is_valid_file">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">is_valid_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#is_valid_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.is_valid_file" title="Link to this definition">#</a></dt>
+<dd><p>Check if a given file is valid based on whether file exists and whether it is a text file (.txt).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>(</strong><strong>str</strong><strong>)</strong> (<em>filename</em>) – </p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If the file does not exist.</p></li>
+<li><p><strong>ValueError</strong> – If the file format is not valid.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="src.main.select_file">
-<span class="sig-prename descclassname"><span class="pre">src.main.</span></span><span class="sig-name descname"><span class="pre">select_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#select_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.main.select_file" title="Permalink to this definition">#</a></dt>
-<dd><p>Use <code class="code docutils literal notranslate"><span class="pre">tkinter</span></code> library to open file explorer so that user can select a file. The file path of the selected file is returnes.</p>
+<dt class="sig sig-object py" id="main.main">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.main" title="Link to this definition">#</a></dt>
+<dd><p>Main function that handles the execution of the Sudoku solver program.</p>
+<p>It reads the input Sudoku file (given as a .txt file via the CL),solves
+the Sudoku puzzle using backtracking algorithm,and displays the solved
+Sudoku along with the time taken for solving.</p>
+<p>If the user chooses not to solve the Sudoku, the program exits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If the input Sudoku file is not found.</p></li>
+<li><p><strong>ValueError</strong> – If there is an error in the input Sudoku file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.parse_arguments">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">parse_arguments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#parse_arguments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.parse_arguments" title="Link to this definition">#</a></dt>
+<dd><p>Parse command line arguments.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Path to the selected file.</p>
+<dd class="field-odd"><p><strong>args (argparse.Namespace)</strong></p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
+<dd class="field-even"><p>Parsed command line arguments.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If more than 1 argument is passed on CL.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -397,6 +424,19 @@ and then solves the puzzle using a backtracking algorithm if the input file has 
 
 
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main.get_user_input"><code class="docutils literal notranslate"><span class="pre">get_user_input()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main.is_valid_file"><code class="docutils literal notranslate"><span class="pre">is_valid_file()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main.parse_arguments"><code class="docutils literal notranslate"><span class="pre">parse_arguments()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
@@ -438,7 +478,7 @@ and then solves the puzzle using a backtracking algorithm if the input file has 
 
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
