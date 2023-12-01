@@ -2,11 +2,25 @@
 
 William Purvis
 
+## Table of Contents
+
+- [Project description](#project-description)
+- [How to install \& run project](#how-to-install--run-project)
+- [How to install \& run project](#how-to-install--run-project-1)
+- [How to use project](#how-to-use-project)
+- [License](#license)
+
 ## Project description
 
 This project is a Sudoku Solver built for the C1 coursework. It aims to implement an algorithm that can solve Sudoku puzzles efficiently. The solver will take an input puzzle and provide the solution as the output. The project is implemented in python and includes documentation on how to install, run, and use the solver.
 
-## Table of Contents
+## How to install & run project
+
+A dockerfile is provided to run the project with all of its dependencies (as defined in `environment.yml`).
+
+To run the file in docker run the following commands:
+
+
 
 ## How to install & run project
 
