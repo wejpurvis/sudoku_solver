@@ -1,7 +1,9 @@
 """
 This script is the entry point for the Sudoku Solver package.
-It utilizes the backtracking algorithm from the backtracking module alongside various utility functions from utils module to solve sudoku puzzles.
-Usage: :code:`src/main.py input.txt` where :code:`input.txt` is the path to the file containing the sudoku puzzle to be solved.
+It utilizes the backtracking algorithm from the backtracking module
+alongside various utility functions from utils module to solve sudoku puzzles.
+Usage: :code:`src/main.py input.txt` where :code:`input.txt` is the path to
+the file containing the sudoku puzzle to be solved.
 
 | **Author:** William Purvis
 | **Created:** 25/11/2023
@@ -14,6 +16,8 @@ import os
 import time
 
 import argparse
+
+import cProfile
 
 from utils import parse_grid, displaySudoku
 from backtracking import solveBacktrack
@@ -47,7 +51,8 @@ def parse_arguments():
 
 def is_valid_file(filename):
     """
-    Check if a given file is valid based on whether file exists and whether it is a text file (.txt).
+    Check if a given file is valid based on whether file exists and
+    whether it is a text file (.txt).
 
     Parameters
     ----------
@@ -71,7 +76,8 @@ def is_valid_file(filename):
 
     if file_extension != valid_extension:
         raise ValueError(
-            f"{file_extension} files are not supported. Please upload a {valid_extension} file."
+            f"{file_extension} files are not supported."
+            f"Please upload a {valid_extension} file."
         )
 
 
@@ -79,7 +85,8 @@ def get_user_input():
     """
     | Prompt user to select whether they want to solve the uploaded sudoku.
     | :code:`Do you want to solve the uploaded sudoku? [y/n]:` is displayed to the user.
-      If user enters :code:`y`, :code:`True` is returned. If user enters :code:`n`, :code:`False` is returned.
+      If user enters :code:`y`, :code:`True` is returned.
+      If user enters :code:`n`, :code:`False` is returned.
 
     Returns
     ----------
@@ -129,8 +136,19 @@ def main():
             # Solve sudoku
             sudoku_board = parse_grid(input_sudoku)
             start_time = time.time()
+            # pr = cProfile.Profile()
+            # pr.enable()
             solved_sudoku = solveBacktrack(sudoku_board, 0, 0)
+            # pr.disable()
+            # cProfile.run('solveBacktrack(sudoku_board, 0, 0)', sort='time')
             end_time = time.time()
+
+            # s = io.StringIO()
+            # ps = pstats.Stats(pr, stream=s).sort_stats("time")
+            # ps.print_stats()
+
+            # print(s.getvalue())
+
             print(f"Solved sudoku:\n\n{displaySudoku(solved_sudoku)}")
             print(f"Solved in {(end_time - start_time):.4f} seconds.")
         else:
@@ -143,5 +161,32 @@ def main():
         print(f"Error: {e}")
 
 
+def profiled_main(sudoku_path):
+    """
+    Profiled version of main function that handles the execution of the Sudoku solver
+    program.
+    Note: This function is used for profiling the program using cProfile
+    and therefore does not handle user input.
+
+    Parameters
+    ----------
+        sudoku_path (str): Path to the input sudoku file.
+
+    Returns
+    ----------
+        str: The solved sudoku.
+    """
+    with open(sudoku_path, "r") as f:
+        input_sudoku = f.read()
+
+    sudoku_board = parse_grid(input_sudoku)
+    print(f"Uploaded sudoku:\n\n{input_sudoku}")
+    solved_sudoku = solveBacktrack(sudoku_board, 0, 0)
+    print(f"Solved sudoku:\n\n{displaySudoku(solved_sudoku)}")
+    return 0
+
+
 if __name__ == "__main__":
-    main()
+    # main()
+    input_file_path = "test/example_sudokus/hard_sudoku3.txt"
+    cProfile.run("profiled_main(input_file_path)")
