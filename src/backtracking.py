@@ -2,14 +2,13 @@
 This module contains the backtracking algorithm for solving sudoku puzzles.
 The backtracking algorithm works recursively by trying values 1-9 in empty
 cells and 'backtracking' if the value is invalid.
-Validity of values is checked using :code:`validateCell()`, which checks
+Validity of values is checked using ``validateCell()``, which checks
 if the value is valid for the cell according to sudoku rules.
 
 **References:**
 
-- `Norvig, P. (2013). Solving Every Sudoku Puzzle
-   <https://norvig.com/sudoku.html>`_
-- `GeeksforGeeks (2020). Sudoku | Backtracking-7
+- `Norvig, P. (2013). Solving Every Sudoku Puzzle <https://norvig.com/sudoku.html>`_
+- `GeeksforGeeks (2020). Sudoku | Backtracking-7 \
    <https://www.geeksforgeeks.org/sudoku-backtracking-7>`_
 
 """
