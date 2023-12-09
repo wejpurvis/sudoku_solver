@@ -11,7 +11,7 @@
   - [Running locally](#running-locally)
 - [How to use project](#how-to-use-project)
   - [Documentation](#documentation)
-  - [License](#license)
+- [License](#license)
 
 ## Project description
 
@@ -86,7 +86,7 @@ xdg-open docs/_build/html/index.html
 
 Alternatively to generate documentation locally, navigate to the `docs` subdirectory and run `make html` to re-build the documentation.
 
-### License
+## License
 
 This project is licensed under the MIT license - see the [LICENSE](license.txt)
 file for details.
