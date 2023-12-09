@@ -20,7 +20,7 @@ def validate_cell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> bo
        must contain the digits 1-9 without repetition
 
     Parameters
-    ----------
+    ------------
     sudoku_board : list[list[int]]
         List of list representing sudoku board
     val : int
@@ -96,8 +96,8 @@ def n_possible_values(sudoku_board: list[list[int]], i: int, j: int) -> int:
     Uses :code:`validate_cell()` to check which numbers from 1 to 9 are valid for a
     given cell and returns the number of possible values for that cell.
 
-    Parameters:
-    ----------
+    Parameters
+    -----------
     sudoku_board : list[list[int]]
         List of list representing sudoku board
     i : int
@@ -105,7 +105,7 @@ def n_possible_values(sudoku_board: list[list[int]], i: int, j: int) -> int:
     j : int
         Column index of cell to be checked
 
-    Returns:
+    Returns
     ----------
         int:
             Numbe of possible values for the given cell.
@@ -124,12 +124,12 @@ def find_empty_cell_MRV(sudoku_board: list[list[int]]) -> tuple[int, int]:
     that cell as a tuple to be used in the backtracking algorithm. This technique is
     called the Minimum Remaining Value (MRV) heuristic.
 
-    Parameters:
-    ----------
+    Parameters
+    -----------
     sudoku_board : list[list[int]]
         List of list representing sudoku board
 
-    Returns:
+    Returns
     ----------
     min_cell : tuple[int, int]:
         Row and column indices of the cell with the fewest possible values.
@@ -161,8 +161,8 @@ def solve_backtrack_MRV(sudoku_board, i, j) -> list[list[int]]:
     Remaining Values (MRV) heuristic. It takes a Sudoku board represented as a 2D list
     (list of lists), along with the indices (i, j) of the current cell being considered.
 
-    Parameters:
-    ----------
+    Parameters
+    -----------
     sudoku_board : (list[list[int]])
         List of list with dimensions 9x9 representing sudoku board
     i : int
