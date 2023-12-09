@@ -1,6 +1,3 @@
-#Ignore jupyter files
-src/*.ipynb
-
 #Ignore all cache
 __pycache__/
 
