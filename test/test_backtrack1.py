@@ -1,5 +1,5 @@
 # Unit tests for validateCell function in backtracking.py#
-from src.backtracking import validateCell
+from src.backtracking import validate_cell
 
 
 def test_validateCell_valid_value():
@@ -17,7 +17,7 @@ def test_validateCell_valid_value():
     val = 2
     i = 0
     j = 2
-    assert validateCell(sudoku_board, val, i, j) is True
+    assert validate_cell(sudoku_board, val, i, j) is True
 
 
 def test_validateCell_invalid_value():
@@ -35,7 +35,7 @@ def test_validateCell_invalid_value():
     val = 5
     i = 0
     j = 2
-    assert validateCell(sudoku_board, val, i, j) is False
+    assert validate_cell(sudoku_board, val, i, j) is False
 
 
 def test_validateCell_invalid_indices():
@@ -54,7 +54,7 @@ def test_validateCell_invalid_indices():
     i = 10
     j = 2
     try:
-        validateCell(sudoku_board, val, i, j)
+        validate_cell(sudoku_board, val, i, j)
         assert False  # The function should raise a ValueError
     except ValueError:
         assert True
@@ -66,7 +66,7 @@ def test_validateCell_invalid_board_type():
     i = 0
     j = 2
     try:
-        validateCell(sudoku_board, val, i, j)
+        validate_cell(sudoku_board, val, i, j)
         assert False  # The function should raise a TypeError
     except TypeError:
         assert True
@@ -88,7 +88,7 @@ def test_validateCell_invalid_value_type():
     i = 0
     j = 2
     try:
-        validateCell(sudoku_board, val, i, j)
+        validate_cell(sudoku_board, val, i, j)
         assert False  # The function should raise a TypeError
     except TypeError:
         assert True
@@ -110,7 +110,7 @@ def test_validateCell_invalid_board_value():
     i = 0
     j = 2
     try:
-        validateCell(sudoku_board, val, i, j)
+        validate_cell(sudoku_board, val, i, j)
         assert False  # The function should raise a ValueError
     except ValueError:
         assert True

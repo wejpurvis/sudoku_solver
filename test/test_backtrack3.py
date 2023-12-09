@@ -1,5 +1,5 @@
 # Unit tests for solveBoard function in backtracking.py
-from src.backtracking import solveBacktrack
+from src.backtracking import solve_backtrack
 
 
 def test_solveBacktrack_valid_board():
@@ -25,7 +25,7 @@ def test_solveBacktrack_valid_board():
         [2, 8, 7, 4, 1, 9, 6, 3, 5],
         [3, 4, 5, 2, 8, 6, 1, 7, 9],
     ]
-    assert solveBacktrack(grid, 0, 0) == expected_solution
+    assert solve_backtrack(grid, 0, 0) == expected_solution
 
 
 def test_solveBacktrack_invalid_board():
@@ -40,4 +40,4 @@ def test_solveBacktrack_invalid_board():
         [0, 0, 0, 4, 1, 9, 0, 0, 5],
         [0, 0, 0, 0, 8, 0, 0, 7, 8],  # Duplicate value (8) in the last cell
     ]
-    assert solveBacktrack(grid, 0, 0) is False
+    assert solve_backtrack(grid, 0, 0) is False
