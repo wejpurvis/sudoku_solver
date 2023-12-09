@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Backtracking module &#8212; Sudoku Solver 1.0.0 documentation</title>
+    <title>Backtracking with MRV heuristics module &#8212; Sudoku Solver 1.0.0 documentation</title>
 
 
 
@@ -38,11 +38,11 @@
     <script src="_static/documentation_options.js?v=8d563738"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'backtracking';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'backtracking_mrv';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Backtracking with MRV heuristics module" href="backtracking_mrv.html" />
-    <link rel="prev" title="Utils module" href="utils.html" />
+    <link rel="next" title="Main module" href="main.html" />
+    <link rel="prev" title="Backtracking module" href="backtracking.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -257,8 +257,8 @@ document.write(`
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="utils.html">Utils module</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Backtracking module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="backtracking_mrv.html">Backtracking with MRV heuristics module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking module</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Backtracking with MRV heuristics module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="main.html">Main module</a></li>
 </ul>
 </div>
@@ -300,7 +300,7 @@ document.write(`
 
     <li class="breadcrumb-item"><a href="modules.html" class="nav-link">Sudoku Solver Modules</a></li>
 
-    <li class="breadcrumb-item active" aria-current="page">Backtracking module</li>
+    <li class="breadcrumb-item active" aria-current="page">Backtracking...</li>
   </ul>
 </nav>
 </div>
@@ -317,54 +317,68 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
 
-  <section id="module-backtracking">
-<span id="backtracking-module"></span><h1>Backtracking module<a class="headerlink" href="#module-backtracking" title="Link to this heading">#</a></h1>
-<p>This module contains the backtracking algorithm for solving sudoku puzzles.
-The backtracking algorithm works recursively by trying values 1-9 in empty
-cells and ‘backtracking’ if the value is invalid.
-Validity of values is checked using <code class="docutils literal notranslate"><span class="pre">validateCell()</span></code>, which checks
-if the value is valid for the cell according to sudoku rules.</p>
-<p><strong>References:</strong></p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://norvig.com/sudoku.html">Norvig, P. (2013). Solving Every Sudoku Puzzle</a></p></li>
-<li><p><a class="reference external" href="https://www.geeksforgeeks.org/sudoku-backtracking-7">GeeksforGeeks (2020). Sudoku | Backtracking-7</a></p></li>
-</ul>
+  <section id="module-backtracking_mrv">
+<span id="backtracking-with-mrv-heuristics-module"></span><h1>Backtracking with MRV heuristics module<a class="headerlink" href="#module-backtracking_mrv" title="Link to this heading">#</a></h1>
+<p>This module is an improved implementation of the backtracking algorithm in
+backtracking.py. The <code class="code docutils literal notranslate"><span class="pre">validate_cell()</span></code> function has been left unchanged, but the
+<code class="code docutils literal notranslate"><span class="pre">find_empty_cell()</span></code> and <code class="code docutils literal notranslate"><span class="pre">solve_backtrack()</span></code> functions have been modified to
+include minimum remaining values (MRV) heuristics. This means that the algorithm will
+always choose the cell with the fewest possible values to try first. This is done by
+using the <code class="code docutils literal notranslate"><span class="pre">n_possible_values()</span></code> function.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="backtracking.find_empty_cell">
-<span class="sig-prename descclassname"><span class="pre">backtracking.</span></span><span class="sig-name descname"><span class="pre">find_empty_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku_board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/backtracking.html#find_empty_cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtracking.find_empty_cell" title="Link to this definition">#</a></dt>
-<dd><p>Find the first empty cell in <code class="code docutils literal notranslate"><span class="pre">sudoku_board</span></code> and return
-its row &amp; column indices.</p>
+<dt class="sig sig-object py" id="backtracking_mrv.find_empty_cell_MRV">
+<span class="sig-prename descclassname"><span class="pre">backtracking_mrv.</span></span><span class="sig-name descname"><span class="pre">find_empty_cell_MRV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku_board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/backtracking_mrv.html#find_empty_cell_MRV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtracking_mrv.find_empty_cell_MRV" title="Link to this definition">#</a></dt>
+<dd><p>Iterates through given Sudoku board and uses <code class="code docutils literal notranslate"><span class="pre">n_possible_values()</span></code> to find
+the cell with the fewest possible values. Returns the row and column indices of
+that cell as a tuple to be used in the backtracking algorithm. This technique is
+called the Minimum Remaining Value (MRV) heuristic.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>sudoku_board</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>]</em><em>]</em>) – List of lists representing sudoku board</p>
+<dd class="field-odd"><p><strong>sudoku_board</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>]</em><em>]</em>) – List of list representing sudoku board</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tuple containing row &amp; column indices of empty cell or
-None if no empty cells are found</p>
+<dd class="field-even"><p><strong>min_cell</strong> – Row and column indices of the cell with the fewest possible values.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple[int, int]</p>
+<dd class="field-odd"><p>tuple[int, int]:</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="backtracking.solve_backtrack">
-<span class="sig-prename descclassname"><span class="pre">backtracking.</span></span><span class="sig-name descname"><span class="pre">solve_backtrack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">grid:</span> <span class="pre">list[list[int]],</span> <span class="pre">i:</span> <span class="pre">[&lt;class</span> <span class="pre">'int'&gt;],</span> <span class="pre">j:</span> <span class="pre">[&lt;class</span> <span class="pre">'int'&gt;]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/backtracking.html#solve_backtrack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtracking.solve_backtrack" title="Link to this definition">#</a></dt>
-<dd><p>Solve sudoku using backtracking algorithm (recursive implementation).
-The algorithm works as follows:</p>
-<ol class="arabic simple">
-<li><p>Find empty cell using findEmptyCell()</p></li>
-<li><p>If there are no empty cells, the sudoku is solved and
-the resulting grid is returned</p></li>
-<li><p>Try values 1-9</p></li>
-<li><p>Validate value using validateCell()</p></li>
-<li><p>Repeat steps 1-4 until sudoku is solved</p></li>
-</ol>
+<dt class="sig sig-object py" id="backtracking_mrv.n_possible_values">
+<span class="sig-prename descclassname"><span class="pre">backtracking_mrv.</span></span><span class="sig-name descname"><span class="pre">n_possible_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku_board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/backtracking_mrv.html#n_possible_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtracking_mrv.n_possible_values" title="Link to this definition">#</a></dt>
+<dd><p>Returns the number of possible values for a given cell in a Sudoku board.
+Uses <code class="code docutils literal notranslate"><span class="pre">validate_cell()</span></code> to check which numbers from 1 to 9 are valid for a
+given cell and returns the number of possible values for that cell.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>grid</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>]</em><em>]</em>) – List of list with dimensions 9x9 representing sudoku board</p></li>
+<li><p><strong>sudoku_board</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>]</em><em>]</em>) – List of list representing sudoku board</p></li>
+<li><p><strong>i</strong> (<em>int</em>) – Row index of cell to be checked</p></li>
+<li><p><strong>j</strong> (<em>int</em>) – Column index of cell to be checked</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Numbe of possible values for the given cell.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="backtracking_mrv.solve_backtrack_MRV">
+<span class="sig-prename descclassname"><span class="pre">backtracking_mrv.</span></span><span class="sig-name descname"><span class="pre">solve_backtrack_MRV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku_board</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/backtracking_mrv.html#solve_backtrack_MRV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtracking_mrv.solve_backtrack_MRV" title="Link to this definition">#</a></dt>
+<dd><p>Backtracking algorithm with MRV</p>
+<p>This function solves a Sudoku puzzle using the backtracking algorithm with Minimum
+Remaining Values (MRV) heuristic. It takes a Sudoku board represented as a 2D list
+(list of lists), along with the indices (i, j) of the current cell being considered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sudoku_board</strong> (<em>(</em><em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>]</em><em>]</em><em>)</em>) – List of list with dimensions 9x9 representing sudoku board</p></li>
 <li><p><strong>i</strong> (<em>int</em>) – Row index of cell</p></li>
 <li><p><strong>j</strong> (<em>int</em>) – Column index of cell</p></li>
 </ul>
@@ -379,8 +393,8 @@ the resulting grid is returned</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="backtracking.validate_cell">
-<span class="sig-prename descclassname"><span class="pre">backtracking.</span></span><span class="sig-name descname"><span class="pre">validate_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku_board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/backtracking.html#validate_cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtracking.validate_cell" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="backtracking_mrv.validate_cell">
+<span class="sig-prename descclassname"><span class="pre">backtracking_mrv.</span></span><span class="sig-name descname"><span class="pre">validate_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku_board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/backtracking_mrv.html#validate_cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtracking_mrv.validate_cell" title="Link to this definition">#</a></dt>
 <dd><p>Check if a value is valid for cell <code class="code docutils literal notranslate"><span class="pre">[i][j]</span></code> in <code class="code docutils literal notranslate"><span class="pre">sudoku_board</span></code>.
 Validity of sudoku is based off the following rules:</p>
 <ol class="arabic simple">
@@ -429,20 +443,20 @@ must contain the digits 1-9 without repetition</p></li>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="utils.html"
+       href="backtracking.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Utils module</p>
+        <p class="prev-next-title">Backtracking module</p>
       </div>
     </a>
     <a class="right-next"
-       href="backtracking_mrv.html"
+       href="main.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Backtracking with MRV heuristics module</p>
+        <p class="prev-next-title">Main module</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -461,15 +475,16 @@ must contain the digits 1-9 without repetition</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backtracking.find_empty_cell"><code class="docutils literal notranslate"><span class="pre">find_empty_cell()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backtracking.solve_backtrack"><code class="docutils literal notranslate"><span class="pre">solve_backtrack()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backtracking.validate_cell"><code class="docutils literal notranslate"><span class="pre">validate_cell()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backtracking_mrv.find_empty_cell_MRV"><code class="docutils literal notranslate"><span class="pre">find_empty_cell_MRV()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backtracking_mrv.n_possible_values"><code class="docutils literal notranslate"><span class="pre">n_possible_values()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backtracking_mrv.solve_backtrack_MRV"><code class="docutils literal notranslate"><span class="pre">solve_backtrack_MRV()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backtracking_mrv.validate_cell"><code class="docutils literal notranslate"><span class="pre">validate_cell()</span></code></a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">
-    <a href="_sources/backtracking.rst.txt">
+    <a href="_sources/backtracking_mrv.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

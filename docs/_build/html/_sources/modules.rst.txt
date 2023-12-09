@@ -8,4 +8,5 @@ Here is a list of all the modules in the Sudoku Solver package with brief descri
 
    utils
    backtracking
+   backtracking_mrv
    main

@@ -299,14 +299,16 @@ document.write(`
   <h1>Source code for main</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This script is the entry point for the Sudoku Solver package.</span>
-<span class="sd">It utilizes the backtracking algorithm from the backtracking module alongside various utility functions from utils module to solve sudoku puzzles.</span>
-<span class="sd">Usage: :code:`src/main.py input.txt` where :code:`input.txt` is the path to the file containing the sudoku puzzle to be solved.</span>
+<span class="sd">It utilizes the backtracking algorithm with minimum remaining value (MRV) heuristics.</span>
+<span class="sd">The algorithm is from the :code:`backtracking_mrv` module and various utility functions</span>
+<span class="sd">from the :code:`utils` module are used to to solve sudoku puzzles. Usage:</span>
+<span class="sd">:code:`src/main.py input.txt` where :code:`input.txt` is the path to the file</span>
+<span class="sd">containing the sudoku puzzle to be solved.</span>
 
 <span class="sd">| **Author:** William Purvis</span>
 <span class="sd">| **Created:** 25/11/2023</span>
-<span class="sd">| **Last updated:** 26/11/2023</span>
+<span class="sd">| **Last updated:** 09/12/2023</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -315,9 +317,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">argparse</span>
 
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">parse_grid</span><span class="p">,</span> <span class="n">displaySudoku</span>
-<span class="kn">from</span> <span class="nn">backtracking</span> <span class="kn">import</span> <span class="n">solveBacktrack</span>
-
-<span class="c1"># sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), &quot;..&quot;)))</span>
+<span class="kn">from</span> <span class="nn">backtracking_mrv</span> <span class="kn">import</span> <span class="n">solve_backtrack_MRV</span>
 
 
 <div class="viewcode-block" id="parse_arguments">
@@ -353,7 +353,8 @@ document.write(`
 <a class="viewcode-back" href="../main.html#main.is_valid_file">[docs]</a>
 <span class="k">def</span> <span class="nf">is_valid_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Check if a given file is valid based on whether file exists and whether it is a text file (.txt).</span>
+<span class="sd">    Check if a given file is valid based on whether file exists and whether it is a</span>
+<span class="sd">    text file (.txt).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -377,7 +378,8 @@ document.write(`
 
     <span class="k">if</span> <span class="n">file_extension</span> <span class="o">!=</span> <span class="n">valid_extension</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_extension</span><span class="si">}</span><span class="s2"> files are not supported. Please upload a </span><span class="si">{</span><span class="n">valid_extension</span><span class="si">}</span><span class="s2"> file.&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_extension</span><span class="si">}</span><span class="s2"> files are not supported.&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Please upload a </span><span class="si">{</span><span class="n">valid_extension</span><span class="si">}</span><span class="s2"> file.&quot;</span>
         <span class="p">)</span></div>
 
 
@@ -388,7 +390,8 @@ document.write(`
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    | Prompt user to select whether they want to solve the uploaded sudoku.</span>
 <span class="sd">    | :code:`Do you want to solve the uploaded sudoku? [y/n]:` is displayed to the user.</span>
-<span class="sd">      If user enters :code:`y`, :code:`True` is returned. If user enters :code:`n`, :code:`False` is returned.</span>
+<span class="sd">      If user enters :code:`y`, :code:`True` is returned.</span>
+<span class="sd">      If user enters :code:`n`, :code:`False` is returned.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    ----------</span>
@@ -441,7 +444,7 @@ document.write(`
             <span class="c1"># Solve sudoku</span>
             <span class="n">sudoku_board</span> <span class="o">=</span> <span class="n">parse_grid</span><span class="p">(</span><span class="n">input_sudoku</span><span class="p">)</span>
             <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-            <span class="n">solved_sudoku</span> <span class="o">=</span> <span class="n">solveBacktrack</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">solved_sudoku</span> <span class="o">=</span> <span class="n">solve_backtrack_MRV</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solved sudoku:</span><span class="se">\n\n</span><span class="si">{</span><span class="n">displaySudoku</span><span class="p">(</span><span class="n">solved_sudoku</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solved in </span><span class="si">{</span><span class="p">(</span><span class="n">end_time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> seconds.&quot;</span><span class="p">)</span>

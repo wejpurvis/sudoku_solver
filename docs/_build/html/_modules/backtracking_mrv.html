@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>backtracking &#8212; Sudoku Solver 1.0.0 documentation</title>
+    <title>backtracking_mrv &#8212; Sudoku Solver 1.0.0 documentation</title>
 
 
 
@@ -37,7 +37,7 @@
     <script src="../_static/documentation_options.js?v=8d563738"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/backtracking';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/backtracking_mrv';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -279,7 +279,7 @@ document.write(`
 
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Module code</a></li>
 
-    <li class="breadcrumb-item active" aria-current="page">backtracking</li>
+    <li class="breadcrumb-item active" aria-current="page">backtracking_mrv</li>
   </ul>
 </nav>
 </div>
@@ -296,25 +296,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
 
-  <h1>Source code for backtracking</h1><div class="highlight"><pre>
+  <h1>Source code for backtracking_mrv</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This module contains the backtracking algorithm for solving sudoku puzzles.</span>
-<span class="sd">The backtracking algorithm works recursively by trying values 1-9 in empty</span>
-<span class="sd">cells and &#39;backtracking&#39; if the value is invalid.</span>
-<span class="sd">Validity of values is checked using ``validateCell()``, which checks</span>
-<span class="sd">if the value is valid for the cell according to sudoku rules.</span>
-
-<span class="sd">**References:**</span>
-
-<span class="sd">- `Norvig, P. (2013). Solving Every Sudoku Puzzle &lt;https://norvig.com/sudoku.html&gt;`_</span>
-<span class="sd">- `GeeksforGeeks (2020). Sudoku | Backtracking-7 \</span>
-<span class="sd">   &lt;https://www.geeksforgeeks.org/sudoku-backtracking-7&gt;`_</span>
-
+<span class="sd">This module is an improved implementation of the backtracking algorithm in</span>
+<span class="sd">backtracking.py. The :code:`validate_cell()` function has been left unchanged, but the</span>
+<span class="sd">:code:`find_empty_cell()` and :code:`solve_backtrack()` functions have been modified to</span>
+<span class="sd">include minimum remaining values (MRV) heuristics. This means that the algorithm will</span>
+<span class="sd">always choose the cell with the fewest possible values to try first. This is done by</span>
+<span class="sd">using the :code:`n_possible_values()` function.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
 <div class="viewcode-block" id="validate_cell">
-<a class="viewcode-back" href="../backtracking.html#backtracking.validate_cell">[docs]</a>
+<a class="viewcode-back" href="../backtracking_mrv.html#backtracking_mrv.validate_cell">[docs]</a>
 <span class="k">def</span> <span class="nf">validate_cell</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Check if a value is valid for cell :code:`[i][j]` in :code:`sudoku_board`.</span>
@@ -327,7 +321,7 @@ document.write(`
 <span class="sd">       must contain the digits 1-9 without repetition</span>
 
 <span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    ------------</span>
 <span class="sd">    sudoku_board : list[list[int]]</span>
 <span class="sd">        List of list representing sudoku board</span>
 <span class="sd">    val : int</span>
@@ -398,51 +392,88 @@ document.write(`
 
 
 
-<div class="viewcode-block" id="find_empty_cell">
-<a class="viewcode-back" href="../backtracking.html#backtracking.find_empty_cell">[docs]</a>
-<span class="k">def</span> <span class="nf">find_empty_cell</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="n_possible_values">
+<a class="viewcode-back" href="../backtracking_mrv.html#backtracking_mrv.n_possible_values">[docs]</a>
+<span class="k">def</span> <span class="nf">n_possible_values</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Find the first empty cell in :code:`sudoku_board` and return</span>
-<span class="sd">    its row &amp; column indices.</span>
+<span class="sd">    Returns the number of possible values for a given cell in a Sudoku board.</span>
+<span class="sd">    Uses :code:`validate_cell()` to check which numbers from 1 to 9 are valid for a</span>
+<span class="sd">    given cell and returns the number of possible values for that cell.</span>
 
 <span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
+<span class="sd">    -----------</span>
 <span class="sd">    sudoku_board : list[list[int]]</span>
-<span class="sd">        List of lists representing sudoku board</span>
+<span class="sd">        List of list representing sudoku board</span>
+<span class="sd">    i : int</span>
+<span class="sd">        Row index of cell to be checked</span>
+<span class="sd">    j : int</span>
+<span class="sd">        Column index of cell to be checked</span>
 
 <span class="sd">    Returns</span>
-<span class="sd">    ---------</span>
-<span class="sd">    tuple[int, int]</span>
-<span class="sd">        Tuple containing row &amp; column indices of empty cell or</span>
-<span class="sd">        None if no empty cells are found</span>
-
+<span class="sd">    ----------</span>
+<span class="sd">        int:</span>
+<span class="sd">            Numbe of possible values for the given cell.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">possible_values</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">validate_cell</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+            <span class="n">possible_values</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">possible_values</span></div>
+
+
+
+<div class="viewcode-block" id="find_empty_cell_MRV">
+<a class="viewcode-back" href="../backtracking_mrv.html#backtracking_mrv.find_empty_cell_MRV">[docs]</a>
+<span class="k">def</span> <span class="nf">find_empty_cell_MRV</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Iterates through given Sudoku board and uses :code:`n_possible_values()` to find</span>
+<span class="sd">    the cell with the fewest possible values. Returns the row and column indices of</span>
+<span class="sd">    that cell as a tuple to be used in the backtracking algorithm. This technique is</span>
+<span class="sd">    called the Minimum Remaining Value (MRV) heuristic.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    sudoku_board : list[list[int]]</span>
+<span class="sd">        List of list representing sudoku board</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    min_cell : tuple[int, int]:</span>
+<span class="sd">        Row and column indices of the cell with the fewest possible values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize minimum possible values to 10</span>
+    <span class="c1"># (always greater than 9, if cell can have all values between 1 and 9)</span>
+    <span class="n">min_possible_values</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">min_cell</span> <span class="o">=</span> <span class="kc">None</span>
+
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">sudoku_board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">None</span></div>
+                <span class="c1"># Find number of possible values for given cell</span>
+                <span class="n">num_possible_vals</span> <span class="o">=</span> <span class="n">n_possible_values</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">num_possible_vals</span> <span class="o">&lt;</span> <span class="n">min_possible_values</span><span class="p">:</span>
+                    <span class="c1"># Update minimum possible values and cell</span>
+                    <span class="n">min_possible_values</span> <span class="o">=</span> <span class="n">num_possible_vals</span>
+                    <span class="n">min_cell</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+
+    <span class="c1"># Return cell with fewest possible values (MRV)</span>
+    <span class="k">return</span> <span class="n">min_cell</span></div>
 
 
 
-<div class="viewcode-block" id="solve_backtrack">
-<a class="viewcode-back" href="../backtracking.html#backtracking.solve_backtrack">[docs]</a>
-<span class="k">def</span> <span class="nf">solve_backtrack</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">i</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">j</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<div class="viewcode-block" id="solve_backtrack_MRV">
+<a class="viewcode-back" href="../backtracking_mrv.html#backtracking_mrv.solve_backtrack_MRV">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_backtrack_MRV</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Solve sudoku using backtracking algorithm (recursive implementation).</span>
-<span class="sd">    The algorithm works as follows:</span>
+<span class="sd">    Backtracking algorithm with MRV</span>
 
-
-<span class="sd">    1) Find empty cell using findEmptyCell()</span>
-<span class="sd">    2) If there are no empty cells, the sudoku is solved and</span>
-<span class="sd">       the resulting grid is returned</span>
-<span class="sd">    3) Try values 1-9</span>
-<span class="sd">    4) Validate value using validateCell()</span>
-<span class="sd">    5) Repeat steps 1-4 until sudoku is solved</span>
+<span class="sd">    This function solves a Sudoku puzzle using the backtracking algorithm with Minimum</span>
+<span class="sd">    Remaining Values (MRV) heuristic. It takes a Sudoku board represented as a 2D list</span>
+<span class="sd">    (list of lists), along with the indices (i, j) of the current cell being considered.</span>
 
 <span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    grid : list[list[int]]</span>
+<span class="sd">    -----------</span>
+<span class="sd">    sudoku_board : (list[list[int]])</span>
 <span class="sd">        List of list with dimensions 9x9 representing sudoku board</span>
 <span class="sd">    i : int</span>
 <span class="sd">        Row index of cell</span>
@@ -453,24 +484,24 @@ document.write(`
 <span class="sd">    ---------</span>
 <span class="sd">    list[list[int]]</span>
 <span class="sd">        List of list with dimensions 9x9 representing solved sudoku board</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="c1"># Find empty cell</span>
-    <span class="n">empty_cell</span> <span class="o">=</span> <span class="n">find_empty_cell</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+    <span class="n">empty_cell</span> <span class="o">=</span> <span class="n">find_empty_cell_MRV</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">empty_cell</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># if no empty cells, sudoku is solved</span>
-        <span class="k">return</span> <span class="n">grid</span>
+        <span class="k">return</span> <span class="n">sudoku_board</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">i_e</span><span class="p">,</span> <span class="n">j_e</span> <span class="o">=</span> <span class="n">empty_cell</span>
 
     <span class="c1"># Try values 1-9</span>
     <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">validate_cell</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">i_e</span><span class="p">,</span> <span class="n">j_e</span><span class="p">):</span>
-            <span class="n">grid</span><span class="p">[</span><span class="n">i_e</span><span class="p">][</span><span class="n">j_e</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">solve_backtrack</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">i_e</span><span class="p">,</span> <span class="n">j_e</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">validate_cell</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">i_e</span><span class="p">,</span> <span class="n">j_e</span><span class="p">):</span>
+            <span class="n">sudoku_board</span><span class="p">[</span><span class="n">i_e</span><span class="p">][</span><span class="n">j_e</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">solve_backtrack_MRV</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">,</span> <span class="n">i_e</span><span class="p">,</span> <span class="n">j_e</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">result</span>  <span class="c1"># if sudoku is solved, passed solved grid up the stack</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">grid</span><span class="p">[</span><span class="n">i_e</span><span class="p">][</span><span class="n">j_e</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># backtrack</span>
+                <span class="n">sudoku_board</span><span class="p">[</span><span class="n">i_e</span><span class="p">][</span><span class="n">j_e</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># backtrack</span>
 
     <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># trigger backtracking</span></div>
 
