@@ -1,6 +1,17 @@
+<!-- omit in toc -->
 # C1 Sudoku Solver Coursework
 
 **Author**: William Purvis
+
+<!-- omit in toc -->
+## Table of Contents
+- [Project description](#project-description)
+- [How to install \& run project](#how-to-install--run-project)
+  - [Installing and running with Docker](#installing-and-running-with-docker)
+  - [Running locally](#running-locally)
+- [How to use project](#how-to-use-project)
+  - [Documentation](#documentation)
+  - [License](#license)
 
 ## Project description
 
