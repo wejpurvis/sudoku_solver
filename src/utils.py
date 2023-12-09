@@ -1,21 +1,26 @@
 """
 | This module contains utility functions that are used throughout the project.
-| :code:`parse_grid(sudoku)` converts a text-based suduko grid into a list of list ready for processing.
-  :code:`isValidSudoku(board)` checks if a sudoku board is valid (*note*: a valid sudoku does not necessarily mean that the sudoku is solvable).
-  :code:`displaySudoku(board)` converts a list of lists into a text-based suduko grid for display purposes.
+| :code:`parse_grid(sudoku)` converts a text-based suduko grid into a list of list
+   ready for processing.
+  :code:`isValidSudoku(board)` checks if a sudoku board is valid
+  (*note*: a valid sudoku does not necessarily mean that the sudoku is solvable).
+  :code:`displaySudoku(board)` converts a list of lists into a text-based suduko
+  grid for display purposes.
 """
 
 
 def parse_grid(sudoku):
     """
     Convert text-based suduko grid into a list of list of integers.
-    This function allows for easier manipulation of the sudoku grid by accessing numbers via their row (:code:`[i]`) and column (:code:`[j]`) index.
+    This function allows for easier manipulation of the sudoku grid by accessing
+    numbers via their row (:code:`[i]`) and column (:code:`[j]`) index.
 
     Parameters
     ----------
     sudoku: str
         Text-based grid representation of Sudoku. Empty cells should be denoted
-        with a :code:`0`, with :code:`|` and :code:`-` used to seperate subgrid columns and rows, respectively.
+        with a :code:`0`, with :code:`|` and :code:`-` used to seperate subgrid columns
+        and rows, respectively.
         The intersections of each subgrid should be marked with :code:`+`.
 
         Example:
@@ -37,7 +42,8 @@ def parse_grid(sudoku):
     Returns
     ----------
     sudoku_list : list[list[int]]
-        A list of list where elements can be accessed by row [i] & column [j]. Each sublist represents a row in the grid.
+        A list of list where elements can be accessed by row [i] & column [j].
+        Each sublist represents a row in the grid.
 
     Raises
     ----------
@@ -59,7 +65,8 @@ def parse_grid(sudoku):
     # Check if input is valid (length)
     if len(sudoku_list_raw) != 11 * 11:
         raise ValueError(
-            "Input grid must be 11x11, don't forget to seperate girds with |, -, and + signs!"
+            "Input grid must be 11x11, don't forget to seperate girds"
+            "with |, -, and + signs!"
         )
 
     # Convert flattened list of strs into a list of list of ints
@@ -86,7 +93,8 @@ def isValidSudoku(board: list[list[int]]) -> bool:
 
     1) Each row must contain the digits 1-9 without repetition.
     2) Each column must contain the digits 1-9 without repetition.
-    3) Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition
+    3) Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9
+       without repetition
 
     *Note*: a valid sudoku does not necessarily mean that the sudoku is solvable.
 
@@ -164,7 +172,8 @@ def displaySudoku(board: list[list[int]]) -> str:
     Returns
     ---------
     sudoku : str
-        Text-based grid where empty cells are represented by 0, each subgrid is seperated by | and each row is seperated by - and +
+        Text-based grid where empty cells are represented by 0, each subgrid
+        is seperated by | and each row is seperated by - and +
 
         Example:
 
