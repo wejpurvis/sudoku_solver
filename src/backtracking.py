@@ -15,7 +15,7 @@ if the value is valid for the cell according to sudoku rules.
 """
 
 
-def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> bool:
+def validate_cell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> bool:
     """
     Check if a value is valid for cell :code:`[i][j]` in :code:`sudoku_board`.
     Validity of sudoku is based off the following rules:
@@ -97,7 +97,7 @@ def validateCell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> boo
     return True
 
 
-def findEmptyCell(sudoku_board: list[list[int]]) -> tuple[int, int]:
+def find_empty_cell(sudoku_board: list[list[int]]) -> tuple[int, int]:
     """
     Find the first empty cell in :code:`sudoku_board` and return
     its row & column indices.
@@ -121,7 +121,7 @@ def findEmptyCell(sudoku_board: list[list[int]]) -> tuple[int, int]:
     return None
 
 
-def solveBacktrack(grid: list[list[int]], i: [int], j: [int]) -> list[list[int]]:
+def solve_backtrack(grid: list[list[int]], i: [int], j: [int]) -> list[list[int]]:
     """
     Solve sudoku using backtracking algorithm (recursive implementation).
     The algorithm works as follows:
@@ -150,7 +150,7 @@ def solveBacktrack(grid: list[list[int]], i: [int], j: [int]) -> list[list[int]]
 
     """
     # Find empty cell
-    empty_cell = findEmptyCell(grid)
+    empty_cell = find_empty_cell(grid)
     if empty_cell is None:  # if no empty cells, sudoku is solved
         return grid
     else:
@@ -158,9 +158,9 @@ def solveBacktrack(grid: list[list[int]], i: [int], j: [int]) -> list[list[int]]
 
     # Try values 1-9
     for val in range(1, 10):
-        if validateCell(grid, val, i_e, j_e):
+        if validate_cell(grid, val, i_e, j_e):
             grid[i_e][j_e] = val
-            result = solveBacktrack(grid, i_e, j_e)
+            result = solve_backtrack(grid, i_e, j_e)
             if result is not False:
                 return result  # if sudoku is solved, passed solved grid up the stack
             else:

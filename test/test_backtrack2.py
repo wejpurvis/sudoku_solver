@@ -1,5 +1,5 @@
 # Unit tests for findEmptyCell function in backtracking.py
-from src.backtracking import findEmptyCell
+from src.backtracking import find_empty_cell
 
 
 def test_findEmptyCell_empty_board():
@@ -14,7 +14,7 @@ def test_findEmptyCell_empty_board():
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
-    assert findEmptyCell(board) == (0, 0)
+    assert find_empty_cell(board) == (0, 0)
 
 
 def test_findEmptyCell_partial_board():
@@ -29,7 +29,7 @@ def test_findEmptyCell_partial_board():
         [0, 0, 0, 4, 1, 9, 0, 0, 5],
         [0, 0, 0, 0, 8, 0, 0, 7, 9],
     ]
-    assert findEmptyCell(board) == (0, 2)
+    assert find_empty_cell(board) == (0, 2)
 
 
 def test_findEmptyCell_full_board():
@@ -44,4 +44,4 @@ def test_findEmptyCell_full_board():
         [2, 8, 7, 4, 1, 9, 6, 3, 5],
         [3, 4, 5, 2, 8, 6, 1, 7, 9],
     ]
-    assert findEmptyCell(board) is None
+    assert find_empty_cell(board) is None
