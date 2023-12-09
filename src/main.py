@@ -1,13 +1,15 @@
 """
 This script is the entry point for the Sudoku Solver package.
-It utilizes the backtracking algorithm from the backtracking module alongside various utility functions from utils module to solve sudoku puzzles.
-Usage: :code:`src/main.py input.txt` where :code:`input.txt` is the path to the file containing the sudoku puzzle to be solved.
+It utilizes the backtracking algorithm with minimum remaining value (MRV) heuristics.
+The algorithm is from the :code:`backtracking_mrv` module and various utility functions
+from the :code:`utils` module are used to to solve sudoku puzzles. Usage:
+:code:`src/main.py input.txt` where :code:`input.txt` is the path to the file
+containing the sudoku puzzle to be solved.
 
 | **Author:** William Purvis
 | **Created:** 25/11/2023
-| **Last updated:** 26/11/2023
+| **Last updated:** 09/12/2023
 """
-
 
 import sys
 import os
@@ -16,7 +18,7 @@ import time
 import argparse
 
 from utils import parse_grid, displaySudoku
-from backtracking import solveBacktrack
+from backtracking_mrv import solve_backtrack_MRV
 
 
 def parse_arguments():
@@ -47,7 +49,8 @@ def parse_arguments():
 
 def is_valid_file(filename):
     """
-    Check if a given file is valid based on whether file exists and whether it is a text file (.txt).
+    Check if a given file is valid based on whether file exists and whether it is a
+    text file (.txt).
 
     Parameters
     ----------
@@ -71,7 +74,8 @@ def is_valid_file(filename):
 
     if file_extension != valid_extension:
         raise ValueError(
-            f"{file_extension} files are not supported. Please upload a {valid_extension} file."
+            f"{file_extension} files are not supported."
+            f"Please upload a {valid_extension} file."
         )
 
 
@@ -79,7 +83,8 @@ def get_user_input():
     """
     | Prompt user to select whether they want to solve the uploaded sudoku.
     | :code:`Do you want to solve the uploaded sudoku? [y/n]:` is displayed to the user.
-      If user enters :code:`y`, :code:`True` is returned. If user enters :code:`n`, :code:`False` is returned.
+      If user enters :code:`y`, :code:`True` is returned.
+      If user enters :code:`n`, :code:`False` is returned.
 
     Returns
     ----------
@@ -129,7 +134,7 @@ def main():
             # Solve sudoku
             sudoku_board = parse_grid(input_sudoku)
             start_time = time.time()
-            solved_sudoku = solveBacktrack(sudoku_board, 0, 0)
+            solved_sudoku = solve_backtrack_MRV(sudoku_board, 0, 0)
             end_time = time.time()
             print(f"Solved sudoku:\n\n{displaySudoku(solved_sudoku)}")
             print(f"Solved in {(end_time - start_time):.4f} seconds.")
