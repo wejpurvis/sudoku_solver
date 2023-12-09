@@ -3,6 +3,8 @@
 
 **Author**: William Purvis
 
+**Version**: 1.1.0
+
 <!-- omit in toc -->
 ## Table of Contents
 - [Project description](#project-description)
