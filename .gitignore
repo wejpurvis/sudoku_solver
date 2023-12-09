@@ -9,3 +9,6 @@ environment_full.yml
 
 #Ignore pytest cache
 .pytest_cache/
+
+#Ignore log
+log.txt
