@@ -28,6 +28,9 @@ release = "1.2.0"
 
 # -- General configuration ---------------------------------------------------
 
+# Ignore cython module
+autodoc_mock_imports = ["cython.bt_mrv"]
+
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
