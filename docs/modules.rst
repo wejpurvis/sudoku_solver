@@ -10,3 +10,4 @@ Here is a list of all the modules in the Sudoku Solver package with brief descri
    backtracking
    backtracking_mrv
    main
+   cython_modules

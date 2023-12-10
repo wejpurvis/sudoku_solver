@@ -1,0 +1,7 @@
+bt_mrv module
+=============
+
+.. automodule:: cython.bt_mrv.pyx
+   :members:
+   :undoc-members:
+   :show-inheritance:
