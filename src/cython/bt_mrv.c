@@ -1509,7 +1509,7 @@ struct __pyx_memoryviewslice_obj;
 struct __pyx_t_6bt_mrv_cell_position;
 typedef struct __pyx_t_6bt_mrv_cell_position __pyx_t_6bt_mrv_cell_position;
 
-/* "bt_mrv.pyx":7
+/* "bt_mrv.pyx":9
  * """
  * # Struct to hold row and column indices of a cell
  * ctypedef struct cell_position:             # <<<<<<<<<<<<<<
@@ -2720,7 +2720,7 @@ static const char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cyt
 static const char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static const char __pyx_k_Sudoku_puzzle_cannot_be_solved[] = "Sudoku puzzle cannot be solved.";
 static const char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
-static const char __pyx_k_This_module_is_a_cython_impleme[] = "\nThis module is a cython implementation of a backtracking algorithm with a minimum \nremaining values (MRV) heuristics used to solve a Sudoku puzzle.\n";
+static const char __pyx_k_This_module_is_a_cython_impleme[] = "\nThis module is a cython implementation of backtracking_mrv.py. The functions are the\nsame with modified type declarations for performance. A cython struct is created to\nhold the row and column indices of a cell. This is used to return a tuple of indices\nfrom the find_empty_cell_mrv function.\n";
 static const char __pyx_k_All_dimensions_preceding_dimensi[] = "All dimensions preceding dimension %d must be indexed and not sliced";
 static const char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
 static const char __pyx_k_Can_only_create_a_buffer_that_is[] = "Can only create a buffer that is contiguous in memory.";
@@ -16884,7 +16884,7 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *__
   return __pyx_r;
 }
 
-/* "bt_mrv.pyx":11
+/* "bt_mrv.pyx":13
  *     int j
  *
  * cpdef bint validate_cell(int[:, :] sudoku_board, int val, int i, int j):             # <<<<<<<<<<<<<<
@@ -16922,7 +16922,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("validate_cell", 0);
 
-  /* "bt_mrv.pyx":19
+  /* "bt_mrv.pyx":39
  *     # Check row & column of val
  *     cdef int k
  *     for k in range(9):             # <<<<<<<<<<<<<<
@@ -16932,7 +16932,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
   for (__pyx_t_1 = 0; __pyx_t_1 < 9; __pyx_t_1+=1) {
     __pyx_v_k = __pyx_t_1;
 
-    /* "bt_mrv.pyx":20
+    /* "bt_mrv.pyx":40
  *     cdef int k
  *     for k in range(9):
  *         if sudoku_board[i][k] == val: # Check row             # <<<<<<<<<<<<<<
@@ -16952,12 +16952,12 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
     } else if (unlikely(__pyx_t_3 >= __pyx_v_sudoku_board.shape[1])) __pyx_t_4 = 1;
     if (unlikely(__pyx_t_4 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_4);
-      __PYX_ERR(0, 20, __pyx_L1_error)
+      __PYX_ERR(0, 40, __pyx_L1_error)
     }
     __pyx_t_5 = ((*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_sudoku_board.data + __pyx_t_2 * __pyx_v_sudoku_board.strides[0]) ) + __pyx_t_3 * __pyx_v_sudoku_board.strides[1]) ))) == __pyx_v_val);
     if (__pyx_t_5) {
 
-      /* "bt_mrv.pyx":21
+      /* "bt_mrv.pyx":41
  *     for k in range(9):
  *         if sudoku_board[i][k] == val: # Check row
  *             return False             # <<<<<<<<<<<<<<
@@ -16967,7 +16967,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "bt_mrv.pyx":20
+      /* "bt_mrv.pyx":40
  *     cdef int k
  *     for k in range(9):
  *         if sudoku_board[i][k] == val: # Check row             # <<<<<<<<<<<<<<
@@ -16976,7 +16976,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
  */
     }
 
-    /* "bt_mrv.pyx":22
+    /* "bt_mrv.pyx":42
  *         if sudoku_board[i][k] == val: # Check row
  *             return False
  *         if sudoku_board[k][j] == val: # Check column             # <<<<<<<<<<<<<<
@@ -16996,12 +16996,12 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
     } else if (unlikely(__pyx_t_2 >= __pyx_v_sudoku_board.shape[1])) __pyx_t_4 = 1;
     if (unlikely(__pyx_t_4 != -1)) {
       __Pyx_RaiseBufferIndexError(__pyx_t_4);
-      __PYX_ERR(0, 22, __pyx_L1_error)
+      __PYX_ERR(0, 42, __pyx_L1_error)
     }
     __pyx_t_5 = ((*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_sudoku_board.data + __pyx_t_3 * __pyx_v_sudoku_board.strides[0]) ) + __pyx_t_2 * __pyx_v_sudoku_board.strides[1]) ))) == __pyx_v_val);
     if (__pyx_t_5) {
 
-      /* "bt_mrv.pyx":23
+      /* "bt_mrv.pyx":43
  *             return False
  *         if sudoku_board[k][j] == val: # Check column
  *             return False             # <<<<<<<<<<<<<<
@@ -17011,7 +17011,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
       __pyx_r = 0;
       goto __pyx_L0;
 
-      /* "bt_mrv.pyx":22
+      /* "bt_mrv.pyx":42
  *         if sudoku_board[i][k] == val: # Check row
  *             return False
  *         if sudoku_board[k][j] == val: # Check column             # <<<<<<<<<<<<<<
@@ -17021,7 +17021,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
     }
   }
 
-  /* "bt_mrv.pyx":26
+  /* "bt_mrv.pyx":46
  *
  *     # Get index for block (9 blocks of 3x3)
  *     cdef int block_i = i // 3             # <<<<<<<<<<<<<<
@@ -17030,7 +17030,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
  */
   __pyx_v_block_i = __Pyx_div_long(__pyx_v_i, 3);
 
-  /* "bt_mrv.pyx":27
+  /* "bt_mrv.pyx":47
  *     # Get index for block (9 blocks of 3x3)
  *     cdef int block_i = i // 3
  *     cdef int block_j = j // 3             # <<<<<<<<<<<<<<
@@ -17039,7 +17039,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
  */
   __pyx_v_block_j = __Pyx_div_long(__pyx_v_j, 3);
 
-  /* "bt_mrv.pyx":31
+  /* "bt_mrv.pyx":51
  *     # Chek block of val
  *     cdef int b_i, b_j
  *     for b_i in range(block_i * 3, block_i * 3 + 3):             # <<<<<<<<<<<<<<
@@ -17051,7 +17051,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
   for (__pyx_t_1 = (__pyx_v_block_i * 3); __pyx_t_1 < __pyx_t_7; __pyx_t_1+=1) {
     __pyx_v_b_i = __pyx_t_1;
 
-    /* "bt_mrv.pyx":32
+    /* "bt_mrv.pyx":52
  *     cdef int b_i, b_j
  *     for b_i in range(block_i * 3, block_i * 3 + 3):
  *         for b_j in range(block_j * 3, block_j * 3 + 3):             # <<<<<<<<<<<<<<
@@ -17063,7 +17063,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
     for (__pyx_t_4 = (__pyx_v_block_j * 3); __pyx_t_4 < __pyx_t_9; __pyx_t_4+=1) {
       __pyx_v_b_j = __pyx_t_4;
 
-      /* "bt_mrv.pyx":33
+      /* "bt_mrv.pyx":53
  *     for b_i in range(block_i * 3, block_i * 3 + 3):
  *         for b_j in range(block_j * 3, block_j * 3 + 3):
  *             if sudoku_board[b_i][b_j] == val:             # <<<<<<<<<<<<<<
@@ -17083,12 +17083,12 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
       } else if (unlikely(__pyx_t_3 >= __pyx_v_sudoku_board.shape[1])) __pyx_t_10 = 1;
       if (unlikely(__pyx_t_10 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_10);
-        __PYX_ERR(0, 33, __pyx_L1_error)
+        __PYX_ERR(0, 53, __pyx_L1_error)
       }
       __pyx_t_5 = ((*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_sudoku_board.data + __pyx_t_2 * __pyx_v_sudoku_board.strides[0]) ) + __pyx_t_3 * __pyx_v_sudoku_board.strides[1]) ))) == __pyx_v_val);
       if (__pyx_t_5) {
 
-        /* "bt_mrv.pyx":34
+        /* "bt_mrv.pyx":54
  *         for b_j in range(block_j * 3, block_j * 3 + 3):
  *             if sudoku_board[b_i][b_j] == val:
  *                 return False             # <<<<<<<<<<<<<<
@@ -17098,7 +17098,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
         __pyx_r = 0;
         goto __pyx_L0;
 
-        /* "bt_mrv.pyx":33
+        /* "bt_mrv.pyx":53
  *     for b_i in range(block_i * 3, block_i * 3 + 3):
  *         for b_j in range(block_j * 3, block_j * 3 + 3):
  *             if sudoku_board[b_i][b_j] == val:             # <<<<<<<<<<<<<<
@@ -17109,7 +17109,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
     }
   }
 
-  /* "bt_mrv.pyx":35
+  /* "bt_mrv.pyx":55
  *             if sudoku_board[b_i][b_j] == val:
  *                 return False
  *     return True             # <<<<<<<<<<<<<<
@@ -17119,7 +17119,7 @@ static int __pyx_f_6bt_mrv_validate_cell(__Pyx_memviewslice __pyx_v_sudoku_board
   __pyx_r = 1;
   goto __pyx_L0;
 
-  /* "bt_mrv.pyx":11
+  /* "bt_mrv.pyx":13
  *     int j
  *
  * cpdef bint validate_cell(int[:, :] sudoku_board, int val, int i, int j):             # <<<<<<<<<<<<<<
@@ -17144,7 +17144,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6bt_mrv_validate_cell, "\n    Checks if given value is valid for cell[i][j] in sudoku_board.\n    Validation is based on sudoku rules.\n    ");
+PyDoc_STRVAR(__pyx_doc_6bt_mrv_validate_cell, "validate_cell(int[:, :] sudoku_board, int val, int i, int j) -> bool\n\n    Checks if given value is valid for cell[i][j] in sudoku_board.\n    Validation is based on sudoku rules (each row must contain digits 1-9 without\n    repetition, each column must contain digits 1-9 without repetition, and each of the\n    nine 3 x 3 sub-grids must contain digits 1-9 wihtout repetition).\n\n    Parameters\n    -----------\n    sudoku_board : int[:, :]\n        two-dimensional c array representing sudoku board\n    val : int\n        Value to be checked\n    i : int\n        Row index of cell\n    j : int\n        Column index of cell\n        \n    Returns\n    ---------\n    boolean integer\n        1 (True) if value is valid according to sudoku rules, 0 (False) otherwise\n    ");
 static PyMethodDef __pyx_mdef_6bt_mrv_1validate_cell = {"validate_cell", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6bt_mrv_1validate_cell, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6bt_mrv_validate_cell};
 static PyObject *__pyx_pw_6bt_mrv_1validate_cell(PyObject *__pyx_self,
 #if CYTHON_METH_FASTCALL
@@ -17188,33 +17188,33 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       switch (__pyx_nargs) {
         case  0:
         if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_sudoku_board)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_val)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("validate_cell", 1, 4, 4, 1); __PYX_ERR(0, 11, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("validate_cell", 1, 4, 4, 1); __PYX_ERR(0, 13, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_i)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("validate_cell", 1, 4, 4, 2); __PYX_ERR(0, 11, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("validate_cell", 1, 4, 4, 2); __PYX_ERR(0, 13, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_j)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("validate_cell", 1, 4, 4, 3); __PYX_ERR(0, 11, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("validate_cell", 1, 4, 4, 3); __PYX_ERR(0, 13, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "validate_cell") < 0)) __PYX_ERR(0, 11, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "validate_cell") < 0)) __PYX_ERR(0, 13, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 4)) {
       goto __pyx_L5_argtuple_error;
@@ -17224,14 +17224,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
       values[3] = __Pyx_Arg_FASTCALL(__pyx_args, 3);
     }
-    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_val = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_val == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_i = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
-    __pyx_v_j = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 13, __pyx_L3_error)
+    __pyx_v_val = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_val == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
+    __pyx_v_j = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("validate_cell", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 11, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("validate_cell", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 13, __pyx_L3_error)
   __pyx_L3_error:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_sudoku_board, 1);
   __Pyx_AddTraceback("bt_mrv.validate_cell", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -17256,9 +17256,9 @@ static PyObject *__pyx_pf_6bt_mrv_validate_cell(CYTHON_UNUSED PyObject *__pyx_se
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("validate_cell", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 11, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_6bt_mrv_validate_cell(__pyx_v_sudoku_board, __pyx_v_val, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 13, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_6bt_mrv_validate_cell(__pyx_v_sudoku_board, __pyx_v_val, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -17275,12 +17275,12 @@ static PyObject *__pyx_pf_6bt_mrv_validate_cell(CYTHON_UNUSED PyObject *__pyx_se
   return __pyx_r;
 }
 
-/* "bt_mrv.pyx":38
+/* "bt_mrv.pyx":58
  *
  *
  * cpdef int n_poss_vals(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
- *     Returns number of possible values for cell[i][j] in sudoku_board.
+ *     Returns the number of possible values for a given cell in a Sudoku board.
  */
 
 static PyObject *__pyx_pw_6bt_mrv_3n_poss_vals(PyObject *__pyx_self,
@@ -17302,7 +17302,7 @@ static int __pyx_f_6bt_mrv_n_poss_vals(__Pyx_memviewslice __pyx_v_sudoku_board, 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("n_poss_vals", 0);
 
-  /* "bt_mrv.pyx":43
+  /* "bt_mrv.pyx":79
  *     """
  *
  *     cdef int poss_vals = 0             # <<<<<<<<<<<<<<
@@ -17311,7 +17311,7 @@ static int __pyx_f_6bt_mrv_n_poss_vals(__Pyx_memviewslice __pyx_v_sudoku_board, 
  */
   __pyx_v_poss_vals = 0;
 
-  /* "bt_mrv.pyx":45
+  /* "bt_mrv.pyx":81
  *     cdef int poss_vals = 0
  *     cdef int val
  *     for val in range(1, 10):             # <<<<<<<<<<<<<<
@@ -17321,17 +17321,17 @@ static int __pyx_f_6bt_mrv_n_poss_vals(__Pyx_memviewslice __pyx_v_sudoku_board, 
   for (__pyx_t_1 = 1; __pyx_t_1 < 10; __pyx_t_1+=1) {
     __pyx_v_val = __pyx_t_1;
 
-    /* "bt_mrv.pyx":46
+    /* "bt_mrv.pyx":82
  *     cdef int val
  *     for val in range(1, 10):
  *         if validate_cell(sudoku_board, val, i, j):             # <<<<<<<<<<<<<<
  *             poss_vals += 1
  *     return poss_vals
  */
-    __pyx_t_2 = __pyx_f_6bt_mrv_validate_cell(__pyx_v_sudoku_board, __pyx_v_val, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6bt_mrv_validate_cell(__pyx_v_sudoku_board, __pyx_v_val, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 82, __pyx_L1_error)
     if (__pyx_t_2) {
 
-      /* "bt_mrv.pyx":47
+      /* "bt_mrv.pyx":83
  *     for val in range(1, 10):
  *         if validate_cell(sudoku_board, val, i, j):
  *             poss_vals += 1             # <<<<<<<<<<<<<<
@@ -17340,7 +17340,7 @@ static int __pyx_f_6bt_mrv_n_poss_vals(__Pyx_memviewslice __pyx_v_sudoku_board, 
  */
       __pyx_v_poss_vals = (__pyx_v_poss_vals + 1);
 
-      /* "bt_mrv.pyx":46
+      /* "bt_mrv.pyx":82
  *     cdef int val
  *     for val in range(1, 10):
  *         if validate_cell(sudoku_board, val, i, j):             # <<<<<<<<<<<<<<
@@ -17350,7 +17350,7 @@ static int __pyx_f_6bt_mrv_n_poss_vals(__Pyx_memviewslice __pyx_v_sudoku_board, 
     }
   }
 
-  /* "bt_mrv.pyx":48
+  /* "bt_mrv.pyx":84
  *         if validate_cell(sudoku_board, val, i, j):
  *             poss_vals += 1
  *     return poss_vals             # <<<<<<<<<<<<<<
@@ -17360,12 +17360,12 @@ static int __pyx_f_6bt_mrv_n_poss_vals(__Pyx_memviewslice __pyx_v_sudoku_board, 
   __pyx_r = __pyx_v_poss_vals;
   goto __pyx_L0;
 
-  /* "bt_mrv.pyx":38
+  /* "bt_mrv.pyx":58
  *
  *
  * cpdef int n_poss_vals(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
- *     Returns number of possible values for cell[i][j] in sudoku_board.
+ *     Returns the number of possible values for a given cell in a Sudoku board.
  */
 
   /* function exit code */
@@ -17385,7 +17385,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6bt_mrv_2n_poss_vals, "\n    Returns number of possible values for cell[i][j] in sudoku_board.\n    ");
+PyDoc_STRVAR(__pyx_doc_6bt_mrv_2n_poss_vals, "n_poss_vals(int[:, :] sudoku_board, int i, int j) -> int\n\n    Returns the number of possible values for a given cell in a Sudoku board.\n    Uses :code:`validate_cell()` to check which numbers from 1 to 9 are valid for a\n    given cell and returns the number of possible values for that cell.\n        \n    Parameters\n    -----------\n    sudoku_board : int[:, :]\n        two-dimensional c array representing sudoku board\n    i : int\n        Row index of cell to be checked\n    j : int\n        Column index of cell to be checked\n\n    Returns\n    ----------\n        int:\n            Numbe of possible values for the given cell.\n    ");
 static PyMethodDef __pyx_mdef_6bt_mrv_3n_poss_vals = {"n_poss_vals", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6bt_mrv_3n_poss_vals, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6bt_mrv_2n_poss_vals};
 static PyObject *__pyx_pw_6bt_mrv_3n_poss_vals(PyObject *__pyx_self,
 #if CYTHON_METH_FASTCALL
@@ -17426,26 +17426,26 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       switch (__pyx_nargs) {
         case  0:
         if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_sudoku_board)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_i)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("n_poss_vals", 1, 3, 3, 1); __PYX_ERR(0, 38, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("n_poss_vals", 1, 3, 3, 1); __PYX_ERR(0, 58, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_j)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("n_poss_vals", 1, 3, 3, 2); __PYX_ERR(0, 38, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("n_poss_vals", 1, 3, 3, 2); __PYX_ERR(0, 58, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "n_poss_vals") < 0)) __PYX_ERR(0, 38, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "n_poss_vals") < 0)) __PYX_ERR(0, 58, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
@@ -17454,13 +17454,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
       values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
     }
-    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 38, __pyx_L3_error)
-    __pyx_v_i = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L3_error)
-    __pyx_v_j = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L3_error)
+    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 58, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
+    __pyx_v_j = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("n_poss_vals", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 38, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("n_poss_vals", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 58, __pyx_L3_error)
   __pyx_L3_error:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_sudoku_board, 1);
   __Pyx_AddTraceback("bt_mrv.n_poss_vals", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -17485,9 +17485,9 @@ static PyObject *__pyx_pf_6bt_mrv_2n_poss_vals(CYTHON_UNUSED PyObject *__pyx_sel
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("n_poss_vals", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 38, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_6bt_mrv_n_poss_vals(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 58, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_6bt_mrv_n_poss_vals(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -17504,7 +17504,7 @@ static PyObject *__pyx_pf_6bt_mrv_2n_poss_vals(CYTHON_UNUSED PyObject *__pyx_sel
   return __pyx_r;
 }
 
-/* "bt_mrv.pyx":52
+/* "bt_mrv.pyx":88
  *
  *
  * cpdef cell_position find_empty_cell_mrv(int[:, :] sudoku_board):             # <<<<<<<<<<<<<<
@@ -17540,7 +17540,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("find_empty_cell_mrv", 0);
 
-  /* "bt_mrv.pyx":60
+  /* "bt_mrv.pyx":106
  *     """
  *
  *     cdef int min_poss_vals = 10             # <<<<<<<<<<<<<<
@@ -17549,7 +17549,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
   __pyx_v_min_poss_vals = 10;
 
-  /* "bt_mrv.pyx":64
+  /* "bt_mrv.pyx":110
  *     cdef int i, j
  *     # Initialise to invalid values (instead of None in python)
  *     cdef int min_i = -1             # <<<<<<<<<<<<<<
@@ -17558,7 +17558,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
   __pyx_v_min_i = -1;
 
-  /* "bt_mrv.pyx":65
+  /* "bt_mrv.pyx":111
  *     # Initialise to invalid values (instead of None in python)
  *     cdef int min_i = -1
  *     cdef int min_j = -1             # <<<<<<<<<<<<<<
@@ -17567,7 +17567,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
   __pyx_v_min_j = -1;
 
-  /* "bt_mrv.pyx":67
+  /* "bt_mrv.pyx":113
  *     cdef int min_j = -1
  *
  *     for i in range(9):             # <<<<<<<<<<<<<<
@@ -17577,7 +17577,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
   for (__pyx_t_1 = 0; __pyx_t_1 < 9; __pyx_t_1+=1) {
     __pyx_v_i = __pyx_t_1;
 
-    /* "bt_mrv.pyx":68
+    /* "bt_mrv.pyx":114
  *
  *     for i in range(9):
  *         for j in range(9):             # <<<<<<<<<<<<<<
@@ -17587,7 +17587,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
     for (__pyx_t_2 = 0; __pyx_t_2 < 9; __pyx_t_2+=1) {
       __pyx_v_j = __pyx_t_2;
 
-      /* "bt_mrv.pyx":69
+      /* "bt_mrv.pyx":115
  *     for i in range(9):
  *         for j in range(9):
  *             if sudoku_board[i][j] == 0:             # <<<<<<<<<<<<<<
@@ -17607,22 +17607,22 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
       } else if (unlikely(__pyx_t_4 >= __pyx_v_sudoku_board.shape[1])) __pyx_t_5 = 1;
       if (unlikely(__pyx_t_5 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_5);
-        __PYX_ERR(0, 69, __pyx_L1_error)
+        __PYX_ERR(0, 115, __pyx_L1_error)
       }
       __pyx_t_6 = ((*((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_sudoku_board.data + __pyx_t_3 * __pyx_v_sudoku_board.strides[0]) ) + __pyx_t_4 * __pyx_v_sudoku_board.strides[1]) ))) == 0);
       if (__pyx_t_6) {
 
-        /* "bt_mrv.pyx":70
+        /* "bt_mrv.pyx":116
  *         for j in range(9):
  *             if sudoku_board[i][j] == 0:
  *                 poss_vals = n_poss_vals(sudoku_board, i, j)             # <<<<<<<<<<<<<<
  *                 if poss_vals < min_poss_vals:
  *                     min_poss_vals = poss_vals
  */
-        __pyx_t_5 = __pyx_f_6bt_mrv_n_poss_vals(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_5 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 70, __pyx_L1_error)
+        __pyx_t_5 = __pyx_f_6bt_mrv_n_poss_vals(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_5 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 116, __pyx_L1_error)
         __pyx_v_poss_vals = __pyx_t_5;
 
-        /* "bt_mrv.pyx":71
+        /* "bt_mrv.pyx":117
  *             if sudoku_board[i][j] == 0:
  *                 poss_vals = n_poss_vals(sudoku_board, i, j)
  *                 if poss_vals < min_poss_vals:             # <<<<<<<<<<<<<<
@@ -17632,7 +17632,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
         __pyx_t_6 = (__pyx_v_poss_vals < __pyx_v_min_poss_vals);
         if (__pyx_t_6) {
 
-          /* "bt_mrv.pyx":72
+          /* "bt_mrv.pyx":118
  *                 poss_vals = n_poss_vals(sudoku_board, i, j)
  *                 if poss_vals < min_poss_vals:
  *                     min_poss_vals = poss_vals             # <<<<<<<<<<<<<<
@@ -17641,7 +17641,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
           __pyx_v_min_poss_vals = __pyx_v_poss_vals;
 
-          /* "bt_mrv.pyx":73
+          /* "bt_mrv.pyx":119
  *                 if poss_vals < min_poss_vals:
  *                     min_poss_vals = poss_vals
  *                     min_i = i             # <<<<<<<<<<<<<<
@@ -17650,7 +17650,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
           __pyx_v_min_i = __pyx_v_i;
 
-          /* "bt_mrv.pyx":74
+          /* "bt_mrv.pyx":120
  *                     min_poss_vals = poss_vals
  *                     min_i = i
  *                     min_j = j             # <<<<<<<<<<<<<<
@@ -17659,7 +17659,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
           __pyx_v_min_j = __pyx_v_j;
 
-          /* "bt_mrv.pyx":71
+          /* "bt_mrv.pyx":117
  *             if sudoku_board[i][j] == 0:
  *                 poss_vals = n_poss_vals(sudoku_board, i, j)
  *                 if poss_vals < min_poss_vals:             # <<<<<<<<<<<<<<
@@ -17668,7 +17668,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
         }
 
-        /* "bt_mrv.pyx":69
+        /* "bt_mrv.pyx":115
  *     for i in range(9):
  *         for j in range(9):
  *             if sudoku_board[i][j] == 0:             # <<<<<<<<<<<<<<
@@ -17679,7 +17679,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
     }
   }
 
-  /* "bt_mrv.pyx":78
+  /* "bt_mrv.pyx":124
  *     # Use c struct to return python-type tuple
  *     cdef cell_position min_cell
  *     min_cell.i = min_i             # <<<<<<<<<<<<<<
@@ -17688,7 +17688,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
   __pyx_v_min_cell.i = __pyx_v_min_i;
 
-  /* "bt_mrv.pyx":79
+  /* "bt_mrv.pyx":125
  *     cdef cell_position min_cell
  *     min_cell.i = min_i
  *     min_cell.j = min_j             # <<<<<<<<<<<<<<
@@ -17697,7 +17697,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
  */
   __pyx_v_min_cell.j = __pyx_v_min_j;
 
-  /* "bt_mrv.pyx":81
+  /* "bt_mrv.pyx":127
  *     min_cell.j = min_j
  *
  *     return min_cell             # <<<<<<<<<<<<<<
@@ -17707,7 +17707,7 @@ static __pyx_t_6bt_mrv_cell_position __pyx_f_6bt_mrv_find_empty_cell_mrv(__Pyx_m
   __pyx_r = __pyx_v_min_cell;
   goto __pyx_L0;
 
-  /* "bt_mrv.pyx":52
+  /* "bt_mrv.pyx":88
  *
  *
  * cpdef cell_position find_empty_cell_mrv(int[:, :] sudoku_board):             # <<<<<<<<<<<<<<
@@ -17732,7 +17732,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6bt_mrv_4find_empty_cell_mrv, "\n    Iterates through given Sudoku board and uses n_possible_values to find the cell\n    with the fewest possible values. Returns the row and column indices of that cell as\n    a tuple to be used in the backtracking algorithm. This technique is called Minimum\n    Remaining Values (MRV).\n    ");
+PyDoc_STRVAR(__pyx_doc_6bt_mrv_4find_empty_cell_mrv, "find_empty_cell_mrv(int[:, :] sudoku_board) -> cell_position\n\n    Iterates through given Sudoku board and uses n_possible_values to find the cell\n    with the fewest possible values. Returns the row and column indices of that cell as\n    a tuple to be used in the backtracking algorithm. This technique is called Minimum\n    Remaining Values (MRV).\n\n    Parameters\n    -----------\n    sudoku_board : int[:, :]\n        two-dimensional c array representing sudoku board\n\n    Returns\n    ----------\n    min_cell : cell_position struct\n        Row and column indices of the cell with the fewest possible values.\n    ");
 static PyMethodDef __pyx_mdef_6bt_mrv_5find_empty_cell_mrv = {"find_empty_cell_mrv", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6bt_mrv_5find_empty_cell_mrv, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6bt_mrv_4find_empty_cell_mrv};
 static PyObject *__pyx_pw_6bt_mrv_5find_empty_cell_mrv(PyObject *__pyx_self,
 #if CYTHON_METH_FASTCALL
@@ -17767,23 +17767,23 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       switch (__pyx_nargs) {
         case  0:
         if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_sudoku_board)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 88, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "find_empty_cell_mrv") < 0)) __PYX_ERR(0, 52, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "find_empty_cell_mrv") < 0)) __PYX_ERR(0, 88, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
     }
-    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 52, __pyx_L3_error)
+    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 88, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("find_empty_cell_mrv", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 52, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("find_empty_cell_mrv", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 88, __pyx_L3_error)
   __pyx_L3_error:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_sudoku_board, 1);
   __Pyx_AddTraceback("bt_mrv.find_empty_cell_mrv", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -17808,9 +17808,9 @@ static PyObject *__pyx_pf_6bt_mrv_4find_empty_cell_mrv(CYTHON_UNUSED PyObject *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("find_empty_cell_mrv", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 52, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_6bt_mrv_find_empty_cell_mrv(__pyx_v_sudoku_board, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
-  __pyx_t_2 = __pyx_convert__to_py___pyx_t_6bt_mrv_cell_position(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 88, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_6bt_mrv_find_empty_cell_mrv(__pyx_v_sudoku_board, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert__to_py___pyx_t_6bt_mrv_cell_position(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -17827,7 +17827,7 @@ static PyObject *__pyx_pf_6bt_mrv_4find_empty_cell_mrv(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-/* "bt_mrv.pyx":83
+/* "bt_mrv.pyx":129
  *     return min_cell
  *
  * cpdef bint solve_backtrack_MRV(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
@@ -17861,17 +17861,17 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("solve_backtrack_MRV", 0);
 
-  /* "bt_mrv.pyx":90
+  /* "bt_mrv.pyx":150
  *
  *     # Find empty cell
  *     cdef cell_position empty_cell = find_empty_cell_mrv(sudoku_board)             # <<<<<<<<<<<<<<
  *     if empty_cell.i == -1 and empty_cell.j == -1: # No empty cells left: sudoku is solved
  *         return True
  */
-  __pyx_t_1 = __pyx_f_6bt_mrv_find_empty_cell_mrv(__pyx_v_sudoku_board, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6bt_mrv_find_empty_cell_mrv(__pyx_v_sudoku_board, 0); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 150, __pyx_L1_error)
   __pyx_v_empty_cell = __pyx_t_1;
 
-  /* "bt_mrv.pyx":91
+  /* "bt_mrv.pyx":151
  *     # Find empty cell
  *     cdef cell_position empty_cell = find_empty_cell_mrv(sudoku_board)
  *     if empty_cell.i == -1 and empty_cell.j == -1: # No empty cells left: sudoku is solved             # <<<<<<<<<<<<<<
@@ -17889,7 +17889,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "bt_mrv.pyx":92
+    /* "bt_mrv.pyx":152
  *     cdef cell_position empty_cell = find_empty_cell_mrv(sudoku_board)
  *     if empty_cell.i == -1 and empty_cell.j == -1: # No empty cells left: sudoku is solved
  *         return True             # <<<<<<<<<<<<<<
@@ -17899,7 +17899,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
     __pyx_r = 1;
     goto __pyx_L0;
 
-    /* "bt_mrv.pyx":91
+    /* "bt_mrv.pyx":151
  *     # Find empty cell
  *     cdef cell_position empty_cell = find_empty_cell_mrv(sudoku_board)
  *     if empty_cell.i == -1 and empty_cell.j == -1: # No empty cells left: sudoku is solved             # <<<<<<<<<<<<<<
@@ -17908,7 +17908,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
  */
   }
 
-  /* "bt_mrv.pyx":94
+  /* "bt_mrv.pyx":154
  *         return True
  *     else:
  *         i_e = empty_cell.i             # <<<<<<<<<<<<<<
@@ -17919,7 +17919,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
     __pyx_t_4 = __pyx_v_empty_cell.i;
     __pyx_v_i_e = __pyx_t_4;
 
-    /* "bt_mrv.pyx":95
+    /* "bt_mrv.pyx":155
  *     else:
  *         i_e = empty_cell.i
  *         j_e = empty_cell.j             # <<<<<<<<<<<<<<
@@ -17930,7 +17930,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
     __pyx_v_j_e = __pyx_t_4;
   }
 
-  /* "bt_mrv.pyx":99
+  /* "bt_mrv.pyx":159
  *     # Try all possible values for empty cell (1-9)
  *     cdef int val
  *     for val in range(1,10):             # <<<<<<<<<<<<<<
@@ -17940,17 +17940,17 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
   for (__pyx_t_4 = 1; __pyx_t_4 < 10; __pyx_t_4+=1) {
     __pyx_v_val = __pyx_t_4;
 
-    /* "bt_mrv.pyx":100
+    /* "bt_mrv.pyx":160
  *     cdef int val
  *     for val in range(1,10):
  *         if validate_cell(sudoku_board, val, i_e, j_e):             # <<<<<<<<<<<<<<
  *             sudoku_board[i_e][j_e] = val
  *             if solve_backtrack_MRV(sudoku_board, i_e, j_e):
  */
-    __pyx_t_2 = __pyx_f_6bt_mrv_validate_cell(__pyx_v_sudoku_board, __pyx_v_val, __pyx_v_i_e, __pyx_v_j_e, 0); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_6bt_mrv_validate_cell(__pyx_v_sudoku_board, __pyx_v_val, __pyx_v_i_e, __pyx_v_j_e, 0); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 160, __pyx_L1_error)
     if (__pyx_t_2) {
 
-      /* "bt_mrv.pyx":101
+      /* "bt_mrv.pyx":161
  *     for val in range(1,10):
  *         if validate_cell(sudoku_board, val, i_e, j_e):
  *             sudoku_board[i_e][j_e] = val             # <<<<<<<<<<<<<<
@@ -17970,21 +17970,21 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
       } else if (unlikely(__pyx_t_6 >= __pyx_v_sudoku_board.shape[1])) __pyx_t_7 = 1;
       if (unlikely(__pyx_t_7 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_7);
-        __PYX_ERR(0, 101, __pyx_L1_error)
+        __PYX_ERR(0, 161, __pyx_L1_error)
       }
       *((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_sudoku_board.data + __pyx_t_5 * __pyx_v_sudoku_board.strides[0]) ) + __pyx_t_6 * __pyx_v_sudoku_board.strides[1]) )) = __pyx_v_val;
 
-      /* "bt_mrv.pyx":102
+      /* "bt_mrv.pyx":162
  *         if validate_cell(sudoku_board, val, i_e, j_e):
  *             sudoku_board[i_e][j_e] = val
  *             if solve_backtrack_MRV(sudoku_board, i_e, j_e):             # <<<<<<<<<<<<<<
  *                 return True
  *             sudoku_board[i_e][j_e] = 0 # Backtrack
  */
-      __pyx_t_2 = __pyx_f_6bt_mrv_solve_backtrack_MRV(__pyx_v_sudoku_board, __pyx_v_i_e, __pyx_v_j_e, 0); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 102, __pyx_L1_error)
+      __pyx_t_2 = __pyx_f_6bt_mrv_solve_backtrack_MRV(__pyx_v_sudoku_board, __pyx_v_i_e, __pyx_v_j_e, 0); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 162, __pyx_L1_error)
       if (__pyx_t_2) {
 
-        /* "bt_mrv.pyx":103
+        /* "bt_mrv.pyx":163
  *             sudoku_board[i_e][j_e] = val
  *             if solve_backtrack_MRV(sudoku_board, i_e, j_e):
  *                 return True             # <<<<<<<<<<<<<<
@@ -17994,7 +17994,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
         __pyx_r = 1;
         goto __pyx_L0;
 
-        /* "bt_mrv.pyx":102
+        /* "bt_mrv.pyx":162
  *         if validate_cell(sudoku_board, val, i_e, j_e):
  *             sudoku_board[i_e][j_e] = val
  *             if solve_backtrack_MRV(sudoku_board, i_e, j_e):             # <<<<<<<<<<<<<<
@@ -18003,7 +18003,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
  */
       }
 
-      /* "bt_mrv.pyx":104
+      /* "bt_mrv.pyx":164
  *             if solve_backtrack_MRV(sudoku_board, i_e, j_e):
  *                 return True
  *             sudoku_board[i_e][j_e] = 0 # Backtrack             # <<<<<<<<<<<<<<
@@ -18023,11 +18023,11 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
       } else if (unlikely(__pyx_t_5 >= __pyx_v_sudoku_board.shape[1])) __pyx_t_7 = 1;
       if (unlikely(__pyx_t_7 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_7);
-        __PYX_ERR(0, 104, __pyx_L1_error)
+        __PYX_ERR(0, 164, __pyx_L1_error)
       }
       *((int *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_sudoku_board.data + __pyx_t_6 * __pyx_v_sudoku_board.strides[0]) ) + __pyx_t_5 * __pyx_v_sudoku_board.strides[1]) )) = 0;
 
-      /* "bt_mrv.pyx":100
+      /* "bt_mrv.pyx":160
  *     cdef int val
  *     for val in range(1,10):
  *         if validate_cell(sudoku_board, val, i_e, j_e):             # <<<<<<<<<<<<<<
@@ -18037,7 +18037,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
     }
   }
 
-  /* "bt_mrv.pyx":106
+  /* "bt_mrv.pyx":166
  *             sudoku_board[i_e][j_e] = 0 # Backtrack
  *
  *     return False # Trigger recursive backtracking             # <<<<<<<<<<<<<<
@@ -18047,7 +18047,7 @@ static int __pyx_f_6bt_mrv_solve_backtrack_MRV(__Pyx_memviewslice __pyx_v_sudoku
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "bt_mrv.pyx":83
+  /* "bt_mrv.pyx":129
  *     return min_cell
  *
  * cpdef bint solve_backtrack_MRV(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
@@ -18072,7 +18072,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6bt_mrv_6solve_backtrack_MRV, "\n    Recursive backtracking algorithm with MRV heuristic. Modifies sudoku_board in place\n    and returns True if a solution is found, False otherwise.\n    ");
+PyDoc_STRVAR(__pyx_doc_6bt_mrv_6solve_backtrack_MRV, "solve_backtrack_MRV(int[:, :] sudoku_board, int i, int j) -> bool\n\n    Recursive backtracking algorithm with MRV heuristic. Modifies sudoku_board in place\n    and returns 1 (True) if a solution is found, 0 (False) otherwise.\n\n    Parameters\n    -----------\n    sudoku_board : int[:, :]\n        two-dimensional c array representing sudoku board\n    i : int\n        Row index of cell\n    j : int\n        Column index of cell\n    \n    Returns\n    --------\n    boolean integer\n        1 (True) if sudoku board is solved, 0 (False) otherwise\n    ");
 static PyMethodDef __pyx_mdef_6bt_mrv_7solve_backtrack_MRV = {"solve_backtrack_MRV", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6bt_mrv_7solve_backtrack_MRV, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6bt_mrv_6solve_backtrack_MRV};
 static PyObject *__pyx_pw_6bt_mrv_7solve_backtrack_MRV(PyObject *__pyx_self,
 #if CYTHON_METH_FASTCALL
@@ -18113,26 +18113,26 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       switch (__pyx_nargs) {
         case  0:
         if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_sudoku_board)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_i)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("solve_backtrack_MRV", 1, 3, 3, 1); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("solve_backtrack_MRV", 1, 3, 3, 1); __PYX_ERR(0, 129, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_j)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("solve_backtrack_MRV", 1, 3, 3, 2); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("solve_backtrack_MRV", 1, 3, 3, 2); __PYX_ERR(0, 129, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "solve_backtrack_MRV") < 0)) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "solve_backtrack_MRV") < 0)) __PYX_ERR(0, 129, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
@@ -18141,13 +18141,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
       values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
     }
-    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
-    __pyx_v_i = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
-    __pyx_v_j = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 129, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L3_error)
+    __pyx_v_j = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("solve_backtrack_MRV", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("solve_backtrack_MRV", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 129, __pyx_L3_error)
   __pyx_L3_error:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_sudoku_board, 1);
   __Pyx_AddTraceback("bt_mrv.solve_backtrack_MRV", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -18172,9 +18172,9 @@ static PyObject *__pyx_pf_6bt_mrv_6solve_backtrack_MRV(CYTHON_UNUSED PyObject *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("solve_backtrack_MRV", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 83, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_6bt_mrv_solve_backtrack_MRV(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 129, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_6bt_mrv_solve_backtrack_MRV(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -18191,12 +18191,12 @@ static PyObject *__pyx_pf_6bt_mrv_6solve_backtrack_MRV(CYTHON_UNUSED PyObject *_
   return __pyx_r;
 }
 
-/* "bt_mrv.pyx":108
+/* "bt_mrv.pyx":168
  *     return False # Trigger recursive backtracking
  *
  * cpdef int[:, :] solved_MRV(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
- *     Wrapper function for solve_backtrack_MRV. Returns solved sudoku board.
+ *     Wrapper function for solve_backtrack_MRV(). Returns solved sudoku board.
  */
 
 static PyObject *__pyx_pw_6bt_mrv_9solved_MRV(PyObject *__pyx_self,
@@ -18216,17 +18216,17 @@ static __Pyx_memviewslice __pyx_f_6bt_mrv_solved_MRV(__Pyx_memviewslice __pyx_v_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("solved_MRV", 0);
 
-  /* "bt_mrv.pyx":113
+  /* "bt_mrv.pyx":192
  *     """
  *
  *     if solve_backtrack_MRV(sudoku_board, i, j):             # <<<<<<<<<<<<<<
  *         return sudoku_board
  *     else:
  */
-  __pyx_t_1 = __pyx_f_6bt_mrv_solve_backtrack_MRV(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_6bt_mrv_solve_backtrack_MRV(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 192, __pyx_L1_error)
   if (likely(__pyx_t_1)) {
 
-    /* "bt_mrv.pyx":114
+    /* "bt_mrv.pyx":193
  *
  *     if solve_backtrack_MRV(sudoku_board, i, j):
  *         return sudoku_board             # <<<<<<<<<<<<<<
@@ -18237,7 +18237,7 @@ static __Pyx_memviewslice __pyx_f_6bt_mrv_solved_MRV(__Pyx_memviewslice __pyx_v_
     __pyx_r = __pyx_v_sudoku_board;
     goto __pyx_L0;
 
-    /* "bt_mrv.pyx":113
+    /* "bt_mrv.pyx":192
  *     """
  *
  *     if solve_backtrack_MRV(sudoku_board, i, j):             # <<<<<<<<<<<<<<
@@ -18246,25 +18246,25 @@ static __Pyx_memviewslice __pyx_f_6bt_mrv_solved_MRV(__Pyx_memviewslice __pyx_v_
  */
   }
 
-  /* "bt_mrv.pyx":116
+  /* "bt_mrv.pyx":195
  *         return sudoku_board
  *     else:
  *         raise ValueError('Sudoku puzzle cannot be solved.')             # <<<<<<<<<<<<<<
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 116, __pyx_L1_error)
+    __PYX_ERR(0, 195, __pyx_L1_error)
   }
 
-  /* "bt_mrv.pyx":108
+  /* "bt_mrv.pyx":168
  *     return False # Trigger recursive backtracking
  *
  * cpdef int[:, :] solved_MRV(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
- *     Wrapper function for solve_backtrack_MRV. Returns solved sudoku board.
+ *     Wrapper function for solve_backtrack_MRV(). Returns solved sudoku board.
  */
 
   /* function exit code */
@@ -18291,7 +18291,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6bt_mrv_8solved_MRV, "\n    Wrapper function for solve_backtrack_MRV. Returns solved sudoku board.\n    ");
+PyDoc_STRVAR(__pyx_doc_6bt_mrv_8solved_MRV, "solved_MRV(int[:, :] sudoku_board, int i, int j) -> int[:, :]\n\n    Wrapper function for solve_backtrack_MRV(). Returns solved sudoku board.\n\n    Parameters\n    -----------\n    sudoku_board : int[:, :]\n        two-dimensional c array representing sudoku board\n    i : int\n        Row index of cell\n    j : int\n        Column index of cell\n\n    Returns\n    --------\n    int[:, :]\n        Solved sudoku board\n    \n    Raises\n    -------\n    ValueError\n        If sudoku board cannot be solved.\n    ");
 static PyMethodDef __pyx_mdef_6bt_mrv_9solved_MRV = {"solved_MRV", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6bt_mrv_9solved_MRV, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6bt_mrv_8solved_MRV};
 static PyObject *__pyx_pw_6bt_mrv_9solved_MRV(PyObject *__pyx_self,
 #if CYTHON_METH_FASTCALL
@@ -18332,26 +18332,26 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       switch (__pyx_nargs) {
         case  0:
         if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_sudoku_board)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_i)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("solved_MRV", 1, 3, 3, 1); __PYX_ERR(0, 108, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("solved_MRV", 1, 3, 3, 1); __PYX_ERR(0, 168, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_j)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("solved_MRV", 1, 3, 3, 2); __PYX_ERR(0, 108, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("solved_MRV", 1, 3, 3, 2); __PYX_ERR(0, 168, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "solved_MRV") < 0)) __PYX_ERR(0, 108, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "solved_MRV") < 0)) __PYX_ERR(0, 168, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
@@ -18360,13 +18360,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
       values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
     }
-    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 108, __pyx_L3_error)
-    __pyx_v_i = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
-    __pyx_v_j = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
+    __pyx_v_sudoku_board = __Pyx_PyObject_to_MemoryviewSlice_dsds_int(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_sudoku_board.memview)) __PYX_ERR(0, 168, __pyx_L3_error)
+    __pyx_v_i = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_i == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L3_error)
+    __pyx_v_j = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_j == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("solved_MRV", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("solved_MRV", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 168, __pyx_L3_error)
   __pyx_L3_error:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_sudoku_board, 1);
   __Pyx_AddTraceback("bt_mrv.solved_MRV", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -18391,9 +18391,9 @@ static PyObject *__pyx_pf_6bt_mrv_8solved_MRV(CYTHON_UNUSED PyObject *__pyx_self
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("solved_MRV", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 108, __pyx_L1_error) }
-  __pyx_t_1 = __pyx_f_6bt_mrv_solved_MRV(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 108, __pyx_L1_error)
-  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_t_1, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (unlikely(!__pyx_v_sudoku_board.memview)) { __Pyx_RaiseUnboundLocalError("sudoku_board"); __PYX_ERR(0, 168, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_f_6bt_mrv_solved_MRV(__pyx_v_sudoku_board, __pyx_v_i, __pyx_v_j, 0); if (unlikely(!__pyx_t_1.memview)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_t_1, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_1, 1);
   __pyx_t_1.memview = NULL; __pyx_t_1.data = NULL;
@@ -19489,8 +19489,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 }
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 19, __pyx_L1_error)
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 195, __pyx_L1_error)
   __pyx_builtin___import__ = __Pyx_GetBuiltinName(__pyx_n_s_import); if (!__pyx_builtin___import__) __PYX_ERR(1, 100, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(1, 156, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 159, __pyx_L1_error)
@@ -19545,12 +19545,12 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "bt_mrv.pyx":116
+  /* "bt_mrv.pyx":195
  *         return sudoku_board
  *     else:
  *         raise ValueError('Sudoku puzzle cannot be solved.')             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_u_Sudoku_puzzle_cannot_be_solved); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_u_Sudoku_puzzle_cannot_be_solved); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
@@ -19655,59 +19655,59 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__19);
   __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(1, 1, __pyx_L1_error)
 
-  /* "bt_mrv.pyx":11
+  /* "bt_mrv.pyx":13
  *     int j
  *
  * cpdef bint validate_cell(int[:, :] sudoku_board, int val, int i, int j):             # <<<<<<<<<<<<<<
  *     """
  *     Checks if given value is valid for cell[i][j] in sudoku_board.
  */
-  __pyx_tuple__21 = PyTuple_Pack(4, __pyx_n_s_sudoku_board, __pyx_n_s_val, __pyx_n_s_i, __pyx_n_s_j); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(4, __pyx_n_s_sudoku_board, __pyx_n_s_val, __pyx_n_s_i, __pyx_n_s_j); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_validate_cell, 11, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_validate_cell, 13, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 13, __pyx_L1_error)
 
-  /* "bt_mrv.pyx":38
+  /* "bt_mrv.pyx":58
  *
  *
  * cpdef int n_poss_vals(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
- *     Returns number of possible values for cell[i][j] in sudoku_board.
+ *     Returns the number of possible values for a given cell in a Sudoku board.
  */
-  __pyx_tuple__23 = PyTuple_Pack(3, __pyx_n_s_sudoku_board, __pyx_n_s_i, __pyx_n_s_j); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(3, __pyx_n_s_sudoku_board, __pyx_n_s_i, __pyx_n_s_j); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_n_poss_vals, 38, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_n_poss_vals, 58, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 58, __pyx_L1_error)
 
-  /* "bt_mrv.pyx":52
+  /* "bt_mrv.pyx":88
  *
  *
  * cpdef cell_position find_empty_cell_mrv(int[:, :] sudoku_board):             # <<<<<<<<<<<<<<
  *     """
  *     Iterates through given Sudoku board and uses n_possible_values to find the cell
  */
-  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_n_s_sudoku_board); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_n_s_sudoku_board); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_find_empty_cell_mrv, 52, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_find_empty_cell_mrv, 88, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 88, __pyx_L1_error)
 
-  /* "bt_mrv.pyx":83
+  /* "bt_mrv.pyx":129
  *     return min_cell
  *
  * cpdef bint solve_backtrack_MRV(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
  *     Recursive backtracking algorithm with MRV heuristic. Modifies sudoku_board in place
  */
-  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_solve_backtrack_MRV, 83, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_solve_backtrack_MRV, 129, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 129, __pyx_L1_error)
 
-  /* "bt_mrv.pyx":108
+  /* "bt_mrv.pyx":168
  *     return False # Trigger recursive backtracking
  *
  * cpdef int[:, :] solved_MRV(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
- *     Wrapper function for solve_backtrack_MRV. Returns solved sudoku board.
+ *     Wrapper function for solve_backtrack_MRV(). Returns solved sudoku board.
  */
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_solved_MRV, 108, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_bt_mrv_pyx, __pyx_n_s_solved_MRV, 168, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -20760,70 +20760,70 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Enum, __pyx_t_7) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "bt_mrv.pyx":11
+  /* "bt_mrv.pyx":13
  *     int j
  *
  * cpdef bint validate_cell(int[:, :] sudoku_board, int val, int i, int j):             # <<<<<<<<<<<<<<
  *     """
  *     Checks if given value is valid for cell[i][j] in sudoku_board.
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_1validate_cell, 0, __pyx_n_s_validate_cell, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_1validate_cell, 0, __pyx_n_s_validate_cell, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_validate_cell, __pyx_t_7) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_validate_cell, __pyx_t_7) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "bt_mrv.pyx":38
+  /* "bt_mrv.pyx":58
  *
  *
  * cpdef int n_poss_vals(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
- *     Returns number of possible values for cell[i][j] in sudoku_board.
+ *     Returns the number of possible values for a given cell in a Sudoku board.
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_3n_poss_vals, 0, __pyx_n_s_n_poss_vals, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_3n_poss_vals, 0, __pyx_n_s_n_poss_vals, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_n_poss_vals, __pyx_t_7) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_n_poss_vals, __pyx_t_7) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "bt_mrv.pyx":52
+  /* "bt_mrv.pyx":88
  *
  *
  * cpdef cell_position find_empty_cell_mrv(int[:, :] sudoku_board):             # <<<<<<<<<<<<<<
  *     """
  *     Iterates through given Sudoku board and uses n_possible_values to find the cell
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_5find_empty_cell_mrv, 0, __pyx_n_s_find_empty_cell_mrv, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_5find_empty_cell_mrv, 0, __pyx_n_s_find_empty_cell_mrv, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_find_empty_cell_mrv, __pyx_t_7) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_find_empty_cell_mrv, __pyx_t_7) < 0) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "bt_mrv.pyx":83
+  /* "bt_mrv.pyx":129
  *     return min_cell
  *
  * cpdef bint solve_backtrack_MRV(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
  *     Recursive backtracking algorithm with MRV heuristic. Modifies sudoku_board in place
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_7solve_backtrack_MRV, 0, __pyx_n_s_solve_backtrack_MRV, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_7solve_backtrack_MRV, 0, __pyx_n_s_solve_backtrack_MRV, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_solve_backtrack_MRV, __pyx_t_7) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_solve_backtrack_MRV, __pyx_t_7) < 0) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "bt_mrv.pyx":108
+  /* "bt_mrv.pyx":168
  *     return False # Trigger recursive backtracking
  *
  * cpdef int[:, :] solved_MRV(int[:, :] sudoku_board, int i, int j):             # <<<<<<<<<<<<<<
  *     """
- *     Wrapper function for solve_backtrack_MRV. Returns solved sudoku board.
+ *     Wrapper function for solve_backtrack_MRV(). Returns solved sudoku board.
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_9solved_MRV, 0, __pyx_n_s_solved_MRV, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6bt_mrv_9solved_MRV, 0, __pyx_n_s_solved_MRV, NULL, __pyx_n_s_bt_mrv, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_solved_MRV, __pyx_t_7) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_solved_MRV, __pyx_t_7) < 0) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
   /* "bt_mrv.pyx":1
  * # cython: language_level=3             # <<<<<<<<<<<<<<
  * """
- * This module is a cython implementation of a backtracking algorithm with a minimum
+ * This module is a cython implementation of backtracking_mrv.py. The functions are the
  */
   __pyx_t_7 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);

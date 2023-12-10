@@ -1,7 +1,9 @@
 # cython: language_level=3
 """
-This module is a cython implementation of a backtracking algorithm with a minimum
-remaining values (MRV) heuristics used to solve a Sudoku puzzle.
+This module is a cython implementation of backtracking_mrv.py. The functions are the
+same with modified type declarations for performance. A cython struct is created to
+hold the row and column indices of a cell. This is used to return a tuple of indices
+from the find_empty_cell_mrv function.
 """
 # Struct to hold row and column indices of a cell
 ctypedef struct cell_position:
@@ -11,7 +13,25 @@ ctypedef struct cell_position:
 cpdef bint validate_cell(int[:, :] sudoku_board, int val, int i, int j):
     """
     Checks if given value is valid for cell[i][j] in sudoku_board.
-    Validation is based on sudoku rules.
+    Validation is based on sudoku rules (each row must contain digits 1-9 without
+    repetition, each column must contain digits 1-9 without repetition, and each of the
+    nine 3 x 3 sub-grids must contain digits 1-9 wihtout repetition).
+
+    Parameters
+    -----------
+    sudoku_board : int[:, :]
+        two-dimensional c array representing sudoku board
+    val : int
+        Value to be checked
+    i : int
+        Row index of cell
+    j : int
+        Column index of cell
+
+    Returns
+    ---------
+    boolean integer
+        1 (True) if value is valid according to sudoku rules, 0 (False) otherwise
     """
 
     # Check row & column of val
@@ -37,7 +57,23 @@ cpdef bint validate_cell(int[:, :] sudoku_board, int val, int i, int j):
 
 cpdef int n_poss_vals(int[:, :] sudoku_board, int i, int j):
     """
-    Returns number of possible values for cell[i][j] in sudoku_board.
+    Returns the number of possible values for a given cell in a Sudoku board.
+    Uses :code:`validate_cell()` to check which numbers from 1 to 9 are valid for a
+    given cell and returns the number of possible values for that cell.
+
+    Parameters
+    -----------
+    sudoku_board : int[:, :]
+        two-dimensional c array representing sudoku board
+    i : int
+        Row index of cell to be checked
+    j : int
+        Column index of cell to be checked
+
+    Returns
+    ----------
+        int:
+            Numbe of possible values for the given cell.
     """
 
     cdef int poss_vals = 0
@@ -55,6 +91,16 @@ cpdef cell_position find_empty_cell_mrv(int[:, :] sudoku_board):
     with the fewest possible values. Returns the row and column indices of that cell as
     a tuple to be used in the backtracking algorithm. This technique is called Minimum
     Remaining Values (MRV).
+
+    Parameters
+    -----------
+    sudoku_board : int[:, :]
+        two-dimensional c array representing sudoku board
+
+    Returns
+    ----------
+    min_cell : cell_position struct
+        Row and column indices of the cell with the fewest possible values.
     """
 
     cdef int min_poss_vals = 10
@@ -83,7 +129,21 @@ cpdef cell_position find_empty_cell_mrv(int[:, :] sudoku_board):
 cpdef bint solve_backtrack_MRV(int[:, :] sudoku_board, int i, int j):
     """
     Recursive backtracking algorithm with MRV heuristic. Modifies sudoku_board in place
-    and returns True if a solution is found, False otherwise.
+    and returns 1 (True) if a solution is found, 0 (False) otherwise.
+
+    Parameters
+    -----------
+    sudoku_board : int[:, :]
+        two-dimensional c array representing sudoku board
+    i : int
+        Row index of cell
+    j : int
+        Column index of cell
+
+    Returns
+    --------
+    boolean integer
+        1 (True) if sudoku board is solved, 0 (False) otherwise
     """
 
     # Find empty cell
@@ -107,7 +167,26 @@ cpdef bint solve_backtrack_MRV(int[:, :] sudoku_board, int i, int j):
 
 cpdef int[:, :] solved_MRV(int[:, :] sudoku_board, int i, int j):
     """
-    Wrapper function for solve_backtrack_MRV. Returns solved sudoku board.
+    Wrapper function for solve_backtrack_MRV(). Returns solved sudoku board.
+
+    Parameters
+    -----------
+    sudoku_board : int[:, :]
+        two-dimensional c array representing sudoku board
+    i : int
+        Row index of cell
+    j : int
+        Column index of cell
+
+    Returns
+    --------
+    int[:, :]
+        Solved sudoku board
+
+    Raises
+    -------
+    ValueError
+        If sudoku board cannot be solved.
     """
 
     if solve_backtrack_MRV(sudoku_board, i, j):
