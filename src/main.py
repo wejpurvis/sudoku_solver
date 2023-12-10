@@ -17,7 +17,7 @@ import time
 
 import argparse
 
-from utils import parse_grid, display_sudoku
+from utils import parse_grid, display_sudoku, validate_board, highlight_errors
 import cython.bt_mrv as bt
 
 
@@ -129,12 +129,17 @@ def main():
         # Display success message
         with open(input_sudoku_path, "r") as f:
             input_sudoku = f.read()
-
         # Parse input sudoku (raises error if incorrect input)
         sudoku_board = parse_grid(input_sudoku)
         print(f"Uploaded sudoku:\n\n{input_sudoku}")
         if get_user_input():
-            # Solve sudoku
+            # Check if sudoku is valid
+            is_valid, invalid_cells = validate_board(sudoku_board)
+            if not is_valid:
+                print("\nInvalid sudoku!\nInvalid cells highlighted in red:\n")
+                highlight_errors(sudoku_board, invalid_cells)
+                sys.exit()
+            # Solve sudoku & display time taken
             start_time = time.time()
             solved_sudoku_array = bt.solved_MRV(sudoku_board, 0, 0)
             end_time = time.time()
