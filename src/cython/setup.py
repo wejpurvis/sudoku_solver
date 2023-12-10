@@ -1,3 +1,8 @@
+"""
+Setup module to compile .pyx cython file
+To compile the cython file, run: python setup.py build_ext --inplace
+"""
+
 from setuptools import setup
 from setuptools import Extension
 from Cython.Distutils import build_ext
@@ -12,5 +17,3 @@ setup(
     cmdclass={"build_ext": build_ext},
     ext_modules=ext_modules,
 )
-
-# run python setup.py build_ext --inplace
