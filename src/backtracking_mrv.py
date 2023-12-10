@@ -1,10 +1,11 @@
 """
 This module is an improved implementation of the backtracking algorithm in
-backtracking.py. The :code:`validate_cell()` function has been left unchanged, but the
+backtracking.py. The :code:`validate_cell()` function is unchanged, but the
 :code:`find_empty_cell()` and :code:`solve_backtrack()` functions have been modified to
-include minimum remaining values (MRV) heuristics. This means that the algorithm will
-always choose the cell with the fewest possible values to try first. This is done by
-using the :code:`n_possible_values()` function.
+include minimum remaining values (MRV) heuristics. This means that the backtracking
+algorithm will always choose the cell with the fewest possible values to try first
+(instead of the next empty cell). This is done using the :code:`n_possible_values()`
+function.
 """
 
 
@@ -16,13 +17,13 @@ def validate_cell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> bo
 
     1) Each row must contain the digits 1-9 without repetition.
     2) Each column must contain the digits 1-9 without repetition.
-    3) Each of the nine 3 x 3 sub-boxes of the grid
+    3) Each of the nine 3 x 3 sub-grids
        must contain the digits 1-9 without repetition
 
     Parameters
     ------------
     sudoku_board : list[list[int]]
-        List of list representing sudoku board
+        List of lists representing the sudoku board
     val : int
         Value to be checked
     i : int
@@ -33,7 +34,7 @@ def validate_cell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> bo
     Returns
     ---------
     bool
-        True if value is valid according to sudoku rules, False otherwise
+        **True** if value is valid according to sudoku rules, **False** otherwise
 
     Raises
     ---------
@@ -93,13 +94,12 @@ def validate_cell(sudoku_board: list[list[int]], val: int, i: int, j: int) -> bo
 def n_possible_values(sudoku_board: list[list[int]], i: int, j: int) -> int:
     """
     Returns the number of possible values for a given cell in a Sudoku board.
-    Uses :code:`validate_cell()` to check which numbers from 1 to 9 are valid for a
-    given cell and returns the number of possible values for that cell.
+    Uses :code:`validate_cell()`.
 
     Parameters
     -----------
     sudoku_board : list[list[int]]
-        List of list representing sudoku board
+        List of lists representing sudoku board
     i : int
         Row index of cell to be checked
     j : int
@@ -108,7 +108,7 @@ def n_possible_values(sudoku_board: list[list[int]], i: int, j: int) -> int:
     Returns
     ----------
         int:
-            Numbe of possible values for the given cell.
+            Number of possible values for the given cell (:code:`sudoku_board[i][j]`).
     """
     possible_values = 0
     for val in range(1, 10):
@@ -127,7 +127,7 @@ def find_empty_cell_MRV(sudoku_board: list[list[int]]) -> tuple[int, int]:
     Parameters
     -----------
     sudoku_board : list[list[int]]
-        List of list representing sudoku board
+        List of lists representing sudoku board
 
     Returns
     ----------
@@ -155,11 +155,12 @@ def find_empty_cell_MRV(sudoku_board: list[list[int]]) -> tuple[int, int]:
 
 def solve_backtrack_MRV(sudoku_board, i, j) -> list[list[int]]:
     """
-    Backtracking algorithm with MRV
+    **Backtracking algorithm with MRV**
 
     This function solves a Sudoku puzzle using the backtracking algorithm with Minimum
     Remaining Values (MRV) heuristic. It takes a Sudoku board represented as a 2D list
     (list of lists), along with the indices (i, j) of the current cell being considered.
+    Returns the solved sudoku board as a 2D list of lists.
 
     Parameters
     -----------
