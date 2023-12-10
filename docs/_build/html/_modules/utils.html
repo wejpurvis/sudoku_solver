@@ -299,24 +299,34 @@ document.write(`
   <h1>Source code for utils</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">| This module contains utility functions that are used throughout the project.</span>
-<span class="sd">| :code:`parse_grid(sudoku)` converts a text-based suduko grid into a list of list ready for processing.</span>
-<span class="sd">  :code:`isValidSudoku(board)` checks if a sudoku board is valid (*note*: a valid sudoku does not necessarily mean that the sudoku is solvable).</span>
-<span class="sd">  :code:`displaySudoku(board)` converts a list of lists into a text-based suduko grid for display purposes.</span>
+<span class="sd">| :code:`parse_grid()` converts a text-based suduko grid into a numpy array</span>
+<span class="sd">   ready for processing.</span>
+<span class="sd">  :code:`validate_board()` checks if a sudoku board is valid (*note*: a valid sudoku</span>
+<span class="sd">   does not necessarily mean that the sudoku is solvable). If the board is invalid, the</span>
+<span class="sd">    row and column of the invalid cells are returned.</span>
+<span class="sd">  :code:`highlight_errors()` highlights the invalid cells in red.</span>
+<span class="sd">  :code:`display_sudoku()` converts a list of lists into a text-based</span>
+<span class="sd">   suduko grid for display purposes.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 
 
 <div class="viewcode-block" id="parse_grid">
 <a class="viewcode-back" href="../utils.html#utils.parse_grid">[docs]</a>
-<span class="k">def</span> <span class="nf">parse_grid</span><span class="p">(</span><span class="n">sudoku</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">parse_grid</span><span class="p">(</span><span class="n">sudoku</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Convert text-based suduko grid into a list of list of integers.</span>
-<span class="sd">    This function allows for easier manipulation of the sudoku grid by accessing numbers via their row (:code:`[i]`) and column (:code:`[j]`) index.</span>
+<span class="sd">    Convert text-based suduko grid into a numpy array.</span>
+<span class="sd">    This function allows for easier manipulation of the sudoku grid by accessing</span>
+<span class="sd">    numbers via their row (:code:`[i]`) and column (:code:`[j]`) index.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sudoku: str</span>
 <span class="sd">        Text-based grid representation of Sudoku. Empty cells should be denoted</span>
-<span class="sd">        with a :code:`0`, with :code:`|` and :code:`-` used to seperate subgrid columns and rows, respectively.</span>
+<span class="sd">        with a :code:`0`, with :code:`|` and :code:`-` used to seperate subgrid</span>
+<span class="sd">        columns and rows, respectively.</span>
 <span class="sd">        The intersections of each subgrid should be marked with :code:`+`.</span>
 
 <span class="sd">        Example:</span>
@@ -337,8 +347,8 @@ document.write(`
 
 <span class="sd">    Returns</span>
 <span class="sd">    ----------</span>
-<span class="sd">    sudoku_list : list[list[int]]</span>
-<span class="sd">        A list of list where elements can be accessed by row [i] &amp; column [j]. Each sublist represents a row in the grid.</span>
+<span class="sd">    sudoku_list : np.darray</span>
+<span class="sd">        A numpy array where elements can be accessed by row [i] &amp; column [j].</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ----------</span>
@@ -360,88 +370,70 @@ document.write(`
     <span class="c1"># Check if input is valid (length)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sudoku_list_raw</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">11</span> <span class="o">*</span> <span class="mi">11</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;Input grid must be 11x11, don&#39;t forget to seperate girds with |, -, and + signs!&quot;</span>
+            <span class="s2">&quot;Invalid sudoku input! &quot;</span>
+            <span class="s2">&quot;Sudoku must be an 11x11 grid (don&#39;t forget to seperate grids &quot;</span>
+            <span class="s2">&quot;with |, -, and + signs)&quot;</span>
         <span class="p">)</span>
 
-    <span class="c1"># Convert flattened list of strs into a list of list of ints</span>
-    <span class="n">sudoku_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
-        <span class="n">sudoku_list</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
-            <span class="n">curr_val</span> <span class="o">=</span> <span class="n">sudoku_list_raw</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">11</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">curr_val</span> <span class="o">==</span> <span class="s2">&quot;|&quot;</span> <span class="ow">or</span> <span class="n">curr_val</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span> <span class="ow">or</span> <span class="n">curr_val</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span><span class="p">:</span>
-                <span class="k">pass</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">sudoku_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">curr_val</span><span class="p">))</span>
+    <span class="c1"># Convert list into a numpy array</span>
+    <span class="n">sudoku_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">sudoku_list_raw</span> <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()]</span>
+    <span class="n">sudoku_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sudoku_list</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intc</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
 
-    <span class="c1"># Remove empty sublists</span>
-    <span class="n">sudoku_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sudoku_list</span> <span class="k">if</span> <span class="n">row</span> <span class="o">!=</span> <span class="p">[]]</span>
-
-    <span class="k">return</span> <span class="n">sudoku_list</span></div>
+    <span class="k">return</span> <span class="n">sudoku_array</span></div>
 
 
 
-<div class="viewcode-block" id="isValidSudoku">
-<a class="viewcode-back" href="../utils.html#utils.isValidSudoku">[docs]</a>
-<span class="k">def</span> <span class="nf">isValidSudoku</span><span class="p">(</span><span class="n">board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="validate_board">
+<a class="viewcode-back" href="../utils.html#utils.validate_board">[docs]</a>
+<span class="k">def</span> <span class="nf">validate_board</span><span class="p">(</span><span class="n">sudoku</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Given a list of lists represrenting a sudoku board, check if the board is valid.</span>
+<span class="sd">    Given a 2D numpy array representing a sudoku board, check if the board is valid.</span>
 <span class="sd">    Validity of sudoku is based off the following rules:</span>
 
 <span class="sd">    1) Each row must contain the digits 1-9 without repetition.</span>
 <span class="sd">    2) Each column must contain the digits 1-9 without repetition.</span>
-<span class="sd">    3) Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition</span>
+<span class="sd">    3) Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without</span>
+<span class="sd">       repetition</span>
 
 <span class="sd">    *Note*: a valid sudoku does not necessarily mean that the sudoku is solvable.</span>
 
+<span class="sd">    If the board is valid, True is returned. If the board is invalid, False and the row</span>
+<span class="sd">    and column of the invalid cells are returned.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    board : list[list[int]]]</span>
-<span class="sd">        List of list where elements can be accessed by row [i] &amp; column [j]</span>
+<span class="sd">    sudoku : np.array</span>
+<span class="sd">        2D numpy array representing a sudoku board</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    ---------</span>
 <span class="sd">    bool</span>
 <span class="sd">        True if board is valid, False otherwise</span>
+<span class="sd">    list[tuple[int, int]]</span>
+<span class="sd">        List of tuples containing the row and column of the invalid cells. Empty list</span>
+<span class="sd">        if board is valid.</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ---------</span>
 <span class="sd">    TypeError</span>
-<span class="sd">        If input is not a list of lists of ints</span>
-<span class="sd">    ValueError</span>
-<span class="sd">        If input is not 9x9 or if cells contains values outside of 0-9</span>
-
+<span class="sd">        If input is not a numpy array</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if input is valid (type)</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">sudoku</span><span class="p">)</span> <span class="o">!=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Input must be a numpy array&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Check if input is valid (list of list)</span>
-    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">board</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Input must be a list&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Input must be a list of lists&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Check if input is valid (length)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">board</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input grid must be 9x9&quot;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">board</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input grid must be 9x9&quot;</span><span class="p">)</span>
-
-    <span class="c1"># Check if input is valid (values)</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">board</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Input must be a list of lists of ints&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">val</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input must be a list of lists of ints from 0-9&quot;</span><span class="p">)</span>
+    <span class="c1"># Convert numpy array to list of lists</span>
+    <span class="n">sudoku_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sudoku</span><span class="p">]</span>
 
     <span class="c1"># Check validity of sudoku</span>
     <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]</span>
     <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]</span>
     <span class="n">block</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">set</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+    <span class="n">invalid_cells</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>  <span class="c1"># iterate over rows</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>  <span class="c1"># iterate over columns</span>
-            <span class="n">element</span> <span class="o">=</span> <span class="n">board</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">sudoku_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="p">(</span>
@@ -449,29 +441,76 @@ document.write(`
                 <span class="ow">or</span> <span class="p">(</span><span class="n">element</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
                 <span class="ow">or</span> <span class="p">(</span><span class="n">element</span> <span class="ow">in</span> <span class="n">block</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">//</span> <span class="mi">3</span><span class="p">])</span>
             <span class="p">):</span>
-                <span class="k">return</span> <span class="kc">False</span>
+                <span class="n">invalid_cells</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
             <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
             <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
             <span class="n">block</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">3</span><span class="p">][</span><span class="n">j</span> <span class="o">//</span> <span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">True</span></div>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">invalid_cells</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="n">invalid_cells</span></div>
 
 
 
-<div class="viewcode-block" id="displaySudoku">
-<a class="viewcode-back" href="../utils.html#utils.displaySudoku">[docs]</a>
-<span class="k">def</span> <span class="nf">displaySudoku</span><span class="p">(</span><span class="n">board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="highlight_errors">
+<a class="viewcode-back" href="../utils.html#utils.highlight_errors">[docs]</a>
+<span class="k">def</span> <span class="nf">highlight_errors</span><span class="p">(</span><span class="n">sudoku</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">invalid_cells</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Display sudoku board in a readable format.</span>
+<span class="sd">    Given a 2D numpy array representing a sudoku board and a list of invalid cells for</span>
+<span class="sd">    the given board, highlight the invalid cells in red.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    grid : list of list</span>
+<span class="sd">    sudoku : np.array</span>
+<span class="sd">        2D numpy array representing a sudoku board</span>
+<span class="sd">    invalid_cells : list[tuple[int, int]]</span>
+<span class="sd">        List of tuples containing the row and column of the invalid cells.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Define ANSI escape codes for text colours</span>
+    <span class="n">RED</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[91m&quot;</span>
+    <span class="n">RESET</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[0m&quot;</span>
+
+    <span class="c1"># Convert numpy array to list of lists</span>
+    <span class="n">sudoku_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sudoku</span><span class="p">]</span>
+
+    <span class="c1"># Convert list of lists into a string</span>
+    <span class="n">sudoku_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sudoku_list</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="c1"># Highlight invalid cells in red</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">sudoku_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">row</span><span class="p">),</span> <span class="n">idx</span><span class="p">)</span> <span class="ow">in</span> <span class="n">invalid_cells</span><span class="p">:</span>
+                <span class="n">char_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">RED</span><span class="si">}{</span><span class="n">val</span><span class="si">}{</span><span class="n">RESET</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">char_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="n">sudoku_str</span> <span class="o">+=</span> <span class="n">char_str</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sudoku_str</span> <span class="o">+=</span> <span class="n">char_str</span>
+        <span class="n">sudoku_str</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="n">sudoku_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">or</span> <span class="n">row</span> <span class="o">==</span> <span class="n">sudoku_list</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span>
+            <span class="n">sudoku_str</span> <span class="o">+=</span> <span class="s2">&quot;---+---+---</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sudoku_str</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="display_sudoku">
+<a class="viewcode-back" href="../utils.html#utils.display_sudoku">[docs]</a>
+<span class="k">def</span> <span class="nf">display_sudoku</span><span class="p">(</span><span class="n">board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reverse of parse_grid: displays sudoku board given as a list in a readable format.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    board : list of list</span>
 <span class="sd">        List of list where elements can be accessed by row [i] &amp; column [j]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    ---------</span>
 <span class="sd">    sudoku : str</span>
-<span class="sd">        Text-based grid where empty cells are represented by 0, each subgrid is seperated by | and each row is seperated by - and +</span>
+<span class="sd">        Text-based grid where empty cells are represented by 0, each subgrid is</span>
+<span class="sd">        seperated by | and each row is seperated by - and +</span>
 
 <span class="sd">        Example:</span>
 

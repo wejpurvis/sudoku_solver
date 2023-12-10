@@ -299,11 +299,12 @@ document.write(`
   <h1>Source code for backtracking_mrv</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This module is an improved implementation of the backtracking algorithm in</span>
-<span class="sd">backtracking.py. The :code:`validate_cell()` function has been left unchanged, but the</span>
+<span class="sd">backtracking.py. The :code:`validate_cell()` function is unchanged, but the</span>
 <span class="sd">:code:`find_empty_cell()` and :code:`solve_backtrack()` functions have been modified to</span>
-<span class="sd">include minimum remaining values (MRV) heuristics. This means that the algorithm will</span>
-<span class="sd">always choose the cell with the fewest possible values to try first. This is done by</span>
-<span class="sd">using the :code:`n_possible_values()` function.</span>
+<span class="sd">include minimum remaining values (MRV) heuristics. This means that the backtracking</span>
+<span class="sd">algorithm will always choose the cell with the fewest possible values to try first</span>
+<span class="sd">(instead of the next empty cell). This is done using the :code:`n_possible_values()`</span>
+<span class="sd">function.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 
@@ -317,13 +318,13 @@ document.write(`
 
 <span class="sd">    1) Each row must contain the digits 1-9 without repetition.</span>
 <span class="sd">    2) Each column must contain the digits 1-9 without repetition.</span>
-<span class="sd">    3) Each of the nine 3 x 3 sub-boxes of the grid</span>
+<span class="sd">    3) Each of the nine 3 x 3 sub-grids</span>
 <span class="sd">       must contain the digits 1-9 without repetition</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ------------</span>
 <span class="sd">    sudoku_board : list[list[int]]</span>
-<span class="sd">        List of list representing sudoku board</span>
+<span class="sd">        List of lists representing the sudoku board</span>
 <span class="sd">    val : int</span>
 <span class="sd">        Value to be checked</span>
 <span class="sd">    i : int</span>
@@ -334,7 +335,7 @@ document.write(`
 <span class="sd">    Returns</span>
 <span class="sd">    ---------</span>
 <span class="sd">    bool</span>
-<span class="sd">        True if value is valid according to sudoku rules, False otherwise</span>
+<span class="sd">        **True** if value is valid according to sudoku rules, **False** otherwise</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ---------</span>
@@ -397,13 +398,12 @@ document.write(`
 <span class="k">def</span> <span class="nf">n_possible_values</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the number of possible values for a given cell in a Sudoku board.</span>
-<span class="sd">    Uses :code:`validate_cell()` to check which numbers from 1 to 9 are valid for a</span>
-<span class="sd">    given cell and returns the number of possible values for that cell.</span>
+<span class="sd">    Uses :code:`validate_cell()`.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>
 <span class="sd">    sudoku_board : list[list[int]]</span>
-<span class="sd">        List of list representing sudoku board</span>
+<span class="sd">        List of lists representing sudoku board</span>
 <span class="sd">    i : int</span>
 <span class="sd">        Row index of cell to be checked</span>
 <span class="sd">    j : int</span>
@@ -412,7 +412,7 @@ document.write(`
 <span class="sd">    Returns</span>
 <span class="sd">    ----------</span>
 <span class="sd">        int:</span>
-<span class="sd">            Numbe of possible values for the given cell.</span>
+<span class="sd">            Number of possible values for the given cell (:code:`sudoku_board[i][j]`).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">possible_values</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
@@ -434,7 +434,7 @@ document.write(`
 <span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>
 <span class="sd">    sudoku_board : list[list[int]]</span>
-<span class="sd">        List of list representing sudoku board</span>
+<span class="sd">        List of lists representing sudoku board</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    ----------</span>
@@ -465,11 +465,12 @@ document.write(`
 <a class="viewcode-back" href="../backtracking_mrv.html#backtracking_mrv.solve_backtrack_MRV">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_backtrack_MRV</span><span class="p">(</span><span class="n">sudoku_board</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Backtracking algorithm with MRV</span>
+<span class="sd">    **Backtracking algorithm with MRV**</span>
 
 <span class="sd">    This function solves a Sudoku puzzle using the backtracking algorithm with Minimum</span>
 <span class="sd">    Remaining Values (MRV) heuristic. It takes a Sudoku board represented as a 2D list</span>
 <span class="sd">    (list of lists), along with the indices (i, j) of the current cell being considered.</span>
+<span class="sd">    Returns the solved sudoku board as a 2D list of lists.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    -----------</span>

@@ -260,10 +260,6 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="backtracking_mrv.html">Backtracking with MRV heuristics module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="main.html">Main module</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="cython_modules.html">Cython Modules</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="bt_mrv.html">bt_mrv module</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </nav></div>
@@ -325,20 +321,26 @@ document.write(`
 <span id="utils-module"></span><h1>Utils module<a class="headerlink" href="#module-utils" title="Link to this heading">#</a></h1>
 <div class="line-block">
 <div class="line">This module contains utility functions that are used throughout the project.</div>
-<div class="line"><code class="code docutils literal notranslate"><span class="pre">parse_grid(sudoku)</span></code> converts a text-based suduko grid into a list of list ready for processing.
-<code class="code docutils literal notranslate"><span class="pre">isValidSudoku(board)</span></code> checks if a sudoku board is valid (<em>note</em>: a valid sudoku does not necessarily mean that the sudoku is solvable).
-<code class="code docutils literal notranslate"><span class="pre">displaySudoku(board)</span></code> converts a list of lists into a text-based suduko grid for display purposes.</div>
+<div class="line"><code class="code docutils literal notranslate"><span class="pre">parse_grid()</span></code> converts a text-based suduko grid into a numpy array
+ ready for processing.
+<code class="code docutils literal notranslate"><span class="pre">validate_board()</span></code> checks if a sudoku board is valid (<em>note</em>: a valid sudoku
+ does not necessarily mean that the sudoku is solvable). If the board is invalid, the
+  row and column of the invalid cells are returned.
+<code class="code docutils literal notranslate"><span class="pre">highlight_errors()</span></code> highlights the invalid cells in red.
+<code class="code docutils literal notranslate"><span class="pre">display_sudoku()</span></code> converts a list of lists into a text-based
+ suduko grid for display purposes.</div>
 </div>
 <dl class="py function">
-<dt class="sig sig-object py" id="utils.displaySudoku">
-<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">displaySudoku</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/utils.html#displaySudoku"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.displaySudoku" title="Link to this definition">#</a></dt>
-<dd><p>Display sudoku board in a readable format.</p>
+<dt class="sig sig-object py" id="utils.display_sudoku">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">display_sudoku</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/utils.html#display_sudoku"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.display_sudoku" title="Link to this definition">#</a></dt>
+<dd><p>Reverse of parse_grid: displays sudoku board given as a list in a readable format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>grid</strong> (<em>list</em><em> of </em><em>list</em>) – List of list where elements can be accessed by row [i] &amp; column [j]</p>
+<dd class="field-odd"><p><strong>board</strong> (<em>list</em><em> of </em><em>list</em>) – List of list where elements can be accessed by row [i] &amp; column [j]</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p><strong>sudoku</strong> – Text-based grid where empty cells are represented by 0, each subgrid is seperated by | and each row is seperated by - and +</p>
+<dd class="field-even"><p><p><strong>sudoku</strong> – Text-based grid where empty cells are represented by 0, each subgrid is
+seperated by | and each row is seperated by - and +</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">000</span><span class="o">|</span><span class="mi">007</span><span class="o">|</span><span class="mi">000</span>
 <span class="mi">000</span><span class="o">|</span><span class="mi">009</span><span class="o">|</span><span class="mi">504</span>
@@ -368,30 +370,15 @@ document.write(`
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="utils.isValidSudoku">
-<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">isValidSudoku</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/utils.html#isValidSudoku"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.isValidSudoku" title="Link to this definition">#</a></dt>
-<dd><p>Given a list of lists represrenting a sudoku board, check if the board is valid.
-Validity of sudoku is based off the following rules:</p>
-<ol class="arabic simple">
-<li><p>Each row must contain the digits 1-9 without repetition.</p></li>
-<li><p>Each column must contain the digits 1-9 without repetition.</p></li>
-<li><p>Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition</p></li>
-</ol>
-<p><em>Note</em>: a valid sudoku does not necessarily mean that the sudoku is solvable.</p>
+<dt class="sig sig-object py" id="utils.highlight_errors">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">highlight_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invalid_cells</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/utils.html#highlight_errors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.highlight_errors" title="Link to this definition">#</a></dt>
+<dd><p>Given a 2D numpy array representing a sudoku board and a list of invalid cells for
+the given board, highlight the invalid cells in red.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>board</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>int</em><em>]</em><em>]</em><em>]</em>) – List of list where elements can be accessed by row [i] &amp; column [j]</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>True if board is valid, False otherwise</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>TypeError</strong> – If input is not a list of lists of ints</p></li>
-<li><p><strong>ValueError</strong> – If input is not 9x9 or if cells contains values outside of 0-9</p></li>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sudoku</strong> (<em>np.array</em>) – 2D numpy array representing a sudoku board</p></li>
+<li><p><strong>invalid_cells</strong> (<em>list</em><em>[</em><em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em>) – List of tuples containing the row and column of the invalid cells.</p></li>
 </ul>
 </dd>
 </dl>
@@ -399,13 +386,15 @@ Validity of sudoku is based off the following rules:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="utils.parse_grid">
-<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">parse_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#parse_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.parse_grid" title="Link to this definition">#</a></dt>
-<dd><p>Convert text-based suduko grid into a list of list of integers.
-This function allows for easier manipulation of the sudoku grid by accessing numbers via their row (<code class="code docutils literal notranslate"><span class="pre">[i]</span></code>) and column (<code class="code docutils literal notranslate"><span class="pre">[j]</span></code>) index.</p>
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">parse_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="reference internal" href="_modules/utils.html#parse_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.parse_grid" title="Link to this definition">#</a></dt>
+<dd><p>Convert text-based suduko grid into a numpy array.
+This function allows for easier manipulation of the sudoku grid by accessing
+numbers via their row (<code class="code docutils literal notranslate"><span class="pre">[i]</span></code>) and column (<code class="code docutils literal notranslate"><span class="pre">[j]</span></code>) index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sudoku</strong> (<em>str</em>) – <p>Text-based grid representation of Sudoku. Empty cells should be denoted
-with a <code class="code docutils literal notranslate"><span class="pre">0</span></code>, with <code class="code docutils literal notranslate"><span class="pre">|</span></code> and <code class="code docutils literal notranslate"><span class="pre">-</span></code> used to seperate subgrid columns and rows, respectively.
+with a <code class="code docutils literal notranslate"><span class="pre">0</span></code>, with <code class="code docutils literal notranslate"><span class="pre">|</span></code> and <code class="code docutils literal notranslate"><span class="pre">-</span></code> used to seperate subgrid
+columns and rows, respectively.
 The intersections of each subgrid should be marked with <code class="code docutils literal notranslate"><span class="pre">+</span></code>.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">000</span><span class="o">|</span><span class="mi">007</span><span class="o">|</span><span class="mi">000</span>
@@ -424,16 +413,48 @@ The intersections of each subgrid should be marked with <code class="code docuti
 </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>sudoku_list</strong> – A list of list where elements can be accessed by row [i] &amp; column [j]. Each sublist represents a row in the grid.</p>
+<dd class="field-even"><p><strong>sudoku_list</strong> – A numpy array where elements can be accessed by row [i] &amp; column [j].</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list[list[int]]</p>
+<dd class="field-odd"><p>np.darray</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>TypeError</strong> – If input is not a string.</p></li>
 <li><p><strong>ValueError</strong> – If input is not an 11x11 grid, including ‘|’, ‘-’, and ‘+’ characters.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.validate_board">
+<span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">validate_board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sudoku</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/utils.html#validate_board"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.validate_board" title="Link to this definition">#</a></dt>
+<dd><p>Given a 2D numpy array representing a sudoku board, check if the board is valid.
+Validity of sudoku is based off the following rules:</p>
+<ol class="arabic simple">
+<li><p>Each row must contain the digits 1-9 without repetition.</p></li>
+<li><p>Each column must contain the digits 1-9 without repetition.</p></li>
+<li><p>Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without
+repetition</p></li>
+</ol>
+<p><em>Note</em>: a valid sudoku does not necessarily mean that the sudoku is solvable.</p>
+<p>If the board is valid, True is returned. If the board is invalid, False and the row
+and column of the invalid cells are returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sudoku</strong> (<em>np.array</em>) – 2D numpy array representing a sudoku board</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>bool</em> – True if board is valid, False otherwise</p></li>
+<li><p><em>list[tuple[int, int]]</em> – List of tuples containing the row and column of the invalid cells. Empty list
+if board is valid.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – If input is not a numpy array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -483,9 +504,10 @@ The intersections of each subgrid should be marked with <code class="code docuti
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.displaySudoku"><code class="docutils literal notranslate"><span class="pre">displaySudoku()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.isValidSudoku"><code class="docutils literal notranslate"><span class="pre">isValidSudoku()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.display_sudoku"><code class="docutils literal notranslate"><span class="pre">display_sudoku()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.highlight_errors"><code class="docutils literal notranslate"><span class="pre">highlight_errors()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.parse_grid"><code class="docutils literal notranslate"><span class="pre">parse_grid()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utils.validate_board"><code class="docutils literal notranslate"><span class="pre">validate_board()</span></code></a></li>
 </ul>
   </nav></div>
 
