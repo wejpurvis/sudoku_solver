@@ -143,7 +143,7 @@ def validate_board(sudoku: np.array) -> Union[bool, list[tuple[int, int]]]:
             block[i // 3][j // 3].add(element)
 
     if len(invalid_cells) == 0:
-        return True
+        return True, invalid_cells
     else:
         return False, invalid_cells
 

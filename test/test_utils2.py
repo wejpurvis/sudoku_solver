@@ -18,7 +18,7 @@ def test_validate_board_valid():
         ]
     )
 
-    assert validate_board(board) is True
+    assert validate_board(board)[0] is True
 
 
 def test_validate_board_invalid():
