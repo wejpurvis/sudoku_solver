@@ -14,11 +14,12 @@ containing the sudoku puzzle to be solved.
 import sys
 import os
 import time
+import numpy as np
 
 import argparse
 
 from utils import parse_grid, displaySudoku
-from backtracking_mrv import solve_backtrack_MRV
+import cython.bt_mrv as bt
 
 
 def parse_arguments():
@@ -133,9 +134,11 @@ def main():
         if get_user_input():
             # Solve sudoku
             sudoku_board = parse_grid(input_sudoku)
+            sudoku_arr = np.array(sudoku_board, dtype=np.intc)
             start_time = time.time()
-            solved_sudoku = solve_backtrack_MRV(sudoku_board, 0, 0)
+            solved_sudoku_array = bt.solved_MRV(sudoku_arr, 0, 0)
             end_time = time.time()
+            solved_sudoku = [list(row) for row in solved_sudoku_array]
             print(f"Solved sudoku:\n\n{displaySudoku(solved_sudoku)}")
             print(f"Solved in {(end_time - start_time):.4f} seconds.")
         else:
