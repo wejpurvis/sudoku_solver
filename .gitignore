@@ -13,6 +13,6 @@ environment_full.yml
 #Ignore log
 log.txt
 
-#Ignore cython build & pyd files
+#Ignore cython build
 src/cython/build/*
 src/cython/*.pyd
