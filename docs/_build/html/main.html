@@ -41,7 +41,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'main';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Backtracking with MRV heuristics module" href="backtracking_mrv.html" />
+    <link rel="next" title="Backtracking" href="backtracking.html" />
+    <link rel="prev" title="Sudoku Solver Modules" href="modules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -255,10 +256,10 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="backtracking_mrv.html">Backtracking with MRV heuristics module</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backtracking_mrv.html">Backtracking with MRV heuristics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a></li>
 </ul>
 </div>
 </nav></div>
@@ -316,8 +317,91 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
 
-  <section id="main-module">
-<h1>Main module<a class="headerlink" href="#main-module" title="Link to this heading">#</a></h1>
+  <section id="module-main">
+<span id="main-module"></span><h1>Main module<a class="headerlink" href="#module-main" title="Link to this heading">#</a></h1>
+<p>This script is the entry point for the Sudoku Solver package.
+It utilizes the backtracking algorithm with minimum remaining value (MRV) heuristics.
+The algorithm is from the <code class="code docutils literal notranslate"><span class="pre">backtracking_mrv</span></code> module and various utility functions
+from the <code class="code docutils literal notranslate"><span class="pre">utils</span></code> module are used to to solve sudoku puzzles. Usage:
+<code class="code docutils literal notranslate"><span class="pre">src/main.py</span> <span class="pre">input.txt</span></code> where <code class="code docutils literal notranslate"><span class="pre">input.txt</span></code> is the path to the file
+containing the sudoku puzzle to be solved.</p>
+<div class="line-block">
+<div class="line"><strong>Author:</strong> William Purvis</div>
+<div class="line"><strong>Created:</strong> 25/11/2023</div>
+<div class="line"><strong>Last updated:</strong> 10/12/2023</div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_user_input">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_user_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#get_user_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.get_user_input" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Prompt user to select whether they want to solve the uploaded sudoku.</div>
+<div class="line"><code class="code docutils literal notranslate"><span class="pre">Do</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">solve</span> <span class="pre">the</span> <span class="pre">uploaded</span> <span class="pre">sudoku?</span> <span class="pre">[y/n]:</span></code> is displayed to the user.
+If user enters <code class="code docutils literal notranslate"><span class="pre">y</span></code>, <code class="code docutils literal notranslate"><span class="pre">True</span></code> is returned.
+If user enters <code class="code docutils literal notranslate"><span class="pre">n</span></code>, <code class="code docutils literal notranslate"><span class="pre">False</span></code> is returned.</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the user wants to solve sudoku, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.is_valid_file">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">is_valid_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#is_valid_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.is_valid_file" title="Link to this definition">#</a></dt>
+<dd><p>Check if a given file is valid based on whether file exists and whether it is a
+text file (.txt).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>(</strong><strong>str</strong><strong>)</strong> (<em>filename</em>) – </p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If the file does not exist.</p></li>
+<li><p><strong>ValueError</strong> – If the file format is not valid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.main">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.main" title="Link to this definition">#</a></dt>
+<dd><p>Main function that handles the execution of the Sudoku solver program.</p>
+<p>It reads the input Sudoku file (given as a .txt file via the CL),solves
+the Sudoku puzzle using backtracking algorithm,and displays the solved
+Sudoku along with the time taken for solving.</p>
+<p>If the user chooses not to solve the Sudoku, the program exits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – If the input Sudoku file is not found.</p></li>
+<li><p><strong>ValueError</strong> – If there is an error in the input Sudoku file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.parse_arguments">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">parse_arguments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/main.html#parse_arguments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#main.parse_arguments" title="Link to this definition">#</a></dt>
+<dd><p>Parse command line arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args (argparse.Namespace)</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parsed command line arguments.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If more than 1 argument is passed on CL.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -331,13 +415,22 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="backtracking_mrv.html"
+       href="modules.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Backtracking with MRV heuristics module</p>
+        <p class="prev-next-title">Sudoku Solver Modules</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="backtracking.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Backtracking</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -347,6 +440,19 @@ document.write(`
 
 
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main.get_user_input"><code class="docutils literal notranslate"><span class="pre">get_user_input()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main.is_valid_file"><code class="docutils literal notranslate"><span class="pre">is_valid_file()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main.parse_arguments"><code class="docutils literal notranslate"><span class="pre">parse_arguments()</span></code></a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div class="tocsection sourcelink">

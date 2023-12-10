@@ -41,7 +41,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Utils module" href="utils.html" />
+    <link rel="next" title="Main module" href="main.html" />
     <link rel="prev" title="Welcome to Sudoku Solver’s documentation!" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -256,10 +256,10 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="backtracking_mrv.html">Backtracking with MRV heuristics module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="main.html">Main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backtracking_mrv.html">Backtracking with MRV heuristics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a></li>
 </ul>
 </div>
 </nav></div>
@@ -316,30 +316,36 @@ document.write(`
 
   <section id="sudoku-solver-modules">
 <h1>Sudoku Solver Modules<a class="headerlink" href="#sudoku-solver-modules" title="Link to this heading">#</a></h1>
-<p>Here is a list of all the modules in the Sudoku Solver package with brief descriptions:</p>
+<p>Here is a list of all the modules used in the Sudoku Solver package:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utils module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.display_sudoku"><code class="docutils literal notranslate"><span class="pre">display_sudoku()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.highlight_errors"><code class="docutils literal notranslate"><span class="pre">highlight_errors()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.parse_grid"><code class="docutils literal notranslate"><span class="pre">parse_grid()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.validate_board"><code class="docutils literal notranslate"><span class="pre">validate_board()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">Main module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.get_user_input"><code class="docutils literal notranslate"><span class="pre">get_user_input()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.is_valid_file"><code class="docutils literal notranslate"><span class="pre">is_valid_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html#main.parse_arguments"><code class="docutils literal notranslate"><span class="pre">parse_arguments()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking module</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="backtracking.html">Backtracking</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backtracking.html#backtracking.find_empty_cell"><code class="docutils literal notranslate"><span class="pre">find_empty_cell()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="backtracking.html#backtracking.solve_backtrack"><code class="docutils literal notranslate"><span class="pre">solve_backtrack()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="backtracking.html#backtracking.validate_cell"><code class="docutils literal notranslate"><span class="pre">validate_cell()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="backtracking_mrv.html">Backtracking with MRV heuristics module</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="backtracking_mrv.html">Backtracking with MRV heuristics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backtracking_mrv.html#backtracking_mrv.find_empty_cell_MRV"><code class="docutils literal notranslate"><span class="pre">find_empty_cell_MRV()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="backtracking_mrv.html#backtracking_mrv.n_possible_values"><code class="docutils literal notranslate"><span class="pre">n_possible_values()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="backtracking_mrv.html#backtracking_mrv.solve_backtrack_MRV"><code class="docutils literal notranslate"><span class="pre">solve_backtrack_MRV()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="backtracking_mrv.html#backtracking_mrv.validate_cell"><code class="docutils literal notranslate"><span class="pre">validate_cell()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="main.html">Main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.display_sudoku"><code class="docutils literal notranslate"><span class="pre">display_sudoku()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.highlight_errors"><code class="docutils literal notranslate"><span class="pre">highlight_errors()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.parse_grid"><code class="docutils literal notranslate"><span class="pre">parse_grid()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.validate_board"><code class="docutils literal notranslate"><span class="pre">validate_board()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -364,11 +370,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="utils.html"
+       href="main.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Utils module</p>
+        <p class="prev-next-title">Main module</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -1,4 +1,4 @@
-Utils module
+Utilities
 ============
 
 .. automodule:: utils
