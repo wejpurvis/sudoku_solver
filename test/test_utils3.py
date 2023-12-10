@@ -1,5 +1,5 @@
 # Unit tests for displaySudoky function in utils.py
-from src.utils import displaySudoku
+from src.utils import display_sudoku
 import pytest
 
 
@@ -15,14 +15,18 @@ def test_displaySudoku_valid_input():
         [1, 0, 3, 9, 0, 0, 0, 0, 0],
         [0, 0, 0, 6, 0, 0, 0, 0, 0],
     ]
-    expected_output = "000|007|000\n000|009|504\n000|050|169\n---+---+---\n080|003|050\n075|000|290\n406|000|080\n---+---+---\n762|080|000\n103|900|000\n000|600|000\n"
-    assert displaySudoku(board) == expected_output
+    expected_output = (
+        "000|007|000\n000|009|504\n000|050|169\n---+---+---\n"
+        "080|003|050\n075|000|290\n406|000|080\n---+---+---\n7"
+        "62|080|000\n103|900|000\n000|600|000\n"
+    )
+    assert display_sudoku(board) == expected_output
 
 
 def test_displaySudoku_invalid_input_type():
     board = "invalid"
     with pytest.raises(TypeError):
-        displaySudoku(board)
+        display_sudoku(board)
 
 
 def test_displaySudoku_invalid_input_length():
@@ -37,7 +41,7 @@ def test_displaySudoku_invalid_input_length():
         [1, 0, 3, 9, 0, 0, 0, 0, 0],
     ]
     with pytest.raises(ValueError):
-        displaySudoku(board)
+        display_sudoku(board)
 
 
 def test_displaySudoku_invalid_input_values():
@@ -53,4 +57,4 @@ def test_displaySudoku_invalid_input_values():
         [0, 0, 0, 6, 0, 0, 0, 0, 0],
     ]
     with pytest.raises(ValueError):
-        displaySudoku(board)
+        display_sudoku(board)
