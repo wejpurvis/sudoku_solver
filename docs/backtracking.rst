@@ -1,4 +1,4 @@
-Backtracking module
+Backtracking
 ====================
 
 .. automodule:: backtracking

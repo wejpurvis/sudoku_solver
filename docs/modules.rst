@@ -1,12 +1,12 @@
 Sudoku Solver Modules
 =====================
 
-Here is a list of all the modules in the Sudoku Solver package with brief descriptions:
+Here is a list of all the modules used in the Sudoku Solver package:
 
 .. toctree::
    :maxdepth: 2
 
-   utils
+   main
    backtracking
    backtracking_mrv
-   main
+   utils

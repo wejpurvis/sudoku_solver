@@ -1,4 +1,4 @@
-Backtracking with MRV heuristics module
+Backtracking with MRV heuristics
 =======================================
 
 .. automodule:: backtracking_mrv
