@@ -8,7 +8,7 @@ containing the sudoku puzzle to be solved.
 
 | **Author:** William Purvis
 | **Created:** 25/11/2023
-| **Last updated:** 09/12/2023
+| **Last updated:** 10/12/2023
 """
 
 import sys
