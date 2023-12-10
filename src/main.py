@@ -14,11 +14,10 @@ containing the sudoku puzzle to be solved.
 import sys
 import os
 import time
-import numpy as np
 
 import argparse
 
-from utils import parse_grid, displaySudoku
+from utils import parse_grid, display_sudoku
 import cython.bt_mrv as bt
 
 
@@ -130,16 +129,17 @@ def main():
         # Display success message
         with open(input_sudoku_path, "r") as f:
             input_sudoku = f.read()
+
+        # Parse input sudoku (raises error if incorrect input)
+        sudoku_board = parse_grid(input_sudoku)
         print(f"Uploaded sudoku:\n\n{input_sudoku}")
         if get_user_input():
             # Solve sudoku
-            sudoku_board = parse_grid(input_sudoku)
-            sudoku_arr = np.array(sudoku_board, dtype=np.intc)
             start_time = time.time()
-            solved_sudoku_array = bt.solved_MRV(sudoku_arr, 0, 0)
+            solved_sudoku_array = bt.solved_MRV(sudoku_board, 0, 0)
             end_time = time.time()
             solved_sudoku = [list(row) for row in solved_sudoku_array]
-            print(f"Solved sudoku:\n\n{displaySudoku(solved_sudoku)}")
+            print(f"Solved sudoku:\n\n{display_sudoku(solved_sudoku)}")
             print(f"Solved in {(end_time - start_time):.4f} seconds.")
         else:
             # Exit program
