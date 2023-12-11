@@ -33,10 +33,22 @@ A dockerfile is provided to run the project alongside all of it's dependencies (
 
 ```bash
 docker build -t sudoku_solver_image . # builds docker image
-docker run -it --name sudoku_solver -v "C:\path_to_folder_containing_input_files:/usr/src/app/data" sudoku_solver src/main.py /usr/src/app/data/input.txt
 ```
 
-Where `C:\path_to_folder_containing_input_files` is the path to the directory containing the sudokus you want to solve, and `input.txt` is the name of the specific text file containing the sudoku you want to solve.
+As the project requires command-line interactions, the docker container needs to be run in interactive mode. The default input is `hard_sudoku2.txt` which can be found in the `test/example_sudokus/` subdirectory. Running the following commang will solve `hard_sudoku2.txt` in the docker container:
+
+```bash
+docker run -it sudoku_solver_image # run docker container with default input
+```
+
+To specify a different input file, mount the volume containing the file and pass the file path:
+
+```bash
+docker run -it -v /path/to/local/files:/data sudoku_solver_image /data/input_file.txt
+```
+
+Replace `/path/to/local/files` with the path to your local directory containing the input files (e.g. `C:\sudoku_puzzles`), and  `input_file.txt` with the name of your input file.
+
 
 ### Running locally
 
@@ -73,7 +85,9 @@ The sudoku solver is sensitive to the format of the provided sudoku and the inpu
 
 ### Documentation
 
-Documentation for this project has already been generated using `sphinx`. To read the documentation run the `index.html` file using the following command in the root directory of the project:
+Documentation for this project has already been generated using `sphinx` in both HTML and PDF formats. A PDF of the documentation can be found under `./docs/_build/latex/sudokusolver.pdf`
+
+To read the documentation in a browser run the `index.html` file using the following command in the root directory of the project:
 
 ```bash
 # Windows
@@ -84,7 +98,7 @@ open docs/_build/html/index.html
 xdg-open docs/_build/html/index.html
 ```
 
-Alternatively to generate documentation locally, navigate to the `docs` subdirectory and run `make html` to re-build the documentation.
+Alternatively, to generate documentation locally, navigate to the `docs` subdirectory and run `make clean html` followed by `make html` to re-build the documentation.
 
 ## License
 
