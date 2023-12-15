@@ -86,6 +86,9 @@ The sudoku solver is sensitive to the format of the provided sudoku and the inpu
 
 ### Documentation
 
+[Read documentation](https://phy-data-intensive-science-mphil-c1_assessment.gitlab.io/wp289
+)
+
 Documentation for this project has already been generated using `sphinx` in both HTML and PDF formats. A PDF of the documentation can be found under `./docs/_build/latex/sudokusolver.pdf`
 
 To read the documentation in a browser run the `index.html` file using the following command in the root directory of the project:
