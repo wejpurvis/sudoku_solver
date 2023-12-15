@@ -1,0 +1,14 @@
+image: python:latest
+
+pages:
+  script:
+    - pip install sphinx
+    - cd docs
+    - sphinx-build -b html . _build/html
+    - mv _build/html public
+    - mv public ../
+  artifacts:
+    paths:
+      - public
+  only:
+    - host_docs
