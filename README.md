@@ -12,6 +12,7 @@
 - [How to use project](#how-to-use-project)
   - [Documentation](#documentation)
 - [License](#license)
+  - [A note on the use of generation tools](#a-note-on-the-use-of-generation-tools)
 
 ## Project description
 
@@ -104,3 +105,11 @@ Alternatively, to generate documentation locally, navigate to the `docs` subdire
 
 This project is licensed under the MIT license - see the [LICENSE](license.txt)
 file for details.
+
+### A note on the use of generation tools
+
+GitHub copilot was used throughout the project as it is installed on my IDE (VS code). It's use was limited to auto-completing lines of code where it made sense to do so (i.e, it was not used to blindly implement functionality, simply to complete code and/or docstring sentences). Copilot was also used to help generate *model* sudoku boards in the test files for the backtracking and backtracking MRV modules. ChatGPT was used to help de-bug the `.tex` file of the write-up (as this is the first time I use LaTeX) with prompts such as:
+
+- **Prompt**: "Why does this text not compile in Latex: "[...] The \texttt{solve_backtrack()} was used to [...]"
+- **Prompt**: "How should I reference a lstlisting in latex?"
+- **Prompt**: "How can I get the word count of a latex document?"
