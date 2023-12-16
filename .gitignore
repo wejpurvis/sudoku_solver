@@ -20,3 +20,10 @@ src/cython/*.pyd
 #Ignore latex build
 docs/_build/latex/*
 !docs/_build/latex/*.pdf
+
+#Ignore report build
+report/*
+!report/*.pdf
+!report/*.png
+!report/*.bib
+!report/*.tex
